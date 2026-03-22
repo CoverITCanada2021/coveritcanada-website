@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.coveritcanada.com)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" screenshot.mjs http://localhost:3002/dashboard dashboard)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" screenshot.mjs http://localhost:3002/work-orders/1 wodetail)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" -e \":*)",
+      "Bash(netstat -ano)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" screenshot.mjs http://localhost:3002/work-orders/new wo-new-fix)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" screenshot.mjs http://localhost:3002/dashboard app-dashboard)",
+      "Bash(powershell -Command \":*)"
+    ]
+  }
+}
