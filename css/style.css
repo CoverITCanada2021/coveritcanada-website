@@ -6,7 +6,7 @@
 
 /* ---- Reset & Base ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body { font-family: 'Barlow', sans-serif; color: #111; background: #fff; overflow-x: hidden; }
 a { text-decoration: none; }
 img { max-width: 100%; display: block; }
@@ -231,6 +231,15 @@ img { max-width: 100%; display: block; }
 .cta-band-right { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
 .cta-band-email { font-size: 13px; color: #aaa; text-align: right; }
 .cta-band-email a { color: #111; font-weight: 600; }
+
+/* Responsive grid utility */
+.grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.grid-form-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+@media(max-width: 768px) {
+  .grid-form { grid-template-columns: 1fr; gap: 40px; }
+  .grid-form-inner { grid-template-columns: 1fr; }
+}
 
 /* Reveal animation */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
