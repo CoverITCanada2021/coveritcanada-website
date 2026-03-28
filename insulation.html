@@ -59,9 +59,6 @@
       <p class="about-story">We supply and install foil and foam board insulation systems specifically designed for fabric and coverall buildings. Our insulation keeps heat in during winter and blocks radiant heat during summer, making your building usable and cost-effective year-round.</p>
       <p class="about-story">Unlike traditional fiberglass batts, foil and foam board insulation won't absorb moisture, won't grow mold or mildew, and won't sag or deteriorate over time — making it the right choice for agricultural and industrial fabric buildings in Ontario.</p>
       <p class="about-story">Lightweight and easy to install inside existing fabric buildings, our insulation systems are designed to last the life of your structure.</p>
-      <div class="inline-photo" style="margin-top: 32px">
-        <img src="images/insulation 2.jpg" alt="Foil insulation installed inside fabric building">
-      </div>
     </div>
     <div>
       <div class="feat-list">
@@ -74,20 +71,58 @@
       </div>
     </div>
   </div>
-  <div class="photo-strip">
-    <div class="photo-strip-item">
-      <img src="images/Insulation.jpg" alt="Fabric building insulation system">
-      <div class="photo-strip-label">Foil Insulation</div>
+  <div class="insul-photo-grid">
+    <div class="insul-photo-main">
+      <img src="images/insulation finished.jpg" alt="Completed foil insulation inside fabric building — Ontario">
+      <div class="insul-photo-label">Finished Installation</div>
     </div>
-    <div class="photo-strip-item">
-      <img src="images/insulation 2.jpg" alt="Insulation installed on fabric building walls">
-      <div class="photo-strip-label">Wall Coverage</div>
-    </div>
-    <div class="photo-strip-item">
-      <img src="images/insulation 3.jpg" alt="Completed insulation installation">
-      <div class="photo-strip-label">Completed Install</div>
+    <div class="insul-photo-stack">
+      <div class="insul-photo-sm">
+        <img src="images/Insulation.jpg" alt="Foil insulation system inside fabric building">
+        <div class="insul-photo-label">Foil Insulation</div>
+      </div>
+      <div class="insul-photo-sm">
+        <img src="images/insulation 2.jpg" alt="Insulation installed on fabric building walls">
+        <div class="insul-photo-label">Wall Coverage</div>
+      </div>
     </div>
   </div>
+
+  <style>
+  .insul-photo-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 12px;
+    margin-top: 48px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .insul-photo-main, .insul-photo-sm { position: relative; overflow: hidden; }
+  .insul-photo-main { border-radius: 6px; }
+  .insul-photo-stack { display: flex; flex-direction: column; gap: 12px; }
+  .insul-photo-sm { border-radius: 6px; flex: 1; }
+  .insul-photo-main img, .insul-photo-sm img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform .4s ease;
+  }
+  .insul-photo-main { min-height: 420px; }
+  .insul-photo-sm { min-height: 200px; }
+  .insul-photo-main:hover img, .insul-photo-sm:hover img { transform: scale(1.03); }
+  .insul-photo-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 10px 14px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.65));
+    color: #fff; font-size: 13px; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase;
+  }
+  @media (max-width: 640px) {
+    .insul-photo-grid { grid-template-columns: 1fr; }
+    .insul-photo-main { min-height: 260px; }
+    .insul-photo-stack { flex-direction: row; }
+    .insul-photo-sm { min-height: 160px; }
+  }
+  </style>
 </section>
 
 <section class="sec sec-gray reveal">
