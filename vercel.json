@@ -10,6 +10,26 @@
       "source": "/index.html",
       "destination": "https://www.coveritcanada.com/",
       "permanent": true
+    },
+    {
+      "source": "/megadome-distributor-ontario",
+      "destination": "https://www.coveritcanada.com/megadome.html",
+      "permanent": true
+    },
+    {
+      "source": "/coverall-building-toronto-ontario",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
+    },
+    {
+      "source": "/fabric-structures-toronto-ontario",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
+    },
+    {
+      "source": "/container-building-toronto-ontario",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
     }
   ]
 }
