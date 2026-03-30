@@ -5,6 +5,11 @@
       "has": [{ "type": "host", "value": "coveritcanada.com" }],
       "destination": "https://www.coveritcanada.com/$1",
       "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "https://www.coveritcanada.com/",
+      "permanent": true
     }
   ]
 }
