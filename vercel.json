@@ -60,6 +60,11 @@
       "source": "/about",
       "destination": "https://www.coveritcanada.com/about.html",
       "permanent": true
+    },
+    {
+      "source": "/tension-span-building-toronto-ontario",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
     }
   ]
 }
