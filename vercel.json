@@ -30,6 +30,36 @@
       "source": "/container-building-toronto-ontario",
       "destination": "https://www.coveritcanada.com/installation.html",
       "permanent": true
+    },
+    {
+      "source": "/installation",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
+    },
+    {
+      "source": "/gallery",
+      "destination": "https://www.coveritcanada.com/gallery.html",
+      "permanent": true
+    },
+    {
+      "source": "/coverit-insulation",
+      "destination": "https://www.coveritcanada.com/insulation.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "https://www.coveritcanada.com/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/megadome",
+      "destination": "https://www.coveritcanada.com/megadome.html",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "https://www.coveritcanada.com/about.html",
+      "permanent": true
     }
   ]
 }
