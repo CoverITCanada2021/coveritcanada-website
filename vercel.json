@@ -65,6 +65,41 @@
       "source": "/tension-span-building-toronto-ontario",
       "destination": "https://www.coveritcanada.com/installation.html",
       "permanent": true
+    },
+    {
+      "source": "/fabric-building-insulation-ontario-ca",
+      "destination": "https://www.coveritcanada.com/insulation.html",
+      "permanent": true
+    },
+    {
+      "source": "/tension-fabric-building-toronto-ontario",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact-fabric-building-company-ontario-ca",
+      "destination": "https://www.coveritcanada.com/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/40x80x20-fabric-building-toronto-ontario",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
+    },
+    {
+      "source": "/about-fabric-building-company-ontario-ca",
+      "destination": "https://www.coveritcanada.com/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/fabric-building-insulation-ontario-canada",
+      "destination": "https://www.coveritcanada.com/insulation.html",
+      "permanent": true
+    },
+    {
+      "source": "/fabric-building-installation-ontario-ca",
+      "destination": "https://www.coveritcanada.com/installation.html",
+      "permanent": true
     }
   ]
 }
