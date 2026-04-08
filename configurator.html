@@ -410,7 +410,13 @@ function initScene() {
   grid.position.y = 0.07; grid.material.opacity = 0.06; grid.material.transparent = true; scene.add(grid);
 
   rebuildUI();
-  buildBuilding();
+  try {
+    buildBuilding();
+  } catch(err) {
+    console.error('buildBuilding error:', err);
+    document.getElementById('loading').textContent = 'Error: ' + err.message;
+    return;
+  }
   syncSize();
   new ResizeObserver(syncSize).observe(vp);
   requestAnimationFrame(loop);
@@ -427,17 +433,16 @@ function ept(hw, H, r, t) {
 }
 
 // Add a tube between two Vector3 points
-function addTube(group, a, b, radius, mat, segs = 1, radSegs = 6) {
-  const len = a.distanceTo(b);
+function addTube(group, a, b, radius, mat, radSegs = 6) {
+  const dir = new THREE.Vector3().subVectors(b, a);
+  const len = dir.length();
   if (len < 0.01) return;
+  dir.normalize();
+  // CylinderGeometry axis is Y by default — rotate Y onto dir
   const geo = new THREE.CylinderGeometry(radius, radius, len, radSegs);
-  geo.applyMatrix4(new THREE.Matrix4().makeRotationX(Math.PI / 2));
   const mesh = new THREE.Mesh(geo, mat);
-  mesh.position.copy(a).add(b).multiplyScalar(0.5);
-  mesh.lookAt(b);
-  // Re-orient — cylinder along local Z after rotation:
-  const dir = b.clone().sub(a).normalize();
-  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir);
+  mesh.position.addVectors(a, b).multiplyScalar(0.5);
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
   mesh.castShadow = true;
   group.add(mesh);
 }
@@ -679,7 +684,7 @@ function makeGablePortalFrame(W, H, sw) {
   const rafters = [[-hw,sw,0,H],[hw,sw,0,H]];
   const ridge = [-hw,sw,hw,sw]; // eave strut
 
-  [...cols,...rafters,[ridge]].forEach(([x1,y1,x2,y2]) => {
+  [...cols,...rafters,ridge].forEach(([x1,y1,x2,y2]) => {
     addTube(group, new THREE.Vector3(x1,y1,0), new THREE.Vector3(x2,y2,0), r, mat);
   });
 
@@ -1106,7 +1111,7 @@ document.querySelectorAll('[data-md]').forEach(b => b.addEventListener('click', 
 // Reset camera
 document.getElementById('reset-cam').addEventListener('click', fitCamera);
 
-initScene();
+try { initScene(); } catch(err) { console.error('initScene error:', err); document.getElementById('loading').textContent = 'Error: ' + err.message; }
 </script>
 
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
