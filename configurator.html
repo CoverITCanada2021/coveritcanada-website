@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MegaDome Building Configurator | CoverIT Canada</title>
+  <meta name="description" content="Design your MegaDome fabric building online. Choose size, series, and colour. Get an instant quote from CoverIT Canada — Ontario's authorized MegaDome dealer.">
+  <link rel="canonical" href="https://www.coveritcanada.com/configurator.html">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NCJBRK8EL"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7NCJBRK8EL');</script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: #111;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    .cfg-nav {
+      height: 52px;
+      background: #111;
+      display: flex;
+      align-items: center;
+      padding: 0 18px;
+      gap: 14px;
+      flex-shrink: 0;
+      border-bottom: 1px solid #222;
+    }
+    .cfg-logo img { height: 30px; display: block; }
+    .cfg-sep { width: 1px; height: 22px; background: #2e2e2e; }
+    .cfg-nav-title { color: #fff; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
+    .cfg-tag {
+      background: #e8a020; color: #111;
+      font-size: 0.63rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 10px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .cfg-back {
+      margin-left: auto;
+      color: #666; font-size: 0.78rem;
+      text-decoration: none;
+    }
+    .cfg-back:hover { color: #fff; }
+
+    /* ── LAYOUT ── */
+    .cfg-layout { flex: 1; display: flex; min-height: 0; }
+
+    /* ── SIDEBAR ── */
+    .cfg-sidebar {
+      width: 288px; flex-shrink: 0;
+      background: #f7f7f5;
+      overflow-y: auto;
+      border-right: 1px solid #e0e0d8;
+      scrollbar-width: thin;
+      scrollbar-color: #ccc #f0f0ec;
+    }
+    .cfg-sidebar::-webkit-scrollbar { width: 4px; }
+    .cfg-sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+
+    .cfg-sec { padding: 16px 16px 14px; border-bottom: 1px solid #e0e0d8; }
+    .cfg-sec-ttl {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #aaa; margin-bottom: 11px;
+    }
+
+    /* SERIES */
+    .series-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    .s-btn {
+      padding: 9px 8px;
+      border: 2px solid #ddd; background: #fff;
+      border-radius: 7px; cursor: pointer;
+      text-align: center;
+      transition: border-color .12s, background .12s;
+    }
+    .s-btn:hover { border-color: #aaa; }
+    .s-btn.active { border-color: #111; background: #111; color: #fff; }
+    .s-btn .sn { display: block; font-size: 0.83rem; font-weight: 700; line-height: 1.2; }
+    .s-btn .sd { display: block; font-size: 0.63rem; color: #999; margin-top: 2px; }
+    .s-btn.active .sd { color: #888; }
+
+    /* SLIDERS */
+    .dim-row { margin-bottom: 14px; }
+    .dim-row:last-of-type { margin-bottom: 0; }
+    .dim-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+    .dim-lbl { font-size: 0.8rem; font-weight: 500; color: #444; }
+    .dim-v { font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .dim-u { font-size: 0.67rem; color: #999; }
+
+    input[type=range] {
+      width: 100%; height: 4px;
+      -webkit-appearance: none; appearance: none;
+      background: #ddd; border-radius: 2px;
+      outline: none; cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: #111; border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.3); cursor: pointer;
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: #111; border: 2px solid #fff; cursor: pointer; border: none;
+    }
+
+    .auto-h {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 10px; padding: 8px 10px;
+      background: #efefed; border-radius: 6px; font-size: 0.78rem;
+    }
+    .auto-h .ahl { color: #777; }
+    .auto-h .ahv { font-weight: 700; }
+
+    /* COLOUR */
+    .swatch-row { display: flex; gap: 7px; align-items: center; }
+    .swatch {
+      width: 26px; height: 26px; border-radius: 50%;
+      cursor: pointer; flex-shrink: 0;
+      position: relative; transition: transform .12s;
+      border: 2px solid rgba(0,0,0,0.08);
+    }
+    .swatch::after {
+      content: ''; position: absolute; inset: -3px;
+      border-radius: 50%; border: 2px solid transparent;
+      transition: border-color .12s;
+    }
+    .swatch:hover { transform: scale(1.15); }
+    .swatch.active::after { border-color: #111; }
+    .swatch-lbl { font-size: 0.73rem; color: #777; margin-left: 2px; }
+
+    /* DOORS */
+    .door-row { display: flex; gap: 5px; }
+    .d-btn {
+      flex: 1; padding: 7px 4px;
+      border: 2px solid #ddd; background: #fff;
+      border-radius: 6px; font-size: 0.82rem; font-weight: 700;
+      cursor: pointer; text-align: center; color: #555;
+      transition: border-color .12s, background .12s;
+    }
+    .d-btn:hover { border-color: #aaa; }
+    .d-btn.active { border-color: #111; background: #111; color: #fff; }
+
+    /* SPECS */
+    .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .spec-c {
+      padding: 9px 11px;
+      background: #fff; border: 1px solid #e6e6e0;
+      border-radius: 8px;
+    }
+    .spec-c.wide { grid-column: span 2; }
+    .spec-n { font-size: 1.05rem; font-weight: 800; }
+    .spec-l { font-size: 0.63rem; color: #aaa; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* CTA */
+    .cfg-cta { padding: 16px; }
+    .quote-btn {
+      display: block; width: 100%;
+      padding: 13px; background: #111; color: #fff;
+      text-decoration: none; text-align: center;
+      border-radius: 8px; font-size: 0.88rem; font-weight: 700;
+      letter-spacing: 0.03em; transition: background .12s;
+    }
+    .quote-btn:hover { background: #2a2a2a; }
+    .quote-note { font-size: 0.68rem; color: #bbb; text-align: center; margin-top: 8px; }
+
+    /* ── VIEWPORT ── */
+    .cfg-viewport { flex: 1; position: relative; min-width: 0; overflow: hidden; }
+    #three-canvas { display: block; }
+
+    .vp-badge {
+      position: absolute; pointer-events: none;
+      backdrop-filter: blur(6px);
+    }
+    .dim-badge {
+      top: 12px; left: 12px;
+      background: rgba(0,0,0,.5); color: #fff;
+      padding: 5px 13px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+    .hints-badge {
+      bottom: 14px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.4); color: rgba(255,255,255,.85);
+      padding: 5px 14px; border-radius: 20px;
+      font-size: 0.7rem; white-space: nowrap;
+    }
+    .reset-btn {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(0,0,0,.5); color: #fff;
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 5px 12px; border-radius: 6px;
+      font-size: 0.72rem; cursor: pointer;
+      backdrop-filter: blur(6px);
+    }
+    .reset-btn:hover { background: rgba(0,0,0,.7); }
+
+    .cfg-loading {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #263545; z-index: 10;
+      color: #ccc; font-size: 0.82rem; letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 680px) {
+      html, body { height: auto; overflow: auto; }
+      .cfg-layout { flex-direction: column-reverse; }
+      .cfg-sidebar { width: 100%; }
+      .cfg-viewport { height: 60vw; min-height: 240px; }
+    }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+<nav class="cfg-nav">
+  <a href="index.html" class="cfg-logo">
+    <img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada">
+  </a>
+  <div class="cfg-sep"></div>
+  <span class="cfg-nav-title">Building Configurator</span>
+  <span class="cfg-tag">MegaDome</span>
+  <a href="megadome.html" class="cfg-back">← MegaDome</a>
+</nav>
+
+<div class="cfg-layout">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="cfg-sidebar">
+
+    <div class="cfg-sec">
+      <div class="cfg-sec-ttl">Series</div>
+      <div class="series-grid">
+        <button class="s-btn active" data-series="DB">
+          <span class="sn">DB Series</span>
+          <span class="sd">30–100 ft wide</span>
+        </button>
+        <button class="s-btn" data-series="S100">
+          <span class="sn">S100 Series</span>
+          <span class="sd">20–50 ft wide</span>
+        </button>
+        <button class="s-btn" data-series="AR">
+          <span class="sn">AR Series</span>
+          <span class="sd">Agricultural</span>
+        </button>
+        <button class="s-btn" data-series="EzDome">
+          <span class="sn">EzDome</span>
+          <span class="sd">20–40 ft wide</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="cfg-sec">
+      <div class="cfg-sec-ttl">Dimensions</div>
+      <div class="dim-row">
+        <div class="dim-top">
+          <span class="dim-lbl">Width</span>
+          <span><span class="dim-v" id="val-w">60</span> <span class="dim-u">ft</span></span>
+        </div>
+        <input type="range" id="sl-w" min="30" max="100" step="10" value="60">
+      </div>
+      <div class="dim-row">
+        <div class="dim-top">
+          <span class="dim-lbl">Length</span>
+          <span><span class="dim-v" id="val-l">100</span> <span class="dim-u">ft</span></span>
+        </div>
+        <input type="range" id="sl-l" min="30" max="300" step="10" value="100">
+      </div>
+      <div class="auto-h">
+        <span class="ahl">Peak Height (auto)</span>
+        <span class="ahv" id="val-h">30 ft</span>
+      </div>
+    </div>
+
+    <div class="cfg-sec">
+      <div class="cfg-sec-ttl">Fabric Colour</div>
+      <div class="swatch-row">
+        <div class="swatch active" data-color="#f0f0ec" data-name="White"         style="background:#f0f0ec;"></div>
+        <div class="swatch"        data-color="#c2c2ba" data-name="Light Grey"    style="background:#c2c2ba;"></div>
+        <div class="swatch"        data-color="#3c5a3d" data-name="Forest Green"  style="background:#3c5a3d;"></div>
+        <div class="swatch"        data-color="#cca86a" data-name="Sand / Tan"    style="background:#cca86a;"></div>
+        <div class="swatch"        data-color="#484846" data-name="Charcoal"      style="background:#484846;"></div>
+        <span class="swatch-lbl" id="swatch-lbl">White</span>
+      </div>
+    </div>
+
+    <div class="cfg-sec">
+      <div class="cfg-sec-ttl">Doors per End Wall</div>
+      <div class="door-row">
+        <button class="d-btn"        data-doors="0">0</button>
+        <button class="d-btn active" data-doors="1">1</button>
+        <button class="d-btn"        data-doors="2">2</button>
+        <button class="d-btn"        data-doors="3">3</button>
+      </div>
+    </div>
+
+    <div class="cfg-sec">
+      <div class="cfg-sec-ttl">Your Building</div>
+      <div class="specs-grid">
+        <div class="spec-c">
+          <div class="spec-n" id="spec-sqft">6,000</div>
+          <div class="spec-l">sq ft floor</div>
+        </div>
+        <div class="spec-c">
+          <div class="spec-n" id="spec-peak">30 ft</div>
+          <div class="spec-l">peak height</div>
+        </div>
+        <div class="spec-c wide">
+          <div class="spec-n" id="spec-vol">141K cu ft</div>
+          <div class="spec-l">approx. interior volume</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cfg-cta">
+      <a class="quote-btn" id="quote-link" href="contact.html">Request a Quote →</a>
+      <div class="quote-note">Free · No obligation · Fast response</div>
+    </div>
+
+  </aside>
+
+  <!-- ── VIEWPORT ── -->
+  <div class="cfg-viewport" id="viewport">
+    <canvas id="three-canvas"></canvas>
+    <div class="vp-badge dim-badge" id="dim-badge">60' W × 100' L × 30' H</div>
+    <div class="vp-badge hints-badge">Drag to rotate &nbsp;·&nbsp; Scroll to zoom &nbsp;·&nbsp; Right-drag to pan</div>
+    <button class="reset-btn" id="reset-cam">⟲ Reset View</button>
+    <div class="cfg-loading" id="loading">Loading 3D viewer…</div>
+  </div>
+
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+const cfg = { series:'DB', width:60, length:100, color:'#f0f0ec', doors:1 };
+
+const SERIES = {
+  DB:     { minW:30, maxW:100, step:10, hRatio:0.500, ribGap:10 },
+  S100:   { minW:20, maxW: 50, step: 5, hRatio:0.500, ribGap: 8 },
+  AR:     { minW:30, maxW: 80, step:10, hRatio:0.475, ribGap:10 },
+  EzDome: { minW:20, maxW: 40, step: 5, hRatio:0.420, ribGap: 6 },
+};
+
+const COLOR_NAMES = {
+  '#f0f0ec':'White', '#c2c2ba':'Light Grey',
+  '#3c5a3d':'Forest Green', '#cca86a':'Sand / Tan', '#484846':'Charcoal'
+};
+
+function peakH() { return cfg.width * SERIES[cfg.series].hRatio; }
+
+// ─── RENDERER / SCENE ─────────────────────────────────────────────────────────
+let renderer, scene, camera, controls, building;
+const mats = {};
+
+function initScene() {
+  const canvas = document.getElementById('three-canvas');
+  const vp     = document.getElementById('viewport');
+
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.shadowMap.enabled     = true;
+  renderer.shadowMap.type        = THREE.PCFSoftShadowMap;
+  renderer.toneMapping           = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure   = 1.05;
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x6e9ebc);
+  scene.fog        = new THREE.FogExp2(0x6e9ebc, 0.0022);
+
+  const { clientWidth: W, clientHeight: H } = vp;
+  camera = new THREE.PerspectiveCamera(45, W / H, 0.5, 2000);
+
+  controls = new OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.07;
+  controls.minDistance   = 10;
+  controls.maxDistance   = 800;
+  controls.maxPolarAngle = Math.PI / 2 - 0.015;
+
+  // Lighting
+  scene.add(new THREE.AmbientLight(0xfff4e8, 0.55));
+  scene.add(new THREE.HemisphereLight(0xc0d8f0, 0x607040, 0.45));
+
+  const sun = new THREE.DirectionalLight(0xfff2d0, 1.35);
+  sun.position.set(180, 280, 120);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { near:10, far:900, left:-350, right:350, top:350, bottom:-350 });
+  sun.shadow.bias = -0.0004;
+  scene.add(sun);
+
+  // Fill light from opposite side
+  const fill = new THREE.DirectionalLight(0xd0e8ff, 0.3);
+  fill.position.set(-100, 80, -80);
+  scene.add(fill);
+
+  // Ground
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(1400, 1400),
+    new THREE.MeshLambertMaterial({ color: 0x7a9a52 })
+  );
+  ground.rotation.x = -Math.PI / 2;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  // Grid overlay
+  const grid = new THREE.GridHelper(700, 140, 0x000000, 0x000000);
+  grid.position.y = 0.07;
+  grid.material.opacity = 0.07;
+  grid.material.transparent = true;
+  scene.add(grid);
+
+  buildBuilding();
+  syncSize();
+  new ResizeObserver(syncSize).observe(vp);
+  requestAnimationFrame(loop);
+  document.getElementById('loading').style.display = 'none';
+}
+
+// ─── GEOMETRY BUILDERS ────────────────────────────────────────────────────────
+
+function makeArchShell(W, L, H) {
+  const A = 48;
+  const S = Math.max(4, Math.ceil(L / 6));
+  const hw = W / 2;
+  const pos = [], uv = [], idx = [];
+
+  for (let li = 0; li <= S; li++) {
+    const z = (li / S) * L;
+    for (let ai = 0; ai <= A; ai++) {
+      const t = (ai / A) * Math.PI;
+      pos.push(-hw * Math.cos(t), H * Math.sin(t), z);
+      uv.push(ai / A, li / S);
+    }
+  }
+  for (let li = 0; li < S; li++) {
+    for (let ai = 0; ai < A; ai++) {
+      const a = li * (A + 1) + ai;
+      const b = a + 1;
+      const c = (li + 1) * (A + 1) + ai;
+      const d = c + 1;
+      idx.push(a, c, b,  b, c, d);
+    }
+  }
+
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('uv',       new THREE.Float32BufferAttribute(uv,  2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
+}
+
+function makeEndWall(W, H, doors) {
+  const hw = W / 2;
+  const shape = new THREE.Shape();
+  shape.moveTo(-hw, 0);
+  for (let i = 0; i <= 48; i++) {
+    const t = (i / 48) * Math.PI;
+    shape.lineTo(-hw * Math.cos(t), H * Math.sin(t));
+  }
+  shape.lineTo(-hw, 0);
+
+  const dw = Math.min(14, W * 0.20);
+  const dh = Math.min(16, H * 0.62);
+  const ar = dw * 0.09; // arch radius on door top
+
+  function addDoor(cx) {
+    const p = new THREE.Path();
+    p.moveTo(cx - dw/2, 0);
+    p.lineTo(cx - dw/2, dh);
+    p.quadraticCurveTo(cx - dw/2, dh + ar, cx, dh + ar);
+    p.quadraticCurveTo(cx + dw/2, dh + ar, cx + dw/2, dh);
+    p.lineTo(cx + dw/2, 0);
+    p.closePath();
+    shape.holes.push(p);
+  }
+
+  if (doors === 1) { addDoor(0); }
+  else if (doors === 2) { addDoor(-W * 0.20); addDoor(W * 0.20); }
+  else if (doors === 3) { addDoor(-W * 0.26); addDoor(0); addDoor(W * 0.26); }
+
+  return new THREE.ShapeGeometry(shape, 36);
+}
+
+function makeRib(W, H) {
+  const pts = [];
+  for (let i = 0; i <= 40; i++) {
+    const t = (i / 40) * Math.PI;
+    pts.push(new THREE.Vector3(-(W/2) * Math.cos(t), H * Math.sin(t), 0));
+  }
+  return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, 0.14, 6, false);
+}
+
+// ─── BUILDING ASSEMBLY ────────────────────────────────────────────────────────
+
+function buildBuilding() {
+  // Dispose old
+  if (building) {
+    const geos = new Set();
+    building.traverse(o => { if (o.isMesh) geos.add(o.geometry); });
+    geos.forEach(g => g.dispose());
+    Object.values(mats).forEach(m => m && m.dispose());
+    scene.remove(building);
+  }
+
+  const W = cfg.width, L = cfg.length, H = peakH();
+  const { ribGap } = SERIES[cfg.series];
+  const col = new THREE.Color(cfg.color);
+
+  mats.fabric = new THREE.MeshStandardMaterial({ color: col.clone(), roughness: 0.70, metalness: 0.0, side: THREE.DoubleSide });
+  mats.wall   = new THREE.MeshStandardMaterial({ color: col.clone().multiplyScalar(0.88), roughness: 0.76, metalness: 0.0, side: THREE.DoubleSide });
+  mats.rib    = new THREE.MeshStandardMaterial({ color: 0x8090a0, roughness: 0.40, metalness: 0.70 });
+  mats.base   = new THREE.MeshStandardMaterial({ color: 0x848480, roughness: 0.90, metalness: 0.10 });
+
+  building = new THREE.Group();
+
+  // Arch fabric shell
+  const shell = new THREE.Mesh(makeArchShell(W, L, H), mats.fabric);
+  shell.castShadow = shell.receiveShadow = true;
+  building.add(shell);
+
+  // End walls (shared geometry — DoubleSide handles both faces)
+  const wGeo = makeEndWall(W, H, cfg.doors);
+
+  const fw = new THREE.Mesh(wGeo, mats.wall);
+  fw.castShadow = true;
+  building.add(fw);
+
+  const bw = new THREE.Mesh(wGeo, mats.wall);
+  bw.position.z = L;
+  bw.rotation.y = Math.PI;
+  bw.castShadow = true;
+  building.add(bw);
+
+  // Structural ribs
+  const rGeo = makeRib(W, H);
+  for (let z = 0; z <= L; z += ribGap) {
+    const r = new THREE.Mesh(rGeo, mats.rib);
+    r.position.z = z;
+    r.castShadow = true;
+    building.add(r);
+  }
+  // Rib at far end if not already on a gap boundary
+  if (L % ribGap !== 0) {
+    const r = new THREE.Mesh(rGeo, mats.rib);
+    r.position.z = L;
+    building.add(r);
+  }
+
+  // Low base sill
+  const sill = new THREE.Mesh(
+    new THREE.BoxGeometry(W, 0.45, L),
+    mats.base
+  );
+  sill.position.set(0, 0.22, L / 2);
+  sill.receiveShadow = true;
+  building.add(sill);
+
+  scene.add(building);
+  fitCamera();
+  updateUI();
+}
+
+// ─── CAMERA ───────────────────────────────────────────────────────────────────
+
+function fitCamera() {
+  const W = cfg.width, L = cfg.length, H = peakH();
+  camera.position.set(W * 1.05, H * 1.25, -L * 0.52);
+  controls.target.set(0, H / 2, L / 2);
+  controls.update();
+}
+
+function syncSize() {
+  const vp = document.getElementById('viewport');
+  const w = vp.clientWidth, h = vp.clientHeight;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+
+function loop() {
+  requestAnimationFrame(loop);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+// ─── UI UPDATES ───────────────────────────────────────────────────────────────
+
+function updateUI() {
+  const W = cfg.width, L = cfg.length, H = peakH();
+  const sqft = W * L;
+  const vol  = Math.round(Math.PI * W * H * L / 4);
+
+  document.getElementById('val-w').textContent     = W;
+  document.getElementById('val-l').textContent     = L;
+  document.getElementById('val-h').textContent     = H.toFixed(0) + ' ft';
+  document.getElementById('spec-sqft').textContent = sqft.toLocaleString() + ' sq ft';
+  document.getElementById('spec-peak').textContent = H.toFixed(0) + ' ft';
+  document.getElementById('spec-vol').textContent  = (vol / 1000).toFixed(0) + 'K cu ft';
+  document.getElementById('dim-badge').textContent = `${W}' W  ×  ${L}' L  ×  ${H.toFixed(0)}' H`;
+
+  const p = new URLSearchParams({
+    series: cfg.series, width: W, length: L,
+    height: H.toFixed(0),
+    colour: COLOR_NAMES[cfg.color] || cfg.color,
+    doors:  cfg.doors
+  });
+  document.getElementById('quote-link').href = `contact.html?${p}`;
+}
+
+// ─── EVENT LISTENERS ──────────────────────────────────────────────────────────
+
+// Series
+document.querySelectorAll('.s-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.s-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  cfg.series = b.dataset.series;
+  const s = SERIES[cfg.series];
+  const sl = document.getElementById('sl-w');
+  sl.min = s.minW; sl.max = s.maxW; sl.step = s.step;
+  cfg.width = Math.max(s.minW, Math.min(s.maxW, Math.round(cfg.width / s.step) * s.step));
+  sl.value = cfg.width;
+  buildBuilding();
+}));
+
+// Width
+document.getElementById('sl-w').addEventListener('input', e => {
+  cfg.width = +e.target.value;
+  buildBuilding();
+});
+
+// Length
+document.getElementById('sl-l').addEventListener('input', e => {
+  cfg.length = +e.target.value;
+  buildBuilding();
+});
+
+// Colour — fast path, no full rebuild
+document.querySelectorAll('.swatch').forEach(s => s.addEventListener('click', () => {
+  document.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+  s.classList.add('active');
+  cfg.color = s.dataset.color;
+  document.getElementById('swatch-lbl').textContent = s.dataset.name;
+  const col = new THREE.Color(cfg.color);
+  if (mats.fabric) mats.fabric.color.copy(col.clone());
+  if (mats.wall)   mats.wall.color.copy(col.clone().multiplyScalar(0.88));
+  updateUI();
+}));
+
+// Doors
+document.querySelectorAll('.d-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.d-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  cfg.doors = +b.dataset.doors;
+  buildBuilding();
+}));
+
+// Reset camera
+document.getElementById('reset-cam').addEventListener('click', fitCamera);
+
+// Boot
+initScene();
+</script>
+
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
