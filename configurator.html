@@ -5,7 +5,7 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MegaDome Building Configurator | CoverIT Canada</title>
-  <meta name="description" content="Design your MegaDome fabric building. Choose series, profile, width and length — get a live 3D preview with accurate specs. CoverIT Canada, Ontario's authorized MegaDome dealer.">
+  <meta name="description" content="Design your MegaDome fabric building. Choose series, profile, width, length and foundation — get a live 3D preview with accurate specs. CoverIT Canada, Ontario's authorized MegaDome dealer.">
   <link rel="canonical" href="https://www.coveritcanada.com/configurator.html">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NCJBRK8EL"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7NCJBRK8EL');</script>
@@ -15,7 +15,6 @@
     html, body { height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
     body { background: #111; color: #111; display: flex; flex-direction: column; }
 
-    /* NAV */
     .cfg-nav { height: 52px; background: #111; display: flex; align-items: center; padding: 0 18px; gap: 14px; flex-shrink: 0; border-bottom: 1px solid #222; }
     .cfg-logo img { height: 30px; display: block; }
     .cfg-sep { width: 1px; height: 22px; background: #2e2e2e; }
@@ -24,59 +23,43 @@
     .cfg-back { margin-left: auto; color: #666; font-size: 0.78rem; text-decoration: none; }
     .cfg-back:hover { color: #fff; }
 
-    /* LAYOUT */
     .cfg-layout { flex: 1; display: flex; min-height: 0; }
 
-    /* SIDEBAR */
     .cfg-sidebar { width: 292px; flex-shrink: 0; background: #f7f7f5; overflow-y: auto; border-right: 1px solid #e0e0d8; scrollbar-width: thin; scrollbar-color: #ccc #f0f0ec; }
     .cfg-sidebar::-webkit-scrollbar { width: 4px; }
     .cfg-sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
 
-    .cfg-sec { padding: 14px 14px 13px; border-bottom: 1px solid #e0e0d8; }
-    .cfg-sec-ttl { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #aaa; margin-bottom: 9px; }
+    .cfg-sec { padding: 13px 13px 12px; border-bottom: 1px solid #e0e0d8; }
+    .cfg-sec-ttl { font-size: 0.59rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #aaa; margin-bottom: 9px; }
 
-    /* SERIES */
     .series-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
-    .s-btn { padding: 8px 6px; border: 2px solid #ddd; background: #fff; border-radius: 7px; cursor: pointer; text-align: center; transition: border-color .12s, background .12s; }
+    .s-btn { padding: 7px 6px; border: 2px solid #ddd; background: #fff; border-radius: 7px; cursor: pointer; text-align: center; transition: border-color .12s, background .12s; }
     .s-btn:hover { border-color: #aaa; }
     .s-btn.active { border-color: #111; background: #111; color: #fff; }
-    .s-btn .sn { display: block; font-size: 0.85rem; font-weight: 700; }
-    .s-btn .sd { display: block; font-size: 0.6rem; color: #999; margin-top: 2px; line-height: 1.3; }
+    .s-btn .sn { display: block; font-size: 0.84rem; font-weight: 700; }
+    .s-btn .sd { display: block; font-size: 0.59rem; color: #999; margin-top: 2px; }
     .s-btn.active .sd { color: #777; }
 
-    /* PROFILE */
-    .profile-row { display: flex; gap: 4px; flex-wrap: wrap; }
-    .p-btn { flex: 1; min-width: 40px; padding: 6px 4px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; text-align: center; font-size: 0.78rem; font-weight: 700; color: #555; transition: border-color .12s, background .12s; }
-    .p-btn:hover { border-color: #aaa; }
-    .p-btn.active { border-color: #111; background: #111; color: #fff; }
-    .profile-desc { margin-top: 7px; font-size: 0.68rem; color: #888; line-height: 1.4; padding: 6px 9px; background: #efefed; border-radius: 5px; }
+    .btn-row { display: flex; gap: 4px; flex-wrap: wrap; }
+    .p-btn, .w-btn, .d-btn, .f-btn { padding: 6px 7px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-size: 0.76rem; font-weight: 700; color: #555; transition: border-color .12s, background .12s; white-space: nowrap; }
+    .p-btn:hover, .w-btn:hover, .d-btn:hover, .f-btn:hover { border-color: #aaa; }
+    .p-btn.active, .w-btn.active, .d-btn.active, .f-btn.active { border-color: #111; background: #111; color: #fff; }
+    .p-desc { margin-top: 7px; font-size: 0.67rem; color: #888; line-height: 1.4; padding: 6px 8px; background: #efefed; border-radius: 5px; }
 
-    /* WIDTH */
-    .width-row { display: flex; gap: 4px; flex-wrap: wrap; }
-    .w-btn { padding: 6px 7px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 700; color: #555; transition: border-color .12s, background .12s; white-space: nowrap; }
-    .w-btn:hover { border-color: #aaa; }
-    .w-btn.active { border-color: #111; background: #111; color: #fff; }
+    .fl-btn { flex: 1; padding: 8px 4px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; text-align: center; font-size: 0.82rem; font-weight: 700; color: #555; transition: border-color .12s, background .12s; }
+    .fl-btn.active { border-color: #111; background: #111; color: #fff; }
 
-    /* LENGTH */
-    .len-row { margin-top: 2px; }
-    .len-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
-    .len-lbl { font-size: 0.8rem; font-weight: 500; color: #444; }
-    .len-v { font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-    .len-u { font-size: 0.67rem; color: #999; }
+    .slider-row { }
+    .slider-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+    .slider-lbl { font-size: 0.8rem; font-weight: 500; color: #444; }
+    .slider-v { font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .slider-u { font-size: 0.67rem; color: #999; }
     input[type=range] { width: 100%; height: 4px; -webkit-appearance: none; appearance: none; background: #ddd; border-radius: 2px; outline: none; cursor: pointer; }
     input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: #111; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.3); cursor: pointer; }
     input[type=range]::-moz-range-thumb { width: 16px; height: 16px; border-radius: 50%; background: #111; cursor: pointer; border: none; }
 
-    .fixed-len-row { display: flex; gap: 6px; }
-    .fl-btn { flex: 1; padding: 8px; border: 2px solid #ddd; background: #fff; border-radius: 6px; cursor: pointer; text-align: center; font-size: 0.82rem; font-weight: 700; color: #555; transition: border-color .12s, background .12s; }
-    .fl-btn:hover { border-color: #aaa; }
-    .fl-btn.active { border-color: #111; background: #111; color: #fff; }
+    .hidden { display: none !important; }
 
-    /* SIDEWALL (AR only) */
-    .sidewall-row { display: none; }
-    .sidewall-row.visible { display: block; }
-
-    /* COLOUR */
     .swatch-row { display: flex; gap: 7px; align-items: center; }
     .swatch { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; flex-shrink: 0; position: relative; transition: transform .12s; border: 2px solid rgba(0,0,0,0.08); }
     .swatch::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid transparent; transition: border-color .12s; }
@@ -84,31 +67,25 @@
     .swatch.active::after { border-color: #111; }
     .swatch-lbl { font-size: 0.72rem; color: #777; }
 
-    /* DOORS */
-    .door-row { display: flex; gap: 5px; }
-    .d-btn { flex: 1; padding: 7px 4px; border: 2px solid #ddd; background: #fff; border-radius: 6px; font-size: 0.82rem; font-weight: 700; cursor: pointer; text-align: center; color: #555; transition: border-color .12s, background .12s; }
-    .d-btn:hover { border-color: #aaa; }
-    .d-btn.active { border-color: #111; background: #111; color: #fff; }
+    .door-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .door-col-lbl { font-size: 0.67rem; color: #999; margin-bottom: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; }
 
-    /* SPECS */
     .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
     .spec-c { padding: 8px 10px; background: #fff; border: 1px solid #e6e6e0; border-radius: 7px; }
     .spec-c.wide { grid-column: span 2; }
     .spec-n { font-size: 1rem; font-weight: 800; }
-    .spec-l { font-size: 0.6rem; color: #aaa; margin-top: 1px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .spec-l { font-size: 0.59rem; color: #aaa; margin-top: 1px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-    /* CTA */
-    .cfg-cta { padding: 14px; }
+    .cfg-cta { padding: 13px; }
     .quote-btn { display: block; width: 100%; padding: 12px; background: #111; color: #fff; text-decoration: none; text-align: center; border-radius: 8px; font-size: 0.87rem; font-weight: 700; letter-spacing: 0.03em; transition: background .12s; }
     .quote-btn:hover { background: #2a2a2a; }
     .quote-note { font-size: 0.67rem; color: #bbb; text-align: center; margin-top: 7px; }
 
-    /* VIEWPORT */
     .cfg-viewport { flex: 1; position: relative; min-width: 0; overflow: hidden; }
     #three-canvas { display: block; }
     .vp-badge { position: absolute; pointer-events: none; backdrop-filter: blur(6px); }
     .dim-badge { top: 12px; left: 12px; background: rgba(0,0,0,.52); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.74rem; font-weight: 600; }
-    .series-badge { top: 12px; left: 50%; transform: translateX(-50%); background: rgba(232,160,32,.9); color: #111; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+    .series-badge { top: 12px; left: 50%; transform: translateX(-50%); background: rgba(232,160,32,.92); color: #111; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
     .hints-badge { bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.4); color: rgba(255,255,255,.85); padding: 5px 14px; border-radius: 20px; font-size: 0.7rem; white-space: nowrap; }
     .reset-btn { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,.5); color: #fff; border: 1px solid rgba(255,255,255,.15); padding: 5px 12px; border-radius: 6px; font-size: 0.72rem; cursor: pointer; backdrop-filter: blur(6px); }
     .reset-btn:hover { background: rgba(0,0,0,.7); }
@@ -123,12 +100,7 @@
   </style>
 
   <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/"
-    }
-  }
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/" } }
   </script>
 </head>
 <body>
@@ -142,273 +114,254 @@
 </nav>
 
 <div class="cfg-layout">
-  <aside class="cfg-sidebar">
+<aside class="cfg-sidebar">
 
-    <!-- SERIES -->
-    <div class="cfg-sec">
-      <div class="cfg-sec-ttl">Series</div>
-      <div class="series-grid">
-        <button class="s-btn" data-series="EZ">
-          <span class="sn">EZ Series</span>
-          <span class="sd">Temporary · Easy install</span>
-        </button>
-        <button class="s-btn active" data-series="DB">
-          <span class="sn">DB Series</span>
-          <span class="sd">Modular double-arch</span>
-        </button>
-        <button class="s-btn" data-series="S100">
-          <span class="sn">Series 100</span>
-          <span class="sd">Heavy duty clearspan</span>
-        </button>
-        <button class="s-btn" data-series="AR">
-          <span class="sn">AR Series</span>
-          <span class="sd">Gable · Permanent</span>
-        </button>
-      </div>
+  <!-- SERIES -->
+  <div class="cfg-sec">
+    <div class="cfg-sec-ttl">Series</div>
+    <div class="series-grid">
+      <button class="s-btn active" data-series="DB"><span class="sn">DB Series</span><span class="sd">Modular double-arch</span></button>
+      <button class="s-btn" data-series="S100"><span class="sn">Series 100</span><span class="sd">Heavy duty clearspan</span></button>
+      <button class="s-btn" data-series="AR"><span class="sn">AR Series</span><span class="sd">Gable · Permanent</span></button>
     </div>
-
-    <!-- PROFILE -->
-    <div class="cfg-sec" id="sec-profile">
-      <div class="cfg-sec-ttl">Profile</div>
-      <div class="profile-row" id="profile-btns"></div>
-      <div class="profile-desc" id="profile-desc"></div>
-    </div>
-
-    <!-- WIDTH -->
-    <div class="cfg-sec">
-      <div class="cfg-sec-ttl">Width</div>
-      <div class="width-row" id="width-btns"></div>
-    </div>
-
-    <!-- LENGTH -->
-    <div class="cfg-sec">
-      <div class="cfg-sec-ttl">Length</div>
-      <div id="len-slider-wrap" class="len-row">
-        <div class="len-top">
-          <span class="len-lbl">Length</span>
-          <span><span class="len-v" id="val-l">100</span> <span class="len-u">ft</span></span>
-        </div>
-        <input type="range" id="sl-l" min="24" max="400" step="8" value="100">
-      </div>
-      <div id="len-fixed-wrap" style="display:none">
-        <div class="fixed-len-row" id="fixed-len-btns"></div>
-      </div>
-    </div>
-
-    <!-- SIDEWALL (AR only) -->
-    <div class="cfg-sec sidewall-row" id="sec-sidewall">
-      <div class="cfg-sec-ttl">Sidewall Height</div>
-      <div class="len-row">
-        <div class="len-top">
-          <span class="len-lbl">Eave height</span>
-          <span><span class="len-v" id="val-sw">13</span> <span class="len-u">ft</span></span>
-        </div>
-        <input type="range" id="sl-sw" min="10" max="16" step="1" value="13">
-      </div>
-    </div>
-
-    <!-- COLOUR -->
-    <div class="cfg-sec">
-      <div class="cfg-sec-ttl">Fabric Colour</div>
-      <div class="swatch-row">
-        <div class="swatch active" data-color="#f0f0ec" data-name="White"        style="background:#f0f0ec"></div>
-        <div class="swatch"        data-color="#c2c2ba" data-name="Light Grey"   style="background:#c2c2ba"></div>
-        <div class="swatch"        data-color="#3c5a3d" data-name="Forest Green" style="background:#3c5a3d"></div>
-        <div class="swatch"        data-color="#cca86a" data-name="Sand / Tan"   style="background:#cca86a"></div>
-        <div class="swatch"        data-color="#484846" data-name="Charcoal"     style="background:#484846"></div>
-        <span class="swatch-lbl" id="swatch-lbl">White</span>
-      </div>
-    </div>
-
-    <!-- DOORS -->
-    <div class="cfg-sec">
-      <div class="cfg-sec-ttl">Doors per End Wall</div>
-      <div class="door-row">
-        <button class="d-btn"        data-doors="0">0</button>
-        <button class="d-btn active" data-doors="1">1</button>
-        <button class="d-btn"        data-doors="2">2</button>
-        <button class="d-btn"        data-doors="3">3</button>
-      </div>
-    </div>
-
-    <!-- SPECS -->
-    <div class="cfg-sec">
-      <div class="cfg-sec-ttl">Your Building</div>
-      <div class="specs-grid">
-        <div class="spec-c">
-          <div class="spec-n" id="spec-sqft">—</div>
-          <div class="spec-l">sq ft floor</div>
-        </div>
-        <div class="spec-c">
-          <div class="spec-n" id="spec-peak">—</div>
-          <div class="spec-l">peak height</div>
-        </div>
-        <div class="spec-c">
-          <div class="spec-n" id="spec-b4">—</div>
-          <div class="spec-l">clear ht at 4' from wall</div>
-        </div>
-        <div class="spec-c">
-          <div class="spec-n" id="spec-vol">—</div>
-          <div class="spec-l">approx. volume</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cfg-cta">
-      <a class="quote-btn" id="quote-link" href="contact.html">Request a Quote →</a>
-      <div class="quote-note">Free · No obligation · Fast response</div>
-    </div>
-
-  </aside>
-
-  <div class="cfg-viewport" id="viewport">
-    <canvas id="three-canvas"></canvas>
-    <div class="vp-badge dim-badge" id="dim-badge">—</div>
-    <div class="vp-badge series-badge" id="series-badge">DB · XP</div>
-    <div class="vp-badge hints-badge">Drag to rotate &nbsp;·&nbsp; Scroll to zoom &nbsp;·&nbsp; Right-drag to pan</div>
-    <button class="reset-btn" id="reset-cam">⟲ Reset View</button>
-    <div class="cfg-loading" id="loading">Loading 3D viewer…</div>
   </div>
+
+  <!-- PROFILE -->
+  <div class="cfg-sec" id="sec-profile">
+    <div class="cfg-sec-ttl">Profile</div>
+    <div class="btn-row" id="profile-btns"></div>
+    <div class="p-desc" id="profile-desc"></div>
+  </div>
+
+  <!-- WIDTH -->
+  <div class="cfg-sec">
+    <div class="cfg-sec-ttl">Width</div>
+    <div class="btn-row" id="width-btns"></div>
+  </div>
+
+  <!-- LENGTH -->
+  <div class="cfg-sec">
+    <div class="slider-row" id="len-slider-wrap">
+      <div class="cfg-sec-ttl">Length</div>
+      <div class="slider-top">
+        <span class="slider-lbl">Building Length</span>
+        <span><span class="slider-v" id="val-l">100</span> <span class="slider-u">ft</span></span>
+      </div>
+      <input type="range" id="sl-l" min="24" max="400" step="8" value="100">
+    </div>
+    <div id="len-fixed-wrap" class="hidden">
+      <div class="cfg-sec-ttl">Length</div>
+      <div class="btn-row" id="fixed-len-btns"></div>
+    </div>
+  </div>
+
+  <!-- SIDEWALL (AR only) -->
+  <div class="cfg-sec hidden" id="sec-sidewall">
+    <div class="cfg-sec-ttl">Sidewall Height</div>
+    <div class="slider-top">
+      <span class="slider-lbl">Eave height</span>
+      <span><span class="slider-v" id="val-sw">13</span> <span class="slider-u">ft</span></span>
+    </div>
+    <input type="range" id="sl-sw" min="10" max="16" step="1" value="13">
+  </div>
+
+  <!-- FOUNDATION -->
+  <div class="cfg-sec">
+    <div class="cfg-sec-ttl">Foundation Type</div>
+    <div class="btn-row" style="margin-bottom:8px">
+      <button class="f-btn active" data-found="anchor">Ground<br>Anchors</button>
+      <button class="f-btn" data-found="grade_beam">Grade<br>Beam</button>
+      <button class="f-btn" data-found="wall">Perimeter<br>Wall</button>
+      <button class="f-btn" data-found="slab">Slab<br>on Grade</button>
+    </div>
+    <div id="found-height-wrap" class="hidden">
+      <div class="slider-top">
+        <span class="slider-lbl">Foundation height</span>
+        <span><span class="slider-v" id="val-fh">2</span> <span class="slider-u">ft</span></span>
+      </div>
+      <input type="range" id="sl-fh" min="1" max="8" step="1" value="2">
+    </div>
+    <div class="p-desc" id="found-desc">Helical or earth anchors driven to grade. Building sits at grade level.</div>
+  </div>
+
+  <!-- COLOUR -->
+  <div class="cfg-sec">
+    <div class="cfg-sec-ttl">Fabric Colour</div>
+    <div class="swatch-row">
+      <div class="swatch active" data-color="#f0f0ec" data-name="White"        style="background:#f0f0ec"></div>
+      <div class="swatch"        data-color="#c2c2ba" data-name="Light Grey"   style="background:#c2c2ba"></div>
+      <div class="swatch"        data-color="#3c5a3d" data-name="Forest Green" style="background:#3c5a3d"></div>
+      <div class="swatch"        data-color="#cca86a" data-name="Sand / Tan"   style="background:#cca86a"></div>
+      <div class="swatch"        data-color="#484846" data-name="Charcoal"     style="background:#484846"></div>
+      <span class="swatch-lbl" id="swatch-lbl">White</span>
+    </div>
+  </div>
+
+  <!-- DOORS -->
+  <div class="cfg-sec">
+    <div class="cfg-sec-ttl">End Wall Doors</div>
+    <div class="door-grid">
+      <div>
+        <div class="door-col-lbl">Garage Doors</div>
+        <div class="btn-row" id="garage-door-btns">
+          <button class="d-btn"        data-gd="0">0</button>
+          <button class="d-btn active" data-gd="1">1</button>
+          <button class="d-btn"        data-gd="2">2</button>
+          <button class="d-btn"        data-gd="3">3</button>
+        </div>
+      </div>
+      <div>
+        <div class="door-col-lbl">Man Doors</div>
+        <div class="btn-row" id="man-door-btns">
+          <button class="d-btn"        data-md="0">0</button>
+          <button class="d-btn active" data-md="1">1</button>
+          <button class="d-btn"        data-md="2">2</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECS -->
+  <div class="cfg-sec">
+    <div class="cfg-sec-ttl">Your Building</div>
+    <div class="specs-grid">
+      <div class="spec-c"><div class="spec-n" id="spec-sqft">—</div><div class="spec-l">sq ft floor</div></div>
+      <div class="spec-c"><div class="spec-n" id="spec-peak">—</div><div class="spec-l">peak height</div></div>
+      <div class="spec-c"><div class="spec-n" id="spec-b4">—</div><div class="spec-l">clear ht @ 4' from wall</div></div>
+      <div class="spec-c"><div class="spec-n" id="spec-vol">—</div><div class="spec-l">approx. volume</div></div>
+      <div class="spec-c wide"><div class="spec-n" id="spec-found">No foundation</div><div class="spec-l">foundation type</div></div>
+    </div>
+  </div>
+
+  <div class="cfg-cta">
+    <a class="quote-btn" id="quote-link" href="contact.html">Request a Quote →</a>
+    <div class="quote-note">Free · No obligation · Fast response</div>
+  </div>
+
+</aside>
+
+<div class="cfg-viewport" id="viewport">
+  <canvas id="three-canvas"></canvas>
+  <div class="vp-badge dim-badge" id="dim-badge">—</div>
+  <div class="vp-badge series-badge" id="series-badge">DB · XP</div>
+  <div class="vp-badge hints-badge">Drag to rotate &nbsp;·&nbsp; Scroll to zoom &nbsp;·&nbsp; Right-drag to pan</div>
+  <button class="reset-btn" id="reset-cam">⟲ Reset View</button>
+  <div class="cfg-loading" id="loading">Loading 3D viewer…</div>
+</div>
 </div>
 
 <script type="module">
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-// ─── MEGADOME SPEC DATA ───────────────────────────────────────────────────────
-// D = peak height to grade (ft, decimal), B4 = clear height at 4' from wall
+// ─── SPEC DATA (from MegaDome product guide) ─────────────────────────────────
 const SERIES = {
-  EZ: {
-    label: 'EZ Series', badge: 'EZ',
-    shape: 'arch', ribWeight: 'light',
-    defaultProfile: 'EzDome',
-    profiles: {
-      EzKit: {
-        label: 'EzKit',
-        desc: 'Simple arch, 3-9/16" diameter. Widths 30–35 ft. Fixed lengths of 40 ft or 64 ft. Arch spacing every 4 ft.',
-        ribGap: 4,
-        fixedLengths: [40, 64],
-        sizes: { 30: { D: 15.17, B4: 10.25 }, 35: { D: 16.92, B4: 10.42 } }
-      },
-      EzDome: {
-        label: 'EzDome',
-        desc: 'Simple arch, 4-5/16" diameter. Widths 30–40 ft. Variable lengths. Arch spacing every 4 ft.',
-        ribGap: 4,
-        fixedLengths: null,
-        lenMin: 24, lenMax: 160, lenStep: 8,
-        sizes: { 30: { D: 15.17, B4: 10.25 }, 35: { D: 17.67, B4: 11.25 }, 40: { D: 20.08, B4: 12.17 } }
-      }
-    }
-  },
   DB: {
-    label: 'DB Series', badge: 'DB',
-    shape: 'arch', ribWeight: 'heavy',
-    defaultProfile: 'XP',
-    profiles: {
-      XL: {
-        label: 'XL',
-        desc: 'Double arch 16". Widths 40–50 ft. Lower clearance profile. Light commercial & storage.',
-        ribGap: 8, fixedLengths: null,
-        lenMin: 24, lenMax: 400, lenStep: 8,
-        sizes: { 40: { D: 16.25, B4: 8.50 }, 50: { D: 17.08, B4: 6.50 } }
+    label:'DB Series', badge:'DB', shape:'arch', ribWeight:'heavy', defaultProfile:'XP',
+    profiles:{
+      HP:{
+        label:'HP', ribGap:8, fixedLengths:null, lenMin:24, lenMax:400, lenStep:8,
+        desc:'24" double arch. Heights optimised for agricultural & general storage. Good eave clearance.',
+        sizes:{50:{D:22.75,B4:9.83},60:{D:24.25,B4:9.25},70:{D:25.92,B4:9.25},80:{D:27.50,B4:9.25},90:{D:29.17,B4:9.25}}
       },
-      HP: {
-        label: 'HP',
-        desc: 'Double arch. Widths 50–90 ft. Standard clearance profile. Agricultural, municipal, commercial.',
-        ribGap: 8, fixedLengths: null,
-        lenMin: 24, lenMax: 400, lenStep: 8,
-        sizes: {
-          50: { D: 22.75, B4: 9.83 }, 60: { D: 24.25, B4: 9.25 },
-          70: { D: 25.92, B4: 9.25 }, 80: { D: 27.50, B4: 9.25 }, 90: { D: 29.17, B4: 9.25 }
-        }
+      XP:{
+        label:'XP', ribGap:8, fixedLengths:null, lenMin:24, lenMax:400, lenStep:8,
+        desc:'24"/30" double arch. High interior clearance — mining, equipment, heavy vehicles, municipal.',
+        sizes:{33:{D:23.08,B4:16.33},40:{D:24.08,B4:16.33},50:{D:27.75,B4:15.25},60:{D:29.25,B4:14.67},70:{D:30.92,B4:14.67},80:{D:32.50,B4:15.25},90:{D:34.17,B4:14.67},100:{D:38.50,B4:14.67}}
       },
-      XP: {
-        label: 'XP',
-        desc: 'Double arch. Widths 33–100 ft. High clearance profile. Mining, equipment storage, heavy vehicles.',
-        ribGap: 8, fixedLengths: null,
-        lenMin: 24, lenMax: 400, lenStep: 8,
-        sizes: {
-          33: { D: 23.08, B4: 16.33 }, 40: { D: 24.08, B4: 16.33 },
-          50: { D: 27.75, B4: 15.25 }, 60: { D: 29.25, B4: 14.67 },
-          70: { D: 30.92, B4: 14.67 }, 80: { D: 32.50, B4: 15.25 },
-          90: { D: 34.17, B4: 14.67 }, 100: { D: 38.50, B4: 14.67 }
-        }
-      },
-      XXP: {
-        label: 'XXP',
-        desc: 'Double arch 30". Widths 60–90 ft. Extra-high clearance profile. Large equipment, arena-style.',
-        ribGap: 8, fixedLengths: null,
-        lenMin: 24, lenMax: 400, lenStep: 8,
-        sizes: {
-          60: { D: 35.25, B4: 20.25 }, 70: { D: 36.92, B4: 20.25 },
-          80: { D: 38.50, B4: 20.25 }, 90: { D: 40.17, B4: 20.25 }
-        }
+      XXP:{
+        label:'XXP', ribGap:8, fixedLengths:null, lenMin:24, lenMax:400, lenStep:8,
+        desc:'30" double arch. Extra-high profile. Large equipment, arena-style clearance.',
+        sizes:{60:{D:35.25,B4:20.25},70:{D:36.92,B4:20.25},80:{D:38.50,B4:20.25},90:{D:40.17,B4:20.25}}
       }
     }
   },
-  S100: {
-    label: 'Series 100', badge: '100',
-    shape: 'arch', ribWeight: 'heavy',
-    defaultProfile: 'S100',
-    profiles: {
-      S100: {
-        label: 'Series 100',
-        desc: 'Double arch 33". Widths 100–160 ft. Massive clearspan — municipal, ports, mining operations.',
-        ribGap: 10, fixedLengths: null,
-        lenMin: 40, lenMax: 500, lenStep: 10,
-        sizes: {
-          100: { D: 50.50, B4: 17.50 }, 125: { D: 54.58, B4: 17.50 },
-          140: { D: 56.17, B4: 17.50 }, 160: { D: 57.58, B4: 17.42 }
-        }
+  S100:{
+    label:'Series 100', badge:'100', shape:'arch', ribWeight:'heavy', defaultProfile:'S100',
+    profiles:{
+      S100:{
+        label:'Series 100', ribGap:10, fixedLengths:null, lenMin:40, lenMax:500, lenStep:10,
+        desc:'33" double arch. Massive clearspan for ports, municipalities, large mining operations.',
+        sizes:{100:{D:50.50,B4:17.50},125:{D:54.58,B4:17.50},140:{D:56.17,B4:17.50},160:{D:57.58,B4:17.42}}
       }
     }
   },
-  AR: {
-    label: 'AR Series', badge: 'AR',
-    shape: 'gable', ribWeight: 'heavy',
-    defaultProfile: 'AR',
-    profiles: {
-      AR: {
-        label: 'AR Series',
-        desc: 'Custom gable profile, 60–100 ft wide. Permanent engineered building. Combines fabric with conventional structure design.',
-        ribGap: 10, fixedLengths: null,
-        lenMin: 40, lenMax: 400, lenStep: 10,
-        sizes: {
-          60:  { D: 35, B4: null },
-          70:  { D: 37, B4: null },
-          80:  { D: 39, B4: null },
-          90:  { D: 41, B4: null },
-          100: { D: 43, B4: null }
-        }
+  AR:{
+    label:'AR Series', badge:'AR', shape:'gable', ribWeight:'heavy', defaultProfile:'AR',
+    profiles:{
+      AR:{
+        label:'AR Series', ribGap:10, fixedLengths:null, lenMin:40, lenMax:400, lenStep:10,
+        desc:'Custom gable permanent building. 30° pitch roof. Combines MegaDome steel with conventional benefits.',
+        sizes:{60:{D:null,B4:null},70:{D:null,B4:null},80:{D:null,B4:null},90:{D:null,B4:null},100:{D:null,B4:null}}
       }
     }
   }
 };
 
-const COLOR_NAMES = {
-  '#f0f0ec': 'White', '#c2c2ba': 'Light Grey',
-  '#3c5a3d': 'Forest Green', '#cca86a': 'Sand / Tan', '#484846': 'Charcoal'
+const FOUNDATIONS = {
+  anchor:     { label:'Ground Anchors',    desc:'Helical or earth anchors driven to grade. Building sits at grade level.', hasHeight:false },
+  grade_beam: { label:'Concrete Grade Beam', desc:'Continuous reinforced concrete perimeter beam. Typical 1–3 ft exposure.', hasHeight:true, min:1, max:3, default:2 },
+  wall:       { label:'Concrete Perimeter Wall', desc:'Full concrete foundation wall. Common for permanent installations. 2–8 ft.', hasHeight:true, min:2, max:8, default:4 },
+  slab:       { label:'Concrete Slab on Grade', desc:'Full reinforced concrete floor slab with thickened perimeter edge.', hasHeight:false }
 };
+
+const COLOR_NAMES = {'#f0f0ec':'White','#c2c2ba':'Light Grey','#3c5a3d':'Forest Green','#cca86a':'Sand / Tan','#484846':'Charcoal'};
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 const cfg = {
-  series: 'DB', profile: 'XP', width: 60, length: 100,
-  color: '#f0f0ec', doors: 1, sidewall: 13
+  series:'DB', profile:'XP', width:60, length:100,
+  color:'#f0f0ec', garageDoors:1, manDoors:1,
+  foundation:'anchor', foundHeight:2, sidewall:13
 };
 
-function currentSeries()  { return SERIES[cfg.series]; }
-function currentProfile() { return SERIES[cfg.series].profiles[cfg.profile]; }
-function currentSize()    { return currentProfile().sizes[cfg.width]; }
-function peakH()          {
-  const s = currentSize();
-  if (!s) return 30;
+const getSeries  = () => SERIES[cfg.series];
+const getProfile = () => SERIES[cfg.series].profiles[cfg.profile];
+const getSize    = () => getProfile().sizes[cfg.width];
+
+function peakH() {
   if (cfg.series === 'AR') return cfg.sidewall + (cfg.width / 2) * Math.tan(30 * Math.PI / 180);
-  return s.D;
+  const s = getSize(); return s ? s.D : 30;
 }
-function clearB4() {
-  const s = currentSize();
-  if (!s || !s.B4) return null;
-  return s.B4;
+function clearB4() { const s = getSize(); return (s && s.B4) ? s.B4 : null; }
+function foundLift() {
+  if (cfg.foundation === 'grade_beam' || cfg.foundation === 'wall') return cfg.foundHeight;
+  if (cfg.foundation === 'slab') return 0.5;
+  return 0;
+}
+
+// ─── DOOR LAYOUT ─────────────────────────────────────────────────────────────
+function getDoorLayout() {
+  const H = peakH(), W = cfg.width;
+  const gW = Math.min(14, W * 0.19);
+  const gH = Math.min(14, H * 0.58);
+  const mW = 3.5, mH = 8.0;
+  const gap = 1.8;
+  const nG = cfg.garageDoors, nM = cfg.manDoors;
+  const doors = [];
+
+  if (nG > 0) {
+    const totalGW = nG * gW + (nG - 1) * gap;
+    const startG  = -totalGW / 2;
+    for (let i = 0; i < nG; i++) {
+      const cx = startG + i * (gW + gap) + gW / 2;
+      doors.push({ type:'garage', cx, w:gW, h:gH });
+    }
+    // Man doors to the right of the rightmost garage door
+    const rightEdge = startG + nG * gW + (nG - 1) * gap;
+    for (let j = 0; j < nM; j++) {
+      const cx = rightEdge + gap + mW / 2 + j * (mW + 0.6);
+      if (cx + mW / 2 + 0.4 <= W / 2) doors.push({ type:'man', cx, w:mW, h:mH });
+    }
+  } else {
+    // No garage doors — man doors centred
+    const totalMW = nM * mW + (nM - 1) * 1.0;
+    const startM  = -totalMW / 2;
+    for (let j = 0; j < nM; j++) {
+      const cx = startM + j * (mW + 1.0) + mW / 2;
+      doors.push({ type:'man', cx, w:mW, h:mH });
+    }
+  }
+  return doors;
 }
 
 // ─── RENDERER / SCENE ─────────────────────────────────────────────────────────
@@ -417,18 +370,17 @@ const mats = {};
 
 function initScene() {
   const canvas = document.getElementById('three-canvas');
-  const vp     = document.getElementById('viewport');
-
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  const vp = document.getElementById('viewport');
+  renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.shadowMap.enabled   = true;
-  renderer.shadowMap.type      = THREE.PCFSoftShadowMap;
-  renderer.toneMapping         = THREE.ACESFilmicToneMapping;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x6e9ebc);
-  scene.fog        = new THREE.FogExp2(0x6e9ebc, 0.0018);
+  scene.fog = new THREE.FogExp2(0x6e9ebc, 0.0016);
 
   const { clientWidth: W, clientHeight: H } = vp;
   camera = new THREE.PerspectiveCamera(45, W / H, 0.5, 2000);
@@ -436,11 +388,10 @@ function initScene() {
   controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
   controls.dampingFactor = 0.07;
-  controls.minDistance   = 10;
-  controls.maxDistance   = 900;
+  controls.minDistance = 10;
+  controls.maxDistance = 1000;
   controls.maxPolarAngle = Math.PI / 2 - 0.01;
 
-  // Lighting
   scene.add(new THREE.AmbientLight(0xfff4e8, 0.5));
   scene.add(new THREE.HemisphereLight(0xc0d8f0, 0x607040, 0.45));
 
@@ -448,28 +399,15 @@ function initScene() {
   sun.position.set(200, 300, 120);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
-  Object.assign(sun.shadow.camera, { near: 10, far: 1000, left: -450, right: 450, top: 450, bottom: -450 });
+  Object.assign(sun.shadow.camera, { near:10, far:1100, left:-500, right:500, top:500, bottom:-500 });
   sun.shadow.bias = -0.0004;
   scene.add(sun);
+  scene.add(Object.assign(new THREE.DirectionalLight(0xd0e8ff, 0.28), { position: new THREE.Vector3(-100, 80, -80) }));
 
-  const fill = new THREE.DirectionalLight(0xd0e8ff, 0.28);
-  fill.position.set(-100, 80, -80);
-  scene.add(fill);
-
-  // Ground
-  const ground = new THREE.Mesh(
-    new THREE.PlaneGeometry(1600, 1600),
-    new THREE.MeshLambertMaterial({ color: 0x7a9a52 })
-  );
-  ground.rotation.x = -Math.PI / 2;
-  ground.receiveShadow = true;
-  scene.add(ground);
-
-  const grid = new THREE.GridHelper(800, 160, 0x000000, 0x000000);
-  grid.position.y = 0.07;
-  grid.material.opacity = 0.065;
-  grid.material.transparent = true;
-  scene.add(grid);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshLambertMaterial({ color:0x7a9a52 }));
+  ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+  const grid = new THREE.GridHelper(1000, 200, 0x000000, 0x000000);
+  grid.position.y = 0.07; grid.material.opacity = 0.06; grid.material.transparent = true; scene.add(grid);
 
   rebuildUI();
   buildBuilding();
@@ -479,8 +417,97 @@ function initScene() {
   document.getElementById('loading').style.display = 'none';
 }
 
-// ─── GEOMETRY: ELLIPTICAL ARCH SHELL ─────────────────────────────────────────
-// Uses actual D height to produce correct arch proportions per series/profile
+// ─── GEOMETRY HELPERS ─────────────────────────────────────────────────────────
+
+// Ellipse point: for given half-width hw and peak H, parameterised by angle t
+function ept(hw, H, r, t) {
+  // r = fractional radius (0-1 is inner to outer)
+  const ax = hw * r, ay = H * r;
+  return new THREE.Vector3(-ax * Math.cos(t), ay * Math.sin(t), 0);
+}
+
+// Add a tube between two Vector3 points
+function addTube(group, a, b, radius, mat, segs = 1, radSegs = 6) {
+  const len = a.distanceTo(b);
+  if (len < 0.01) return;
+  const geo = new THREE.CylinderGeometry(radius, radius, len, radSegs);
+  geo.applyMatrix4(new THREE.Matrix4().makeRotationX(Math.PI / 2));
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.position.copy(a).add(b).multiplyScalar(0.5);
+  mesh.lookAt(b);
+  // Re-orient — cylinder along local Z after rotation:
+  const dir = b.clone().sub(a).normalize();
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), dir);
+  mesh.castShadow = true;
+  group.add(mesh);
+}
+
+// ─── DOUBLE-CHORD ARCH TRUSS ──────────────────────────────────────────────────
+function makeArchTruss(W, H, heavy) {
+  const group = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({ color:0x8898a8, roughness:0.35, metalness:0.75 });
+  const hw = W / 2;
+
+  // Truss depth and chord radii — truss sits INSIDE the fabric shell
+  const SHELL_OFFSET = 0.5;                        // gap: shell at hw, outer chord at hw-offset
+  const depth = heavy ? (W >= 60 ? 2.6 : 2.0) : 1.5;
+  const outerFrac = (hw - SHELL_OFFSET) / hw;      // fractional radius for outer chord
+  const innerFrac = (hw - SHELL_OFFSET - depth) / hw;
+
+  const WEB_BAYS = 14;                             // number of triangulated bays across arch
+  const rOuter = heavy ? 0.135 : 0.095;
+  const rInner = rOuter * 0.95;
+  const rWeb   = rOuter * 0.65;
+
+  const outerPts = [], innerPts = [];
+  for (let i = 0; i <= 48; i++) {
+    const t = (i / 48) * Math.PI;
+    outerPts.push(ept(hw, H, outerFrac, t));
+    innerPts.push(ept(hw, H, innerFrac, t));
+  }
+
+  // Outer chord
+  group.add(new THREE.Mesh(
+    new THREE.TubeGeometry(new THREE.CatmullRomCurve3(outerPts), 48, rOuter, heavy ? 8 : 6, false),
+    mat
+  ));
+  // Inner chord
+  group.add(new THREE.Mesh(
+    new THREE.TubeGeometry(new THREE.CatmullRomCurve3(innerPts), 48, rInner, heavy ? 8 : 6, false),
+    mat
+  ));
+
+  // Web members: alternating Warren pattern
+  for (let i = 0; i <= WEB_BAYS; i++) {
+    const t0 = (i / WEB_BAYS) * Math.PI;
+    const tH = ((i + 0.5) / WEB_BAYS) * Math.PI;  // half-bay offset for diagonals
+    const O  = ept(hw, H, outerFrac, t0);
+    const I  = ept(hw, H, innerFrac, t0);
+    const IH = ept(hw, H, innerFrac, tH); // inner midpoint
+
+    // Radial vertical
+    addTube(group, O, I, rWeb, mat);
+
+    // Diagonal from inner node to next outer node
+    if (i < WEB_BAYS) {
+      const tNext = ((i + 1) / WEB_BAYS) * Math.PI;
+      const ONext = ept(hw, H, outerFrac, tNext);
+      addTube(group, I, ONext, rWeb, mat);
+    }
+  }
+
+  // Base plates (flat rectangles at ground)
+  const plateMat = new THREE.MeshStandardMaterial({ color:0x606870, roughness:0.5, metalness:0.6 });
+  for (let s of [-1, 1]) {
+    const pl = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.12, 0.55), plateMat);
+    pl.position.set(s * (hw - SHELL_OFFSET), 0.06, 0);
+    group.add(pl);
+  }
+
+  return group;
+}
+
+// ─── ARCH FABRIC SHELL ────────────────────────────────────────────────────────
 function makeArchShell(W, L, H) {
   const A = 56, S = Math.max(4, Math.ceil(L / 5));
   const hw = W / 2;
@@ -493,138 +520,277 @@ function makeArchShell(W, L, H) {
       uv.push(ai / A, li / S);
     }
   }
-  for (let li = 0; li < S; li++) {
+  for (let li = 0; li < S; li++)
     for (let ai = 0; ai < A; ai++) {
-      const a = li * (A + 1) + ai, b = a + 1;
-      const c = (li + 1) * (A + 1) + ai, d = c + 1;
-      idx.push(a, c, b, b, c, d);
+      const a = li*(A+1)+ai, b=a+1, c=(li+1)*(A+1)+ai, d=c+1;
+      idx.push(a,c,b, b,c,d);
     }
-  }
   const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-  g.setAttribute('uv',       new THREE.Float32BufferAttribute(uv, 2));
-  g.setIndex(idx);
-  g.computeVertexNormals();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv,2));
+  g.setIndex(idx); g.computeVertexNormals();
   return g;
 }
 
-// ─── GEOMETRY: ARCH END WALL WITH DOOR HOLES ─────────────────────────────────
-function makeArchEndWall(W, H, doors) {
+// ─── END WALL FABRIC SHAPE (with door holes) ─────────────────────────────────
+function makeEndWallShape(W, H, doors) {
   const hw = W / 2;
   const shape = new THREE.Shape();
   shape.moveTo(-hw, 0);
-  for (let i = 0; i <= 56; i++) {
-    const t = (i / 56) * Math.PI;
-    shape.lineTo(-hw * Math.cos(t), H * Math.sin(t));
-  }
+  for (let i = 0; i <= 56; i++) { const t = (i/56)*Math.PI; shape.lineTo(-hw*Math.cos(t), H*Math.sin(t)); }
   shape.lineTo(-hw, 0);
-  addDoors(shape, W, H, doors);
+
+  doors.forEach(d => {
+    const p = new THREE.Path();
+    p.moveTo(d.cx - d.w/2, 0);
+    p.lineTo(d.cx - d.w/2, d.h - (d.type==='man' ? 0 : d.w*0.06));
+    if (d.type === 'garage') {
+      p.quadraticCurveTo(d.cx - d.w/2, d.h, d.cx, d.h);
+      p.quadraticCurveTo(d.cx + d.w/2, d.h, d.cx + d.w/2, d.h - d.w*0.06);
+    } else {
+      p.lineTo(d.cx - d.w/2, d.h); p.lineTo(d.cx + d.w/2, d.h);
+    }
+    p.lineTo(d.cx + d.w/2, 0);
+    p.closePath();
+    shape.holes.push(p);
+  });
+
   return new THREE.ShapeGeometry(shape, 48);
 }
 
-// ─── GEOMETRY: ARCH RIB ───────────────────────────────────────────────────────
-function makeArchRib(W, H, heavy) {
-  const pts = [];
-  for (let i = 0; i <= 48; i++) {
-    const t = (i / 48) * Math.PI;
-    pts.push(new THREE.Vector3(-(W / 2) * Math.cos(t), H * Math.sin(t), 0));
-  }
-  const r = heavy ? 0.22 : 0.12;
-  return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 48, r, heavy ? 8 : 6, false);
-}
-
-// ─── GEOMETRY: GABLE SHELL (AR SERIES) ───────────────────────────────────────
-function makeGableShell(W, L, peakH, sidewall) {
-  const hw = W / 2;
+// ─── END WALL FRAMING (steel columns, girts, arch truss) ─────────────────────
+function makeEndWallFraming(W, H, doors, heavy, lift) {
   const group = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({ color:0x7888a0, roughness:0.38, metalness:0.72 });
+  const hw = W / 2;
 
-  // Roof panels (two sloped planes)
-  const roofRise = peakH - sidewall;
-  const slope = Math.sqrt(hw * hw + roofRise * roofRise);
+  // Add the arch truss at the end wall position
+  const truss = makeArchTruss(W, H, heavy);
+  group.add(truss);
 
-  for (let side of [-1, 1]) {
-    const plane = new THREE.PlaneGeometry(slope, L);
-    const angle = -side * Math.atan2(roofRise, hw);
-    const mesh = new THREE.Mesh(plane, null); // material assigned later
-    mesh.rotation.z = angle;
-    mesh.position.set(side * hw / 2, sidewall + roofRise / 2, L / 2);
-    mesh.castShadow = mesh.receiveShadow = true;
-    group.add(mesh);
-  }
+  // Horizontal base channel across full width
+  const baseMesh = new THREE.Mesh(new THREE.BoxGeometry(W, 0.18, 0.22), mat);
+  baseMesh.position.set(0, 0.09, 0);
+  group.add(baseMesh);
 
-  // Side walls
-  for (let side of [-1, 1]) {
-    const plane = new THREE.PlaneGeometry(L, sidewall);
-    const mesh = new THREE.Mesh(plane, null);
-    mesh.rotation.y = -side * Math.PI / 2;
-    mesh.position.set(side * hw, sidewall / 2, L / 2);
-    mesh.castShadow = mesh.receiveShadow = true;
-    group.add(mesh);
+  // Door frames
+  doors.forEach(d => {
+    const fW = 0.22, fD = 0.3;
+    const frameMat = new THREE.MeshStandardMaterial({ color:0x6a7a8a, roughness:0.4, metalness:0.65 });
+
+    // Left jamb
+    const lj = new THREE.Mesh(new THREE.BoxGeometry(fW, d.h + 0.12, fD), frameMat);
+    lj.position.set(d.cx - d.w/2 - fW/2, (d.h+0.12)/2, 0);
+    group.add(lj);
+    // Right jamb
+    const rj = new THREE.Mesh(new THREE.BoxGeometry(fW, d.h + 0.12, fD), frameMat);
+    rj.position.set(d.cx + d.w/2 + fW/2, (d.h+0.12)/2, 0);
+    group.add(rj);
+    // Header
+    const hdr = new THREE.Mesh(new THREE.BoxGeometry(d.w + fW*2, 0.22, fD), frameMat);
+    hdr.position.set(d.cx, d.h + fW/2 + (d.type==='garage'? d.w*0.06 : 0), 0);
+    group.add(hdr);
+
+    if (d.type === 'garage') {
+      // Garage door panel — slightly inside the opening, with horizontal sections
+      const panels = Math.max(3, Math.round(d.h / 2));
+      const panelH = d.h / panels;
+      const doorMat = new THREE.MeshStandardMaterial({ color:0xdadad5, roughness:0.6, metalness:0.1 });
+      for (let p = 0; p < panels; p++) {
+        const panel = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.08, panelH - 0.1, 0.12), doorMat);
+        panel.position.set(d.cx, (p + 0.5) * panelH, 0.15);
+        group.add(panel);
+        // Panel divider
+        const div = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.06, 0.06, 0.14), frameMat);
+        div.position.set(d.cx, (p + 1) * panelH, 0.15);
+        group.add(div);
+      }
+      // Handle bar
+      const handle = new THREE.Mesh(new THREE.BoxGeometry(d.w * 0.25, 0.08, 0.08),
+        new THREE.MeshStandardMaterial({ color:0x888880, roughness:0.3, metalness:0.9 }));
+      handle.position.set(d.cx, panelH * 1.5, 0.27);
+      group.add(handle);
+
+    } else {
+      // Man door — solid panel with window + handle
+      const dMat = new THREE.MeshStandardMaterial({ color:0xcecec8, roughness:0.55, metalness:0.05 });
+      const door = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.08, d.h - 0.06, 0.1), dMat);
+      door.position.set(d.cx, (d.h - 0.06)/2, 0.14);
+      group.add(door);
+      // Window
+      const winMat = new THREE.MeshStandardMaterial({ color:0x90b8c8, roughness:0.1, metalness:0.0, transparent:true, opacity:0.75 });
+      const win = new THREE.Mesh(new THREE.BoxGeometry(d.w * 0.4, d.h * 0.25, 0.06), winMat);
+      win.position.set(d.cx, d.h * 0.72, 0.21);
+      group.add(win);
+      // Handle
+      const hndl = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55, 8),
+        new THREE.MeshStandardMaterial({ color:0x888880, roughness:0.25, metalness:0.95 }));
+      hndl.rotation.x = Math.PI / 2;
+      hndl.position.set(d.cx + d.w * 0.28, d.h * 0.5, 0.22);
+      group.add(hndl);
+    }
+  });
+
+  // Horizontal girts (every 8 ft up the end wall height, only up to kneewall)
+  // For arch buildings the girts just span across the base zone
+  const girtH = Math.min(H * 0.15, 6);
+  for (let gy = girtH; gy < Math.min(H * 0.3, 14); gy += girtH) {
+    const girt = new THREE.Mesh(new THREE.BoxGeometry(W, 0.14, 0.18), mat);
+    girt.position.set(0, gy, 0);
+    group.add(girt);
   }
 
   return group;
 }
 
-// ─── GEOMETRY: GABLE END WALL ─────────────────────────────────────────────────
-function makeGableEndWall(W, peakH, sidewall, doors) {
+// ─── GABLE SERIES (AR) ────────────────────────────────────────────────────────
+function makeGableShell(W, L, H, sw) {
+  const hw = W / 2, roofRise = H - sw;
+  const slope = Math.sqrt(hw*hw + roofRise*roofRise);
+  const angle = Math.atan2(roofRise, hw);
+  const group = new THREE.Group();
+  const mat = mats.fabric;
+
+  for (const side of [-1,1]) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(slope, L), mat);
+    m.rotation.z = side * angle;
+    m.position.set(side * hw/2, sw + roofRise/2, L/2);
+    m.castShadow = m.receiveShadow = true;
+    group.add(m);
+  }
+  // Side walls
+  for (const side of [-1,1]) {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(L, sw), mat);
+    m.rotation.y = -side * Math.PI/2;
+    m.position.set(side * hw, sw/2, L/2);
+    m.castShadow = m.receiveShadow = true;
+    group.add(m);
+  }
+  return group;
+}
+
+function makeGablePortalFrame(W, H, sw) {
+  const group = new THREE.Group();
+  const mat = new THREE.MeshStandardMaterial({ color:0x8898a8, roughness:0.35, metalness:0.75 });
+  const hw = W / 2;
+  const r = 0.18;
+
+  const cols = [[-hw,0,-hw,sw],[hw,0,hw,sw]];
+  const rafters = [[-hw,sw,0,H],[hw,sw,0,H]];
+  const ridge = [-hw,sw,hw,sw]; // eave strut
+
+  [...cols,...rafters,[ridge]].forEach(([x1,y1,x2,y2]) => {
+    addTube(group, new THREE.Vector3(x1,y1,0), new THREE.Vector3(x2,y2,0), r, mat);
+  });
+
+  // Knee brace diagonals
+  addTube(group, new THREE.Vector3(-hw, sw*0.5, 0), new THREE.Vector3(-hw*0.8, sw*0.9, 0), r*0.6, mat);
+  addTube(group, new THREE.Vector3( hw, sw*0.5, 0), new THREE.Vector3( hw*0.8, sw*0.9, 0), r*0.6, mat);
+
+  // Gusset web members in roof
+  addTube(group, new THREE.Vector3(-hw*0.5, sw + (H-sw)*0.5, 0), new THREE.Vector3(0, H, 0), r*0.55, mat);
+  addTube(group, new THREE.Vector3( hw*0.5, sw + (H-sw)*0.5, 0), new THREE.Vector3(0, H, 0), r*0.55, mat);
+
+  // Base plates
+  const plateMat = new THREE.MeshStandardMaterial({ color:0x606870, roughness:0.5, metalness:0.6 });
+  for (const s of [-1,1]) {
+    const pl = new THREE.Mesh(new THREE.BoxGeometry(0.55, 0.12, 0.55), plateMat);
+    pl.position.set(s * hw, 0.06, 0);
+    group.add(pl);
+  }
+
+  return group;
+}
+
+function makeGableEndWallFabric(W, H, sw, doors) {
   const hw = W / 2;
   const shape = new THREE.Shape();
-  shape.moveTo(-hw, 0);
-  shape.lineTo(-hw, sidewall);
-  shape.lineTo(0, peakH);
-  shape.lineTo(hw, sidewall);
-  shape.lineTo(hw, 0);
-  shape.closePath();
-  addDoors(shape, W, peakH, doors);
+  shape.moveTo(-hw,0); shape.lineTo(-hw,sw); shape.lineTo(0,H); shape.lineTo(hw,sw); shape.lineTo(hw,0); shape.closePath();
+  doors.forEach(d => {
+    const p = new THREE.Path();
+    p.moveTo(d.cx-d.w/2,0); p.lineTo(d.cx-d.w/2,d.h); p.lineTo(d.cx+d.w/2,d.h); p.lineTo(d.cx+d.w/2,0); p.closePath();
+    shape.holes.push(p);
+  });
   return new THREE.ShapeGeometry(shape, 12);
 }
 
-// ─── GEOMETRY: GABLE PORTAL FRAME ────────────────────────────────────────────
-function makeGableRib(W, peakH, sidewall) {
-  const hw = W / 2, r = 0.18, segs = 8;
+// ─── FOUNDATION ───────────────────────────────────────────────────────────────
+function makeFoundation(W, L, type, height) {
   const group = new THREE.Group();
-  const mat = new THREE.MeshStandardMaterial({ color: 0x8090a0, roughness: 0.4, metalness: 0.7 });
+  const concMat = new THREE.MeshStandardMaterial({ color:0xa09488, roughness:0.88, metalness:0.0 });
 
-  function tube(ax, ay, bx, by) {
-    const dx = bx - ax, dy = by - ay;
-    const len = Math.sqrt(dx * dx + dy * dy);
-    const g = new THREE.CylinderGeometry(r, r, len, segs);
-    const m = new THREE.Mesh(g, mat);
-    m.position.set((ax + bx) / 2, (ay + by) / 2, 0);
-    m.rotation.z = Math.atan2(dx, dy);
-    m.castShadow = true;
-    group.add(m);
+  if (type === 'anchor') {
+    // Small helical anchor cylinders at corners and intervals
+    const anchorMat = new THREE.MeshStandardMaterial({ color:0x606060, roughness:0.5, metalness:0.6 });
+    const anchorGeo = new THREE.CylinderGeometry(0.12, 0.18, 1.2, 8);
+    const positions = [
+      [-W/2,0], [W/2,0], [-W/2,L], [W/2,L],
+      [-W/2,L/2], [W/2,L/2],
+      [-W/2,L/4], [W/2,L/4], [-W/2,3*L/4], [W/2,3*L/4]
+    ];
+    positions.forEach(([x,z]) => {
+      const m = new THREE.Mesh(anchorGeo, anchorMat);
+      m.position.set(x, -0.6, z);
+      group.add(m);
+    });
+    // Base angle along perimeter
+    const baseAngle = new THREE.Mesh(new THREE.BoxGeometry(W + 0.5, 0.18, 0.22), concMat);
+    baseAngle.position.set(0, 0.09, 0);
+    group.add(baseAngle);
+    const baseAngle2 = new THREE.Mesh(new THREE.BoxGeometry(W + 0.5, 0.18, 0.22), concMat);
+    baseAngle2.position.set(0, 0.09, L);
+    group.add(baseAngle2);
+    const sideA = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.18, L), concMat);
+    sideA.position.set(-W/2, 0.09, L/2); group.add(sideA);
+    const sideB = sideA.clone(); sideB.position.x = W/2; group.add(sideB);
+
+  } else if (type === 'grade_beam' || type === 'wall') {
+    // Perimeter concrete wall
+    const t = 0.5; // wall thickness
+    const h = height;
+    const mat2 = new THREE.MeshStandardMaterial({ color:0x9a9088, roughness:0.9, metalness:0.0 });
+
+    // Front + back
+    const fb = new THREE.Mesh(new THREE.BoxGeometry(W + t*2, h, t), mat2);
+    fb.position.set(0, -h/2, 0); group.add(fb);
+    const bb = fb.clone(); bb.position.z = L; group.add(bb);
+    // Sides
+    const sl = new THREE.Mesh(new THREE.BoxGeometry(t, h, L), mat2);
+    sl.position.set(-W/2 - t/2, -h/2, L/2); group.add(sl);
+    const sr = sl.clone(); sr.position.x = W/2 + t/2; group.add(sr);
+
+    // Top cap strip
+    const capMat = new THREE.MeshStandardMaterial({ color:0x888078, roughness:0.85, metalness:0.0 });
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(W + t*2 + 0.1, 0.15, t + 0.1), capMat);
+    cap.position.set(0, 0.07, 0); group.add(cap);
+    const cap2 = cap.clone(); cap2.position.z = L; group.add(cap2);
+    const capS = new THREE.Mesh(new THREE.BoxGeometry(t+0.1, 0.15, L), capMat);
+    capS.position.set(-W/2-t/2, 0.07, L/2); group.add(capS);
+    const capS2 = capS.clone(); capS2.position.x = W/2+t/2; group.add(capS2);
+
+  } else if (type === 'slab') {
+    // Full concrete floor slab
+    const slabGeo = new THREE.BoxGeometry(W, 0.5, L);
+    const slab = new THREE.Mesh(slabGeo, concMat);
+    slab.position.set(0, -0.25, L/2);
+    slab.receiveShadow = true;
+    group.add(slab);
+    // Thickened edge
+    for (const [ex,ez,ew,el] of [
+      [0,     -0.15, W,  0.5],
+      [0,  L+0.15,   W,  0.5],
+      [-W/2-0.15, L/2, 0.5, L],
+      [ W/2+0.15, L/2, 0.5, L]
+    ]) {
+      const e = new THREE.Mesh(new THREE.BoxGeometry(ew, 0.8, el), concMat);
+      e.position.set(ex, -0.4, ez); group.add(e);
+    }
   }
-
-  tube(-hw, 0, -hw, sidewall);       // left column
-  tube(hw, 0, hw, sidewall);         // right column
-  tube(-hw, sidewall, 0, peakH);     // left rafter
-  tube(hw, sidewall, 0, peakH);      // right rafter
 
   return group;
 }
 
-// ─── HELPER: ADD DOOR HOLES ───────────────────────────────────────────────────
-function addDoors(shape, W, H, doors) {
-  const dw = Math.min(14, W * 0.20);
-  const dh = Math.min(16, H * 0.60);
-  const ar = dw * 0.08;
-  function door(cx) {
-    const p = new THREE.Path();
-    p.moveTo(cx - dw / 2, 0);
-    p.lineTo(cx - dw / 2, dh);
-    p.quadraticCurveTo(cx - dw / 2, dh + ar, cx, dh + ar);
-    p.quadraticCurveTo(cx + dw / 2, dh + ar, cx + dw / 2, dh);
-    p.lineTo(cx + dw / 2, 0);
-    p.closePath();
-    shape.holes.push(p);
-  }
-  if (doors === 1) door(0);
-  else if (doors === 2) { door(-W * 0.20); door(W * 0.20); }
-  else if (doors === 3) { door(-W * 0.26); door(0); door(W * 0.26); }
-}
-
-// ─── BUILD BUILDING ───────────────────────────────────────────────────────────
+// ─── ASSEMBLE BUILDING ────────────────────────────────────────────────────────
 function buildBuilding() {
   if (building) {
     const geos = new Set();
@@ -635,74 +801,101 @@ function buildBuilding() {
   }
 
   const W = cfg.width, L = cfg.length, H = peakH();
-  const series  = currentSeries();
-  const profile = currentProfile();
-  const heavy   = series.ribWeight === 'heavy';
-  const col     = new THREE.Color(cfg.color);
+  const ser = getSeries(), pro = getProfile();
+  const heavy = ser.ribWeight === 'heavy';
+  const lift  = foundLift();
+  const doors = getDoorLayout();
+  const col = new THREE.Color(cfg.color);
 
-  mats.fabric = new THREE.MeshStandardMaterial({ color: col.clone(), roughness: 0.68, metalness: 0.0, side: THREE.DoubleSide });
-  mats.wall   = new THREE.MeshStandardMaterial({ color: col.clone().multiplyScalar(0.87), roughness: 0.74, metalness: 0.0, side: THREE.DoubleSide });
-  mats.rib    = new THREE.MeshStandardMaterial({ color: 0x8090a0, roughness: 0.38, metalness: 0.72 });
-  mats.base   = new THREE.MeshStandardMaterial({ color: 0x848480, roughness: 0.88, metalness: 0.12 });
+  mats.fabric  = new THREE.MeshStandardMaterial({ color:col.clone(), roughness:0.68, metalness:0.0, side:THREE.DoubleSide });
+  mats.wall    = new THREE.MeshStandardMaterial({ color:col.clone().multiplyScalar(0.87), roughness:0.74, metalness:0.0, side:THREE.DoubleSide });
+  mats.steel   = new THREE.MeshStandardMaterial({ color:0x8898a8, roughness:0.35, metalness:0.75 });
+  mats.conc    = new THREE.MeshStandardMaterial({ color:0xa09488, roughness:0.88, metalness:0.0 });
 
   building = new THREE.Group();
 
-  if (series.shape === 'arch') {
-    // Arch fabric shell
+  // Foundation (always at grade)
+  const found = makeFoundation(W, L, cfg.foundation, cfg.foundHeight);
+  building.add(found);
+
+  // Main structure group (lifted by foundation)
+  const structure = new THREE.Group();
+  structure.position.y = lift;
+  building.add(structure);
+
+  if (ser.shape === 'arch') {
+    // Fabric shell
     const shell = new THREE.Mesh(makeArchShell(W, L, H), mats.fabric);
     shell.castShadow = shell.receiveShadow = true;
-    building.add(shell);
+    structure.add(shell);
 
-    // End walls
-    const wGeo = makeArchEndWall(W, H, cfg.doors);
-    const fw = new THREE.Mesh(wGeo, mats.wall); fw.castShadow = true;
-    const bw = new THREE.Mesh(wGeo, mats.wall); bw.position.z = L; bw.rotation.y = Math.PI; bw.castShadow = true;
-    building.add(fw, bw);
+    // End wall fabric + framing — FRONT
+    const ew1 = new THREE.Mesh(makeEndWallShape(W, H, doors), mats.wall);
+    ew1.castShadow = true;
+    structure.add(ew1);
+    const fr1 = makeEndWallFraming(W, H, doors, heavy, lift);
+    structure.add(fr1);
 
-    // Ribs
-    const rGeo = makeArchRib(W, H, heavy);
-    const step  = profile.ribGap;
-    for (let z = 0; z <= L + 0.01; z += step) {
-      const r = new THREE.Mesh(rGeo, mats.rib);
-      r.position.z = Math.min(z, L);
-      r.castShadow = true;
-      building.add(r);
+    // END wall fabric + framing — BACK
+    const ew2 = new THREE.Mesh(makeEndWallShape(W, H, []), mats.wall); // back wall: no doors
+    ew2.position.z = L; ew2.rotation.y = Math.PI; ew2.castShadow = true;
+    structure.add(ew2);
+    const fr2 = makeEndWallFraming(W, H, [], heavy, lift);
+    fr2.position.z = L; fr2.rotation.y = Math.PI;
+    structure.add(fr2);
+
+    // Structural trusses along building length (every ribGap ft)
+    const step = pro.ribGap;
+    for (let z = step; z < L - 0.5; z += step) {
+      const t = makeArchTruss(W, H, heavy);
+      t.position.z = z;
+      structure.add(t);
     }
 
   } else {
     // AR Gable
     const sw = cfg.sidewall;
-    const gableShell = makeGableShell(W, L, H, sw);
-    gableShell.traverse(o => { if (o.isMesh) o.material = mats.fabric; });
-    building.add(gableShell);
+    structure.add(makeGableShell(W, L, H, sw));
 
-    // End walls
-    const ewGeo = makeGableEndWall(W, H, sw, cfg.doors);
-    const fw = new THREE.Mesh(ewGeo, mats.wall); fw.castShadow = true;
-    const bw = new THREE.Mesh(ewGeo, mats.wall); bw.position.z = L; bw.rotation.y = Math.PI; bw.castShadow = true;
-    building.add(fw, bw);
+    // Front end wall
+    const ew1 = new THREE.Mesh(makeGableEndWallFabric(W, H, sw, doors), mats.wall);
+    ew1.castShadow = true; structure.add(ew1);
 
-    // Portal frame ribs
-    const step = profile.ribGap;
+    // Back end wall (no doors)
+    const ew2 = new THREE.Mesh(makeGableEndWallFabric(W, H, sw, []), mats.wall);
+    ew2.position.z = L; ew2.rotation.y = Math.PI; structure.add(ew2);
+
+    // Door framing on front wall
+    const df = makeEndWallFraming(W, H, doors, heavy, lift);
+    structure.add(df);
+
+    // Portal frames along length
+    const step = pro.ribGap;
     for (let z = 0; z <= L + 0.01; z += step) {
-      const rib = makeGableRib(W, H, sw);
-      rib.position.z = Math.min(z, L);
-      building.add(rib);
+      const f = makeGablePortalFrame(W, H, sw);
+      f.position.z = Math.min(z, L);
+      structure.add(f);
     }
 
-    // Side wall cladding strips (ground to eave)
-    for (let side of [-1, 1]) {
-      const plane = new THREE.Mesh(new THREE.PlaneGeometry(L, sw), mats.wall);
-      plane.rotation.y = -side * Math.PI / 2;
-      plane.position.set(side * W / 2, sw / 2, L / 2);
-      plane.castShadow = plane.receiveShadow = true;
-      building.add(plane);
+    // Purlins along roof (longitudinal)
+    const purlinMat = new THREE.MeshStandardMaterial({ color:0x8898a8, roughness:0.4, metalness:0.7 });
+    const purlinCount = 4;
+    for (let i = 1; i <= purlinCount; i++) {
+      for (const s of [-1,1]) {
+        const t_rafter = i / (purlinCount + 1);
+        const px = s * (W/2) * (1 - t_rafter);
+        const py = sw + (H - sw) * t_rafter;
+        const p = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, L, 6), purlinMat);
+        p.rotation.x = Math.PI / 2;
+        p.position.set(px, py, L/2);
+        structure.add(p);
+      }
     }
   }
 
   // Base sill
-  const sill = new THREE.Mesh(new THREE.BoxGeometry(W, 0.45, L), mats.base);
-  sill.position.set(0, 0.22, L / 2);
+  const sill = new THREE.Mesh(new THREE.BoxGeometry(W, 0.45, L), mats.conc);
+  sill.position.set(0, 0.22 + lift, L/2);
   sill.receiveShadow = true;
   building.add(sill);
 
@@ -713,9 +906,9 @@ function buildBuilding() {
 
 // ─── CAMERA ───────────────────────────────────────────────────────────────────
 function fitCamera() {
-  const W = cfg.width, L = cfg.length, H = peakH();
-  camera.position.set(W * 1.1, H * 1.3, -L * 0.5);
-  controls.target.set(0, H * 0.45, L / 2);
+  const W = cfg.width, L = cfg.length, H = peakH(), lift = foundLift();
+  camera.position.set(W * 1.1, (H + lift) * 1.3, -L * 0.5);
+  controls.target.set(0, (H + lift) * 0.42, L / 2);
   controls.update();
 }
 
@@ -727,28 +920,38 @@ function syncSize() {
   camera.updateProjectionMatrix();
 }
 
-function loop() {
-  requestAnimationFrame(loop);
-  controls.update();
-  renderer.render(scene, camera);
+function loop() { requestAnimationFrame(loop); controls.update(); renderer.render(scene, camera); }
+
+// ─── UI ───────────────────────────────────────────────────────────────────────
+function updateUI() {
+  const W = cfg.width, L = cfg.length, H = peakH(), lift = foundLift();
+  const sqft = W * L;
+  const b4   = clearB4();
+  const vol  = cfg.series === 'AR'
+    ? Math.round((W * cfg.sidewall + W * (H - cfg.sidewall) / 2) * L)
+    : Math.round(Math.PI * W * H * L / 4);
+  const found = FOUNDATIONS[cfg.foundation];
+
+  document.getElementById('spec-sqft').textContent = sqft.toLocaleString() + ' sq ft';
+  document.getElementById('spec-peak').textContent = (H + lift).toFixed(1) + ' ft';
+  document.getElementById('spec-b4').textContent   = b4 ? b4.toFixed(1) + ' ft' : '—';
+  document.getElementById('spec-vol').textContent  = vol > 999 ? (vol/1000).toFixed(0)+'K cu ft' : vol+' cu ft';
+  document.getElementById('spec-found').textContent = lift > 0 ? `${found.label} · ${lift} ft` : found.label;
+  document.getElementById('dim-badge').textContent  = `${W}' W  ×  ${L}' L  ×  ${(H+lift).toFixed(1)}' H`;
+  document.getElementById('series-badge').textContent = `${getSeries().badge}  ·  ${getProfile().label}`;
+
+  const p = new URLSearchParams({ series:getSeries().badge, profile:getProfile().label, width:W, length:L, height:(H+lift).toFixed(1), colour:COLOR_NAMES[cfg.color]||cfg.color, foundation:found.label, garageDoors:cfg.garageDoors, manDoors:cfg.manDoors });
+  document.getElementById('quote-link').href = `contact.html?${p}`;
 }
 
-// ─── UI REBUILD (series/profile/width changes) ────────────────────────────────
 function rebuildUI() {
-  const ser     = currentSeries();
-  const profile = currentProfile();
-  const sizes   = profile.sizes;
-  const widths  = Object.keys(sizes).map(Number).sort((a, b) => a - b);
-
-  // Ensure current width is valid
-  if (!sizes[cfg.width]) cfg.width = widths[0];
-
-  // Profile buttons
+  const ser = getSeries();
   const profiles = Object.keys(ser.profiles);
-  const pb = document.getElementById('profile-btns');
-  const pd = document.getElementById('profile-desc');
-  const secP = document.getElementById('sec-profile');
 
+  // Profile section
+  const secP = document.getElementById('sec-profile');
+  const pb   = document.getElementById('profile-btns');
+  const pd   = document.getElementById('profile-desc');
   if (profiles.length <= 1) {
     secP.style.display = 'none';
   } else {
@@ -757,134 +960,78 @@ function rebuildUI() {
     profiles.forEach(k => {
       const b = document.createElement('button');
       b.className = 'p-btn' + (k === cfg.profile ? ' active' : '');
-      b.textContent = ser.profiles[k].label;
-      b.dataset.profile = k;
+      b.textContent = ser.profiles[k].label; b.dataset.profile = k;
+      b.addEventListener('click', () => {
+        cfg.profile = k;
+        pb.querySelectorAll('.p-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        pd.textContent = getProfile().desc;
+        rebuildWidths(); rebuildLength(); buildBuilding();
+      });
       pb.appendChild(b);
     });
-    pd.textContent = profile.desc;
-    pb.querySelectorAll('.p-btn').forEach(b => b.addEventListener('click', () => {
-      cfg.profile = b.dataset.profile;
-      pb.querySelectorAll('.p-btn').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      pd.textContent = currentProfile().desc;
-      rebuildWidths();
-      rebuildLength();
-      buildBuilding();
-    }));
+    pd.textContent = getProfile().desc;
   }
+  rebuildWidths(); rebuildLength();
 
-  rebuildWidths();
-  rebuildLength();
-
-  // Sidewall section (AR only)
-  const sw = document.getElementById('sec-sidewall');
-  if (cfg.series === 'AR') {
-    sw.classList.add('visible');
-    document.getElementById('sl-sw').value = cfg.sidewall;
-    document.getElementById('val-sw').textContent = cfg.sidewall;
-  } else {
-    sw.classList.remove('visible');
-  }
+  // Sidewall
+  document.getElementById('sec-sidewall').classList.toggle('hidden', cfg.series !== 'AR');
 }
 
 function rebuildWidths() {
-  const profile = currentProfile();
-  const widths  = Object.keys(profile.sizes).map(Number).sort((a, b) => a - b);
+  const profile = getProfile();
+  const widths  = Object.keys(profile.sizes).map(Number).sort((a,b)=>a-b);
   if (!profile.sizes[cfg.width]) cfg.width = widths[0];
   const wb = document.getElementById('width-btns');
   wb.innerHTML = '';
   widths.forEach(w => {
     const b = document.createElement('button');
     b.className = 'w-btn' + (w === cfg.width ? ' active' : '');
-    b.textContent = w + "'";
-    b.dataset.width = w;
+    b.textContent = w + "'"; b.dataset.width = w;
+    b.addEventListener('click', () => {
+      cfg.width = +b.dataset.width;
+      wb.querySelectorAll('.w-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      buildBuilding();
+    });
     wb.appendChild(b);
   });
-  wb.querySelectorAll('.w-btn').forEach(b => b.addEventListener('click', () => {
-    cfg.width = +b.dataset.width;
-    wb.querySelectorAll('.w-btn').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    buildBuilding();
-  }));
 }
 
 function rebuildLength() {
-  const profile = currentProfile();
-  const sliderWrap = document.getElementById('len-slider-wrap');
-  const fixedWrap  = document.getElementById('len-fixed-wrap');
-
+  const profile = getProfile();
+  const sw = document.getElementById('len-slider-wrap');
+  const fw = document.getElementById('len-fixed-wrap');
   if (profile.fixedLengths) {
-    sliderWrap.style.display = 'none';
-    fixedWrap.style.display  = '';
-    const fb = document.getElementById('fixed-len-btns');
-    fb.innerHTML = '';
+    sw.classList.add('hidden'); fw.classList.remove('hidden');
+    const fb = document.getElementById('fixed-len-btns'); fb.innerHTML = '';
     profile.fixedLengths.forEach(l => {
       const b = document.createElement('button');
       b.className = 'fl-btn' + (l === cfg.length ? ' active' : '');
-      b.textContent = l + " ft";
+      b.textContent = l + ' ft';
+      b.addEventListener('click', () => { cfg.length = l; fb.querySelectorAll('.fl-btn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); buildBuilding(); });
       fb.appendChild(b);
-      b.addEventListener('click', () => {
-        cfg.length = l;
-        fb.querySelectorAll('.fl-btn').forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-        buildBuilding();
-      });
     });
-    if (!profile.fixedLengths.includes(cfg.length)) {
-      cfg.length = profile.fixedLengths[0];
-      fb.querySelector('.fl-btn').classList.add('active');
-    }
+    if (!profile.fixedLengths.includes(cfg.length)) { cfg.length = profile.fixedLengths[0]; fb.firstChild && fb.firstChild.classList.add('active'); }
   } else {
-    sliderWrap.style.display = '';
-    fixedWrap.style.display  = 'none';
+    sw.classList.remove('hidden'); fw.classList.add('hidden');
     const sl = document.getElementById('sl-l');
-    sl.min   = profile.lenMin;
-    sl.max   = profile.lenMax;
-    sl.step  = profile.lenStep;
+    sl.min = profile.lenMin; sl.max = profile.lenMax; sl.step = profile.lenStep;
     cfg.length = Math.round(Math.max(profile.lenMin, Math.min(profile.lenMax, cfg.length)) / profile.lenStep) * profile.lenStep;
     sl.value = cfg.length;
     document.getElementById('val-l').textContent = cfg.length;
   }
 }
 
-// ─── UI UPDATE (specs/badges, no rebuild) ────────────────────────────────────
-function updateUI() {
-  const W = cfg.width, L = cfg.length, H = peakH();
-  const sqft = W * L;
-  const b4   = clearB4();
-  const vol  = cfg.series === 'AR'
-    ? Math.round((W * cfg.sidewall + W * (H - cfg.sidewall) / 2) * L)
-    : Math.round(Math.PI * W * H * L / 4);
-
-  document.getElementById('spec-sqft').textContent = sqft.toLocaleString() + ' sq ft';
-  document.getElementById('spec-peak').textContent = H.toFixed(1) + " ft";
-  document.getElementById('spec-b4').textContent   = b4 ? b4.toFixed(1) + " ft" : '—';
-  document.getElementById('spec-vol').textContent  = vol > 999 ? (vol / 1000).toFixed(0) + 'K cu ft' : vol + ' cu ft';
-  document.getElementById('dim-badge').textContent = `${W}' W  ×  ${L}' L  ×  ${H.toFixed(1)}' H`;
-
-  const ser = currentSeries();
-  const pro = currentProfile();
-  document.getElementById('series-badge').textContent = `${ser.badge}  ·  ${pro.label}`;
-
-  const p = new URLSearchParams({
-    series: ser.badge, profile: pro.label,
-    width: W, length: L, height: H.toFixed(1),
-    colour: COLOR_NAMES[cfg.color] || cfg.color,
-    doors: cfg.doors
-  });
-  document.getElementById('quote-link').href = `contact.html?${p}`;
-}
-
 // ─── EVENTS ───────────────────────────────────────────────────────────────────
 
 // Series
 document.querySelectorAll('.s-btn').forEach(b => b.addEventListener('click', () => {
-  cfg.series  = b.dataset.series;
+  cfg.series = b.dataset.series;
   cfg.profile = SERIES[cfg.series].defaultProfile;
   document.querySelectorAll('.s-btn').forEach(x => x.classList.remove('active'));
   b.classList.add('active');
-  rebuildUI();
-  buildBuilding();
+  rebuildUI(); buildBuilding();
 }));
 
 // Length slider
@@ -894,14 +1041,41 @@ document.getElementById('sl-l').addEventListener('input', e => {
   buildBuilding();
 });
 
-// Sidewall slider (AR)
+// Sidewall
 document.getElementById('sl-sw').addEventListener('input', e => {
   cfg.sidewall = +e.target.value;
   document.getElementById('val-sw').textContent = cfg.sidewall;
   buildBuilding();
 });
 
-// Colour (fast path - no mesh rebuild)
+// Foundation type
+document.querySelectorAll('.f-btn').forEach(b => b.addEventListener('click', () => {
+  cfg.foundation = b.dataset.found;
+  document.querySelectorAll('.f-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  const fd = FOUNDATIONS[cfg.foundation];
+  document.getElementById('found-desc').textContent = fd.desc;
+  const hw = document.getElementById('found-height-wrap');
+  if (fd.hasHeight) {
+    hw.classList.remove('hidden');
+    const sl = document.getElementById('sl-fh');
+    sl.min = fd.min; sl.max = fd.max;
+    cfg.foundHeight = fd.default; sl.value = fd.default;
+    document.getElementById('val-fh').textContent = fd.default;
+  } else {
+    hw.classList.add('hidden');
+  }
+  buildBuilding();
+}));
+
+// Foundation height slider
+document.getElementById('sl-fh').addEventListener('input', e => {
+  cfg.foundHeight = +e.target.value;
+  document.getElementById('val-fh').textContent = cfg.foundHeight;
+  buildBuilding();
+});
+
+// Colour (fast — no full rebuild)
 document.querySelectorAll('.swatch').forEach(s => s.addEventListener('click', () => {
   document.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
   s.classList.add('active');
@@ -913,11 +1087,19 @@ document.querySelectorAll('.swatch').forEach(s => s.addEventListener('click', ()
   updateUI();
 }));
 
-// Doors
-document.querySelectorAll('.d-btn').forEach(b => b.addEventListener('click', () => {
-  document.querySelectorAll('.d-btn').forEach(x => x.classList.remove('active'));
+// Garage doors
+document.querySelectorAll('[data-gd]').forEach(b => b.addEventListener('click', () => {
+  cfg.garageDoors = +b.dataset.gd;
+  document.querySelectorAll('[data-gd]').forEach(x => x.classList.remove('active'));
   b.classList.add('active');
-  cfg.doors = +b.dataset.doors;
+  buildBuilding();
+}));
+
+// Man doors
+document.querySelectorAll('[data-md]').forEach(b => b.addEventListener('click', () => {
+  cfg.manDoors = +b.dataset.md;
+  document.querySelectorAll('[data-md]').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
   buildBuilding();
 }));
 
