@@ -291,6 +291,9 @@
     </div>
     <div>
       <form action="https://formspree.io/f/mzdjqoan" method="POST" class="form-dark" onsubmit="return validatePricingFormMD(this)">
+        <!-- Honeypot -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_loadtime" id="md-loadtime">
         <div class="dark-cta-strip-title">MegaDome&#174; Pricing Request</div>
         <p class="form-dark-hint">All fields help us give you an accurate quote.</p>
 
@@ -393,7 +396,13 @@
           <div id="md-email-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid email address is required</div>
         </div>
 
-        <button type="submit" class="form-submit" style="margin-top:16px">Send Pricing Request &rarr;</button>
+        <div class="form-group" style="margin-top:12px">
+          <label class="form-label" style="color:rgba(255,255,255,0.4)">Phone Number <span style="color:#e05a2b">*</span></label>
+          <input type="tel" name="Phone" id="md-phone" placeholder="705-555-0100" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff">
+          <div id="md-phone-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid Canadian phone number is required (e.g. 705-555-0100)</div>
+        </div>
+
+        <button type="submit" id="md-submit" class="form-submit" style="margin-top:16px">Send Pricing Request &rarr;</button>
         <p class="form-dark-footer">No obligation. We respond within one business day.</p>
       </form>
     </div>
@@ -401,31 +410,41 @@
 </section>
 
 <script>
+(function(){ document.getElementById('md-loadtime').value = Date.now(); })();
+
+var MD_PHONE = /^(\+?1[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
+var MD_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+var MD_ONTARIO = /^[KLMNP][0-9][A-Z][0-9][A-Z][0-9]$/;
+
+function mdField(id, errId, isOk) {
+  var el = document.getElementById(id);
+  var err = document.getElementById(errId);
+  if (!el) return;
+  err.style.display = isOk ? 'none' : 'block';
+  el.style.borderColor = isOk ? 'rgba(255,255,255,0.1)' : '#e05a2b';
+}
+
 function validatePricingFormMD(form) {
-  var ok = true;
-  var postalEl = document.getElementById('md-postal');
-  var postalErr = document.getElementById('md-postal-err');
-  var postal = postalEl ? postalEl.value.trim().toUpperCase().replace(/\s/g,'') : '';
-  var ontarioPattern = /^[KLMNP][0-9][A-Z][0-9][A-Z][0-9]$/;
-  if (!ontarioPattern.test(postal)) {
-    if (postalErr) postalErr.style.display = 'block';
-    if (postalEl) postalEl.style.borderColor = '#e05a2b';
-    ok = false;
-  } else {
-    if (postalErr) postalErr.style.display = 'none';
-    if (postalEl) postalEl.style.borderColor = 'rgba(255,255,255,0.1)';
-  }
-  var emailEl = document.getElementById('md-email');
-  var emailErr = document.getElementById('md-email-err');
-  var emailVal = emailEl ? emailEl.value.trim() : '';
-  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(emailVal)) {
-    if (emailErr) emailErr.style.display = 'block';
-    if (emailEl) emailEl.style.borderColor = '#e05a2b';
-    ok = false;
-  } else {
-    if (emailErr) emailErr.style.display = 'none';
-    if (emailEl) emailEl.style.borderColor = 'rgba(255,255,255,0.1)';
+  var loaded = parseInt(document.getElementById('md-loadtime').value, 10);
+  if (!loaded || (Date.now() - loaded) < 4000) return false;
+
+  var postal = document.getElementById('md-postal').value.trim().toUpperCase().replace(/\s/g,'');
+  var email  = document.getElementById('md-email').value.trim();
+  var phone  = document.getElementById('md-phone').value.trim();
+
+  var postalOk = MD_ONTARIO.test(postal);
+  var emailOk  = MD_EMAIL.test(email);
+  var phoneOk  = MD_PHONE.test(phone);
+
+  mdField('md-postal', 'md-postal-err', postalOk);
+  mdField('md-email',  'md-email-err',  emailOk);
+  mdField('md-phone',  'md-phone-err',  phoneOk);
+
+  var ok = postalOk && emailOk && phoneOk;
+  if (ok) {
+    var btn = document.getElementById('md-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
   }
   return ok;
 }

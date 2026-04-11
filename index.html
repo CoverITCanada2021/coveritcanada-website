@@ -449,6 +449,9 @@
     </div>
     <div>
       <form action="https://formspree.io/f/mzdjqoan" method="POST" style="background:#111;padding:44px 40px" onsubmit="return validatePricingForm(this)">
+        <!-- Honeypot -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_loadtime" id="pf-loadtime">
         <div class="dark-cta-strip-title">MegaDome&#174; Pricing Request</div>
         <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:28px;line-height:1.6">All fields help us give you an accurate quote.</p>
 
@@ -551,7 +554,13 @@
           <div id="pf-email-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid email address is required</div>
         </div>
 
-        <button type="submit" class="form-submit" style="margin-top:16px">Send Pricing Request &rarr;</button>
+        <div class="form-group" style="margin-top:12px">
+          <label class="form-label" style="color:rgba(255,255,255,0.4)">Phone Number <span style="color:#e05a2b">*</span></label>
+          <input type="tel" name="Phone" id="pf-phone" placeholder="705-555-0100" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff">
+          <div id="pf-phone-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid Canadian phone number is required (e.g. 705-555-0100)</div>
+        </div>
+
+        <button type="submit" id="pf-submit" class="form-submit" style="margin-top:16px">Send Pricing Request &rarr;</button>
         <p style="font-size:11px;color:rgba(255,255,255,0.2);text-align:center;margin-top:10px">No obligation. We respond within one business day.</p>
       </form>
     </div>
@@ -559,33 +568,44 @@
 </section>
 
 <script>
+(function(){ document.getElementById('pf-loadtime').value = Date.now(); })();
+
+var PF_PHONE = /^(\+?1[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
+var PF_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+var PF_ONTARIO = /^[KLMNP][0-9][A-Z][0-9][A-Z][0-9]$/;
+
+function pfField(id, errId, isOk) {
+  var el = document.getElementById(id);
+  var err = document.getElementById(errId);
+  if (!el) return;
+  err.style.display = isOk ? 'none' : 'block';
+  el.style.borderColor = isOk ? 'rgba(255,255,255,0.1)' : '#e05a2b';
+}
+
 function validatePricingForm(form) {
+  // Time check
+  var loaded = parseInt(document.getElementById('pf-loadtime').value, 10);
+  if (!loaded || (Date.now() - loaded) < 4000) return false;
+
   var ok = true;
-  // Ontario postal code: first letter must be K, L, M, N, or P
-  var postalEl = form.querySelector('#pf-postal') || document.getElementById('pf-postal');
-  var postalErr = form.querySelector('#pf-postal-err') || document.getElementById('pf-postal-err');
-  var postal = postalEl ? postalEl.value.trim().toUpperCase().replace(/\s/g,'') : '';
-  var ontarioPattern = /^[KLMNP][0-9][A-Z][0-9][A-Z][0-9]$/;
-  if (!ontarioPattern.test(postal)) {
-    if (postalErr) postalErr.style.display = 'block';
-    if (postalEl) postalEl.style.borderColor = '#e05a2b';
-    ok = false;
-  } else {
-    if (postalErr) postalErr.style.display = 'none';
-    if (postalEl) postalEl.style.borderColor = 'rgba(255,255,255,0.1)';
-  }
-  // Email
-  var emailEl = form.querySelector('#pf-email') || document.getElementById('pf-email');
-  var emailErr = form.querySelector('#pf-email-err') || document.getElementById('pf-email-err');
-  var emailVal = emailEl ? emailEl.value.trim() : '';
-  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailPattern.test(emailVal)) {
-    if (emailErr) emailErr.style.display = 'block';
-    if (emailEl) emailEl.style.borderColor = '#e05a2b';
-    ok = false;
-  } else {
-    if (emailErr) emailErr.style.display = 'none';
-    if (emailEl) emailEl.style.borderColor = 'rgba(255,255,255,0.1)';
+  var postal = document.getElementById('pf-postal').value.trim().toUpperCase().replace(/\s/g,'');
+  var email  = document.getElementById('pf-email').value.trim();
+  var phone  = document.getElementById('pf-phone').value.trim();
+
+  var postalOk = PF_ONTARIO.test(postal);
+  var emailOk  = PF_EMAIL.test(email);
+  var phoneOk  = PF_PHONE.test(phone);
+
+  pfField('pf-postal', 'pf-postal-err', postalOk);
+  pfField('pf-email',  'pf-email-err',  emailOk);
+  pfField('pf-phone',  'pf-phone-err',  phoneOk);
+
+  if (!postalOk || !emailOk || !phoneOk) ok = false;
+
+  if (ok) {
+    var btn = document.getElementById('pf-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
   }
   return ok;
 }
