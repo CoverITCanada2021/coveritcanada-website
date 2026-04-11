@@ -5,7 +5,14 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MegaDome Building Configurator | CoverIT Canada</title>
-  <meta name="description" content="Design your MegaDome fabric building. Choose series, profile, width, length and foundation — get a live 3D preview with accurate specs. CoverIT Canada, Ontario's authorized MegaDome dealer.">
+  <meta name="description" content="Design your MegaDome fabric building. Choose series, profile, width, length and foundation — get a live 3D preview. CoverIT Canada, Ontario MegaDome dealer.">
+    <meta property="og:title" content="MegaDome Building Configurator | CoverIT Canada">
+  <meta property="og:description" content="Design your MegaDome fabric building. Choose series, profile, width, length and foundation — get a live 3D preview with accurate specs. CoverIT Canada, Ontario's authorized MegaDome dealer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.coveritcanada.com/configurator.html">
+  <meta property="og:image" content="https://www.coveritcanada.com/images/saltstorage.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <link rel="canonical" href="https://www.coveritcanada.com/configurator.html">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NCJBRK8EL"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7NCJBRK8EL');</script>
@@ -106,7 +113,7 @@
 <body>
 
 <nav class="cfg-nav">
-  <a href="index.html" class="cfg-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada"></a>
+  <a href="/" class="cfg-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" loading="lazy"></a>
   <div class="cfg-sep"></div>
   <span class="cfg-nav-title">Building Configurator</span>
   <span class="cfg-tag">MegaDome</span>
@@ -173,6 +180,7 @@
       <button class="f-btn" data-found="grade_beam">Grade<br>Beam</button>
       <button class="f-btn" data-found="wall">Perimeter<br>Wall</button>
       <button class="f-btn" data-found="slab">Slab<br>on Grade</button>
+      <button class="f-btn" data-found="concrete_blocks">Concrete<br>Blocks</button>
     </div>
     <div id="found-height-wrap" class="hidden">
       <div class="slider-top">
@@ -180,6 +188,13 @@
         <span><span class="slider-v" id="val-fh">2</span> <span class="slider-u">ft</span></span>
       </div>
       <input type="range" id="sl-fh" min="1" max="8" step="1" value="2">
+    </div>
+    <div id="block-len-wrap" class="hidden" style="margin-top:8px">
+      <div class="slider-top">
+        <span class="slider-lbl">Block Length</span>
+        <span><span class="slider-v" id="val-bl">10</span> <span class="slider-u">ft</span></span>
+      </div>
+      <input type="range" id="sl-bl" min="5" max="20" step="1" value="10">
     </div>
     <div class="p-desc" id="found-desc">Helical or earth anchors driven to grade. Building sits at grade level.</div>
   </div>
@@ -302,7 +317,8 @@ const FOUNDATIONS = {
   anchor:     { label:'Ground Anchors',    desc:'Helical or earth anchors driven to grade. Building sits at grade level.', hasHeight:false },
   grade_beam: { label:'Concrete Grade Beam', desc:'Continuous reinforced concrete perimeter beam. Typical 1–3 ft exposure.', hasHeight:true, min:1, max:3, default:2 },
   wall:       { label:'Concrete Perimeter Wall', desc:'Full concrete foundation wall. Common for permanent installations. 2–8 ft.', hasHeight:true, min:2, max:8, default:4 },
-  slab:       { label:'Concrete Slab on Grade', desc:'Full reinforced concrete floor slab with thickened perimeter edge.', hasHeight:false }
+  slab:       { label:'Concrete Slab on Grade', desc:'Full reinforced concrete floor slab with thickened perimeter edge.', hasHeight:false },
+  concrete_blocks: { label:'Precast Concrete Blocks', desc:'Precast concrete deadman blocks. Standard 10 ft long × 2 ft wide. Custom block length available. Common and cost-effective alternative to poured walls.', hasHeight:true, hasBlockLen:true, min:1, max:8, default:2 }
 };
 
 const COLOR_NAMES = {'#f0f0ec':'White','#c2c2ba':'Light Grey','#3c5a3d':'Forest Green','#cca86a':'Sand / Tan','#484846':'Charcoal'};
@@ -311,7 +327,7 @@ const COLOR_NAMES = {'#f0f0ec':'White','#c2c2ba':'Light Grey','#3c5a3d':'Forest 
 const cfg = {
   series:'DB', profile:'XP', width:60, length:100,
   color:'#f0f0ec', garageDoors:1, manDoors:1,
-  foundation:'anchor', foundHeight:2, sidewall:13
+  foundation:'anchor', foundHeight:2, sidewall:13, blockLen:10
 };
 
 const getSeries  = () => SERIES[cfg.series];
@@ -324,7 +340,7 @@ function peakH() {
 }
 function clearB4() { const s = getSize(); return (s && s.B4) ? s.B4 : null; }
 function foundLift() {
-  if (cfg.foundation === 'grade_beam' || cfg.foundation === 'wall') return cfg.foundHeight;
+  if (cfg.foundation === 'grade_beam' || cfg.foundation === 'wall' || cfg.foundation === 'concrete_blocks') return cfg.foundHeight;
   if (cfg.foundation === 'slab') return 0.5;
   return 0;
 }
@@ -402,7 +418,9 @@ function initScene() {
   Object.assign(sun.shadow.camera, { near:10, far:1100, left:-500, right:500, top:500, bottom:-500 });
   sun.shadow.bias = -0.0004;
   scene.add(sun);
-  scene.add(Object.assign(new THREE.DirectionalLight(0xd0e8ff, 0.28), { position: new THREE.Vector3(-100, 80, -80) }));
+  const fill = new THREE.DirectionalLight(0xd0e8ff, 0.28);
+  fill.position.set(-100, 80, -80);
+  scene.add(fill);
 
   const ground = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshLambertMaterial({ color:0x7a9a52 }));
   ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
@@ -719,6 +737,63 @@ function makeGableEndWallFabric(W, H, sw, doors) {
   return new THREE.ShapeGeometry(shape, 12);
 }
 
+// ─── CONCRETE BLOCK FOUNDATION ─────────────────────────────────────────────
+function makeConcreteBlocks(W, L, blockH, blockLen) {
+  const group = new THREE.Group();
+  const blockW = 2.0; // standard 2ft block width
+  const gap = 0.08;   // joint gap between blocks
+  const mat = new THREE.MeshStandardMaterial({ color:0x9a9088, roughness:0.92, metalness:0.0 });
+  const capMat = new THREE.MeshStandardMaterial({ color:0x888078, roughness:0.85, metalness:0.0 });
+  const jointMat = new THREE.MeshStandardMaterial({ color:0x706860, roughness:0.98, metalness:0.0 });
+
+  function placeBlocks(x1, z1, x2, z2) {
+    const dx = x2 - x1, dz = z2 - z1;
+    const wallLen = Math.sqrt(dx * dx + dz * dz);
+    const angle = Math.atan2(dz, dx);
+    const numBlocks = Math.max(1, Math.floor((wallLen + gap) / (blockLen + gap)));
+    const totalUsed = numBlocks * blockLen + (numBlocks - 1) * gap;
+    const startOffset = (wallLen - totalUsed) / 2;
+
+    for (let i = 0; i < numBlocks; i++) {
+      const centerDist = startOffset + i * (blockLen + gap) + blockLen / 2;
+      const cx = x1 + Math.cos(angle) * centerDist;
+      const cz = z1 + Math.sin(angle) * centerDist;
+
+      // Main block
+      const block = new THREE.Mesh(new THREE.BoxGeometry(blockLen, blockH, blockW), mat);
+      block.position.set(cx, blockH / 2, cz);
+      block.rotation.y = -angle;
+      block.castShadow = block.receiveShadow = true;
+      group.add(block);
+
+      // Top chamfer cap
+      const cap = new THREE.Mesh(new THREE.BoxGeometry(blockLen - 0.05, 0.1, blockW - 0.05), capMat);
+      cap.position.set(cx, blockH + 0.05, cz);
+      cap.rotation.y = -angle;
+      group.add(cap);
+
+      // Vertical joint marks between blocks
+      if (i > 0) {
+        const jDist = startOffset + i * (blockLen + gap) - gap / 2;
+        const jx = x1 + Math.cos(angle) * jDist;
+        const jz = z1 + Math.sin(angle) * jDist;
+        const joint = new THREE.Mesh(new THREE.BoxGeometry(gap + 0.01, blockH, blockW + 0.05), jointMat);
+        joint.position.set(jx, blockH / 2, jz);
+        joint.rotation.y = -angle;
+        group.add(joint);
+      }
+    }
+  }
+
+  // Front wall (z=0), back wall (z=L), left side (x=-W/2), right side (x=W/2)
+  placeBlocks(-W / 2, 0, W / 2, 0);
+  placeBlocks(-W / 2, L, W / 2, L);
+  placeBlocks(-W / 2, 0, -W / 2, L);
+  placeBlocks(W / 2, 0, W / 2, L);
+
+  return group;
+}
+
 // ─── FOUNDATION ───────────────────────────────────────────────────────────────
 function makeFoundation(W, L, type, height) {
   const group = new THREE.Group();
@@ -757,20 +832,20 @@ function makeFoundation(W, L, type, height) {
 
     // Front + back
     const fb = new THREE.Mesh(new THREE.BoxGeometry(W + t*2, h, t), mat2);
-    fb.position.set(0, -h/2, 0); group.add(fb);
+    fb.position.set(0, h/2, 0); group.add(fb);
     const bb = fb.clone(); bb.position.z = L; group.add(bb);
     // Sides
     const sl = new THREE.Mesh(new THREE.BoxGeometry(t, h, L), mat2);
-    sl.position.set(-W/2 - t/2, -h/2, L/2); group.add(sl);
+    sl.position.set(-W/2 - t/2, h/2, L/2); group.add(sl);
     const sr = sl.clone(); sr.position.x = W/2 + t/2; group.add(sr);
 
     // Top cap strip
     const capMat = new THREE.MeshStandardMaterial({ color:0x888078, roughness:0.85, metalness:0.0 });
     const cap = new THREE.Mesh(new THREE.BoxGeometry(W + t*2 + 0.1, 0.15, t + 0.1), capMat);
-    cap.position.set(0, 0.07, 0); group.add(cap);
+    cap.position.set(0, h + 0.07, 0); group.add(cap);
     const cap2 = cap.clone(); cap2.position.z = L; group.add(cap2);
     const capS = new THREE.Mesh(new THREE.BoxGeometry(t+0.1, 0.15, L), capMat);
-    capS.position.set(-W/2-t/2, 0.07, L/2); group.add(capS);
+    capS.position.set(-W/2-t/2, h + 0.07, L/2); group.add(capS);
     const capS2 = capS.clone(); capS2.position.x = W/2+t/2; group.add(capS2);
 
   } else if (type === 'slab') {
@@ -790,6 +865,9 @@ function makeFoundation(W, L, type, height) {
       const e = new THREE.Mesh(new THREE.BoxGeometry(ew, 0.8, el), concMat);
       e.position.set(ex, -0.4, ez); group.add(e);
     }
+  } else if (type === 'concrete_blocks') {
+    const blocks = makeConcreteBlocks(W, L, height, cfg.blockLen || 10);
+    group.add(blocks);
   }
 
   return group;
@@ -1061,6 +1139,7 @@ document.querySelectorAll('.f-btn').forEach(b => b.addEventListener('click', () 
   const fd = FOUNDATIONS[cfg.foundation];
   document.getElementById('found-desc').textContent = fd.desc;
   const hw = document.getElementById('found-height-wrap');
+  const blw = document.getElementById('block-len-wrap');
   if (fd.hasHeight) {
     hw.classList.remove('hidden');
     const sl = document.getElementById('sl-fh');
@@ -1070,6 +1149,11 @@ document.querySelectorAll('.f-btn').forEach(b => b.addEventListener('click', () 
   } else {
     hw.classList.add('hidden');
   }
+  if (fd.hasBlockLen) {
+    blw.classList.remove('hidden');
+  } else {
+    blw.classList.add('hidden');
+  }
   buildBuilding();
 }));
 
@@ -1077,6 +1161,13 @@ document.querySelectorAll('.f-btn').forEach(b => b.addEventListener('click', () 
 document.getElementById('sl-fh').addEventListener('input', e => {
   cfg.foundHeight = +e.target.value;
   document.getElementById('val-fh').textContent = cfg.foundHeight;
+  buildBuilding();
+});
+
+// Block length slider
+document.getElementById('sl-bl').addEventListener('input', e => {
+  cfg.blockLen = +e.target.value;
+  document.getElementById('val-bl').textContent = cfg.blockLen;
   buildBuilding();
 });
 
