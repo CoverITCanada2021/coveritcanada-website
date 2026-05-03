@@ -8,8 +8,11 @@ const mobileMenu = document.querySelector('.nav-mobile');
 if (hamburger && mobileMenu) {
   hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
+    const isOpen = mobileMenu.classList.contains('open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     const spans = hamburger.querySelectorAll('span');
-    if (mobileMenu.classList.contains('open')) {
+    if (isOpen) {
       spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
       spans[1].style.opacity = '0';
       spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
@@ -18,6 +21,18 @@ if (hamburger && mobileMenu) {
       spans[1].style.opacity = '';
       spans[2].style.transform = '';
     }
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
+      hamburger.querySelectorAll('span').forEach(span => {
+        span.style.transform = '';
+        span.style.opacity = '';
+      });
+    });
   });
 }
 
@@ -42,3 +57,25 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+document.querySelectorAll('form').forEach(form => {
+  form.addEventListener('submit', () => {
+    const submit = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (submit) submit.setAttribute('aria-busy', 'true');
+  });
+});
+
+const galleryFilters = document.querySelectorAll('.gallery-filter');
+const galleryCards = document.querySelectorAll('.gal-card[data-category]');
+if (galleryFilters.length && galleryCards.length) {
+  galleryFilters.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      galleryFilters.forEach(b => b.classList.toggle('active', b === button));
+      galleryCards.forEach(card => {
+        const visible = filter === 'all' || card.dataset.category === filter;
+        card.hidden = !visible;
+      });
+    });
+  });
+}

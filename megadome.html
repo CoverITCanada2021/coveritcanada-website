@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,6 +15,8 @@
   <meta property="og:image:height" content="630">
   <link rel="canonical" href="https://www.coveritcanada.com/megadome.html">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"MegaDome Building Supply & Installation Ontario","provider":{"@type":"LocalBusiness","name":"CoverIT Canada Inc","telephone":"+18442426837","url":"https://www.coveritcanada.com","address":{"@type":"PostalAddress","streetAddress":"7398 Yonge St Suite #402","addressLocality":"Thornhill","addressRegion":"ON","postalCode":"L4J8J2","addressCountry":"CA"}},"serviceType":"MegaDome Fabric Building Installation","description":"CoverIT Canada is Ontario's authorized MegaDome by Harnois dealer. Canadian-engineered fabric buildings for farms, municipalities, mining and industry. DB, S100, and AR series. Free quotes.","areaServed":{"@type":"Province","name":"Ontario"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=3">
   <link rel="stylesheet" href="css/inner.css?v=3">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NCJBRK8EL"></script>
@@ -24,7 +26,7 @@
 
 
 <nav class="nav">
-  <a href="/" class="nav-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="nav-logo-img"></a>
+  <a href="/" class="nav-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="nav-logo-img" width="722" height="250" decoding="async" loading="eager"></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="installation.html">Installation</a>
@@ -33,33 +35,37 @@
     <a href="megadome.html" class="active">MegaDome</a>
     <a href="insulation.html">Insulation</a>
     <a href="about.html">About</a>
-    <a href="contact.html" class="nav-cta">Get a Quote</a>
+    <a href="contact.html" class="nav-cta">Get Your Price</a>
   </div>
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  <button class="nav-hamburger" type="button" aria-label="Open menu" aria-controls="nav-mobile" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
-<nav class="nav-mobile">
+<nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
   <a href="/">Home</a>
   <a href="installation.html">Installation</a>
     <a href="maintenance.html">Maintenance</a>
   <a href="repair.html">Repair</a>
   <a href="megadome.html">MegaDome</a>
-  <a href="insulation.html">Insulation</a>
+    <a href="insulation.html">Insulation</a>
   <a href="about.html">About</a>
-  <a href="contact.html">Get a Quote →</a>
+  <a href="contact.html">Get Your Price →</a>
 </nav>
+<div class="mobile-cta-bar" aria-label="Quick contact actions">
+  <a href="tel:18442426837" class="mobile-cta-call">Call Now</a>
+  <a href="contact.html" class="mobile-cta-quote">Get Your Price in 24 Hours</a>
+</div>
 
 <section class="page-hero">
   <div class="page-hero-bg">
-    <img src="images/D&G Above.jpg" alt="MegaDome fabric building aerial view">
+    <img src="images/D&G Above.jpg" alt="MegaDome fabric building aerial view" width="1280" height="960" decoding="async" loading="eager" fetchpriority="high">
   </div>
   <div class="page-hero-content">
     <div class="page-eyebrow">MegaDome® by Harnois — Authorized Ontario Dealer</div>
     <h1 class="page-h1">MegaDome&#174; Buildings<br><em>Ontario — Authorized Dealer</em></h1>
     <p class="page-hero-sub">CoverIT Canada is <strong>Ontario's authorized MegaDome&#174; dealer</strong>. Canadian-engineered, Quebec-manufactured structures built for extreme snow loads and harsh Canadian winters. We handle everything from quote to installation.</p>
     <div class="page-hero-btns">
-      <a href="contact.html" class="btn-white">Request a Quote →</a>
+      <a href="contact.html" class="btn-white">Get Your Building Price in 24 Hours</a>
       <a href="configurator.html" class="btn-outline-sm">Configure Building →</a>
-      <a href="tel:18442426837" class="btn-outline-sm">Book a Call</a>
+      <a href="tel:18442426837" class="btn-outline-sm">Call 1-844-242-6837</a>
     </div>
   </div>
 </section>
@@ -68,7 +74,7 @@
 <section class="sec sec-white reveal">
   <div class="dealer-badge-section">
     <div class="dealer-badge-img">
-      <img src="images/megadome-logo.jpg" alt="MegaDome® by Harnois™" class="megadome-logo-img" style="height:56px;width:auto;">
+      <img src="images/megadome-logo.jpg" alt="MegaDome® by Harnois™" class="megadome-logo-img" style="height:56px;width:auto;" width="1367" height="379" decoding="async" loading="lazy">
       <div class="dealer-label">Authorized Ontario Dealer</div>
     </div>
     <div class="dealer-text">
@@ -98,7 +104,7 @@
 
 <!-- SERIES -->
 <section class="sec sec-gray reveal">
-  <ul style="display:none" aria-label="MegaDome product series">
+  <ul class="support-list" aria-label="MegaDome product series">
     <li>MegaDome DB Series - 33 to 100 feet wide, agricultural and industrial</li>
     <li>MegaDome S100 Series - 100 to 160 feet wide, large-span municipal and industrial</li>
     <li>MegaDome AR Series - 60 to 100 feet wide, high-performance applications</li>
@@ -225,29 +231,29 @@
   <h2 class="h2-w">MegaDome&#174; Buildings<br><em>Installed by CoverIT Canada</em></h2>
   <div class="photo-strip" class="mt-48">
     <div class="photo-strip-item">
-      <img src="images/pc outside air.png" alt="MegaDome fabric building aerial view" loading="lazy">
+      <img src="images/pc outside air.png" alt="MegaDome fabric building aerial view" loading="lazy" width="893" height="603" decoding="async">
       <div class="photo-strip-label">Aerial View</div>
     </div>
     <div class="photo-strip-item">
-      <img src="images/front view 1 copy.jpg" alt="Completed MegaDome white dome front view" loading="lazy">
+      <img src="images/front view 1 copy.jpg" alt="Completed MegaDome white dome front view" loading="lazy" width="4032" height="3024" decoding="async">
       <div class="photo-strip-label">Completed Build</div>
     </div>
     <div class="photo-strip-item">
-      <img src="images/AG building.jpg" alt="MegaDome green building with wind turbines" loading="lazy">
+      <img src="images/AG building.jpg" alt="MegaDome green building with wind turbines" loading="lazy" width="2148" height="1212" decoding="async">
       <div class="photo-strip-label">Agricultural Storage</div>
     </div>
   </div>
   <div class="photo-strip" class="mt-3">
     <div class="photo-strip-item">
-      <img src="images/ts frontside.jpg" alt="Large MegaDome structure side view" loading="lazy">
+      <img src="images/ts frontside.jpg" alt="Large MegaDome structure side view" loading="lazy" width="1303" height="795" decoding="async">
       <div class="photo-strip-label">Large-Span Structure</div>
     </div>
     <div class="photo-strip-item">
-      <img src="images/Megadome redpath.jpg" alt="MegaDome steel frames at dusk construction site" loading="lazy">
+      <img src="images/Megadome redpath.jpg" alt="MegaDome steel frames at dusk construction site" loading="lazy" width="1466" height="848" decoding="async">
       <div class="photo-strip-label">Frame Construction</div>
     </div>
     <div class="photo-strip-item">
-      <img src="images/outside finished - tim.jpg" alt="Finished MegaDome building summer" loading="lazy">
+      <img src="images/outside finished - tim.jpg" alt="Finished MegaDome building summer" loading="lazy" width="1706" height="1280" decoding="async">
       <div class="photo-strip-label">Finished Installation</div>
     </div>
   </div>
@@ -271,7 +277,7 @@
 <section class="sec sec-gray reveal">
   <div class="grid-form">
     <div>
-      <div class="eyebrow">Get Pricing</div>
+      <div class="eyebrow">Design Your Building</div>
       <h2 class="h2">Request Pricing for<br><em>Your MegaDome&#174;</em></h2>
       <p class="pricing-intro">Tell us about your project and we'll come back with a detailed, no-obligation quote. Takes less than two minutes.</p>
       <div class="pricing-steps">
@@ -304,8 +310,8 @@
           </div>
           <div class="form-group" style="margin-bottom:0">
             <label class="form-label" style="color:rgba(255,255,255,0.4)">Ontario Postal Code <span style="color:#e05a2b">*</span></label>
-            <input type="text" name="Postal Code" id="md-postal" placeholder="K0A 1A0" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff" maxlength="7">
-            <div id="md-postal-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">Ontario postal code required (e.g. K0A 1A0)</div>
+            <input type="text" name="Postal Code" id="md-postal" placeholder="K0A 1A0" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff" maxlength="7" required autocomplete="postal-code" aria-describedby="md-postal-err">
+            <div id="md-postal-err" class="form-error" role="alert">Ontario postal code required (e.g. K0A 1A0)</div>
           </div>
         </div>
 
@@ -392,14 +398,14 @@
 
         <div class="form-group" style="margin-top:12px">
           <label class="form-label" style="color:rgba(255,255,255,0.4)">Email Address <span style="color:#e05a2b">*</span></label>
-          <input type="email" name="Email" id="md-email" placeholder="your@email.com" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff">
-          <div id="md-email-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid email address is required</div>
+          <input type="email" name="Email" id="md-email" placeholder="your@email.com" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff" required autocomplete="email" aria-describedby="md-email-err">
+          <div id="md-email-err" class="form-error" role="alert">A valid email address is required</div>
         </div>
 
         <div class="form-group" style="margin-top:12px">
           <label class="form-label" style="color:rgba(255,255,255,0.4)">Phone Number <span style="color:#e05a2b">*</span></label>
-          <input type="tel" name="Phone" id="md-phone" placeholder="705-555-0100" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff">
-          <div id="md-phone-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid Canadian phone number is required (e.g. 705-555-0100)</div>
+          <input type="tel" name="Phone" id="md-phone" placeholder="705-555-0100" class="form-input" style="background:#1a1a1a;border-color:rgba(255,255,255,0.1);color:#fff" required autocomplete="tel" aria-describedby="md-phone-err">
+          <div id="md-phone-err" class="form-error" role="alert">A valid Canadian phone number is required (e.g. 705-555-0100)</div>
         </div>
 
         <button type="submit" id="md-submit" class="form-submit" style="margin-top:16px">Send Pricing Request &rarr;</button>
@@ -422,6 +428,7 @@ function mdField(id, errId, isOk) {
   if (!el) return;
   err.style.display = isOk ? 'none' : 'block';
   el.style.borderColor = isOk ? 'rgba(255,255,255,0.1)' : '#e05a2b';
+  el.setAttribute('aria-invalid', isOk ? 'false' : 'true');
 }
 
 function validatePricingFormMD(form) {
@@ -456,16 +463,16 @@ function validatePricingFormMD(form) {
     <p class="cta-band-sub">As Ontario's authorized dealer, we find the right series and size for your site and provide a detailed quote. Not sure which series fits? Just call us.</p>
   </div>
   <div class="cta-band-btns">
-    <a href="contact.html" class="btn-black">Request a Quote &rarr;</a>
-    <a href="megadome.html" class="btn-outline-dark">Get Pricing &rarr;</a>
-    <a href="tel:18442426837" class="btn-cta-phone">Book a Call &mdash; 1-844-242-6837</a>
+    <a href="contact.html" class="btn-black">Get Your Building Price in 24 Hours</a>
+    <a href="configurator.html" class="btn-outline-dark">Design Your Building</a>
+    <a href="tel:18442426837" class="btn-cta-phone">Call 1-844-242-6837</a>
   </div>
 </section>
 
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="footer-logo-img"></div>
+      <div class="footer-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="footer-logo-img" width="722" height="250" decoding="async" loading="eager"></div>
       <p class="footer-tagline">Ontario's trusted fabric building specialists. New installations, repair, re-covering, and insulation for farms, municipalities, mining, and businesses.</p>
       <div class="footer-contact">📞 <a href="tel:18442426837">1-844-242-6837</a></div>
       <div class="footer-contact">📱 <a href="tel:7059307933">705-930-7933</a></div>
@@ -519,6 +526,9 @@ function validatePricingFormMD(form) {
       <div class="footer-links">
         <a href="about.html">About Us</a>
         <a href="gallery.html">Project Gallery</a>
+        <a href="fabric-buildings-vs-steel-buildings-ontario.html">Fabric vs Steel</a>
+        <a href="megadome-vs-coverall-ontario.html">MegaDome vs Coverall</a>
+        <a href="fabric-building-cost-ontario.html">Cost Guide</a>
         <a href="contact.html">Contact Us</a>
         <a href="terms.html">Terms & Conditions</a>
         <a href="https://share.google/b9FYoAaF4nysvHr6X" target="_blank" rel="noopener">Find Us on Google ↗</a>
@@ -531,6 +541,7 @@ function validatePricingFormMD(form) {
   </div>
 </footer>
 
+<a href="contact.html" class="sticky-cta">Get Your Building Price in 24 Hours</a>
 <script src="js/main.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>

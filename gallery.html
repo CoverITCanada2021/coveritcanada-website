@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -15,6 +15,8 @@
   <meta property="og:image:height" content="630">
   <link rel="canonical" href="https://www.coveritcanada.com/gallery.html">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"CoverIT Canada Inc","telephone":"+18442426837","url":"https://www.coveritcanada.com","description":"CoverIT Canada fabric building project gallery — MegaDome installations across Ontario including agricultural, municipal, mining, and commercial projects.","address":{"@type":"PostalAddress","streetAddress":"7398 Yonge St Suite #402","addressLocality":"Thornhill","addressRegion":"ON","postalCode":"L4J8J2","addressCountry":"CA"},"areaServed":{"@type":"Province","name":"Ontario"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=3">
   <link rel="stylesheet" href="css/inner.css?v=3">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NCJBRK8EL"></script>
@@ -24,7 +26,7 @@
 
 
 <nav class="nav">
-  <a href="/" class="nav-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="nav-logo-img"></a>
+  <a href="/" class="nav-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="nav-logo-img" width="722" height="250" decoding="async" loading="eager"></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="installation.html">Installation</a>
@@ -33,33 +35,37 @@
     <a href="megadome.html">MegaDome</a>
     <a href="insulation.html">Insulation</a>
     <a href="about.html">About</a>
-    <a href="contact.html" class="nav-cta">Get a Quote</a>
+    <a href="contact.html" class="nav-cta">Get Your Price</a>
   </div>
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  <button class="nav-hamburger" type="button" aria-label="Open menu" aria-controls="nav-mobile" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
-<nav class="nav-mobile">
+<nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
   <a href="/">Home</a>
   <a href="installation.html">Installation</a>
     <a href="maintenance.html">Maintenance</a>
   <a href="repair.html">Repair</a>
   <a href="megadome.html">MegaDome</a>
-  <a href="insulation.html">Insulation</a>
+    <a href="insulation.html">Insulation</a>
   <a href="about.html">About</a>
-  <a href="contact.html">Get a Quote →</a>
+  <a href="contact.html">Get Your Price →</a>
 </nav>
+<div class="mobile-cta-bar" aria-label="Quick contact actions">
+  <a href="tel:18442426837" class="mobile-cta-call">Call Now</a>
+  <a href="contact.html" class="mobile-cta-quote">Get Your Price in 24 Hours</a>
+</div>
 
 <section class="page-hero">
   <div class="page-hero-bg">
-    <img src="images/mining domes.jpg" alt="CoverIT Canada project gallery — fabric buildings across Ontario">
+    <img src="images/mining domes.jpg" alt="CoverIT Canada project gallery — fabric buildings across Ontario" width="4032" height="3024" decoding="async" loading="eager" fetchpriority="high">
   </div>
   <div class="page-hero-content">
     <div class="page-eyebrow">Our Work</div>
     <h1 class="page-h1">MegaDome&#174; Building<br><em>Projects — Ontario</em></h1>
     <p class="page-hero-sub">Fabric building installations across Ontario — agricultural, mining, commercial, municipal, and beyond.</p>
     <div class="page-hero-btns">
-      <a href="contact.html" class="btn-white">Request a Quote &rarr;</a>
-      <a href="megadome.html" class="btn-outline-sm">Get Pricing &rarr;</a>
-      <a href="tel:18442426837" class="btn-outline-sm">Book a Call</a>
+      <a href="contact.html" class="btn-white">Get Your Building Price in 24 Hours</a>
+      <a href="configurator.html" class="btn-outline-sm">Design Your Building</a>
+      <a href="tel:18442426837" class="btn-outline-sm">Call 1-844-242-6837</a>
     </div>
   </div>
 </section>
@@ -77,10 +83,18 @@
       <li><strong>Commercial &amp; Industrial:</strong> Warehouses, contractor yards, utilities storage, indoor recreation facilities</li>
     </ul>
   </div>
+  <div class="gallery-filter-bar" aria-label="Filter project gallery">
+    <button class="gallery-filter active" type="button" data-filter="all">All</button>
+    <button class="gallery-filter" type="button" data-filter="agricultural">Agriculture</button>
+    <button class="gallery-filter" type="button" data-filter="municipal">Municipal</button>
+    <button class="gallery-filter" type="button" data-filter="mining">Mining</button>
+    <button class="gallery-filter" type="button" data-filter="commercial">Commercial</button>
+    <button class="gallery-filter" type="button" data-filter="industrial">Industrial</button>
+  </div>
   <div class="gal-grid">
 
-    <div class="gal-card">
-      <img src="images/AG building.jpg" alt="MegaDome agricultural equipment storage — Orangeville, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/AG building.jpg" alt="MegaDome agricultural equipment storage — Orangeville, Ontario" loading="lazy" width="2148" height="1212" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Equipment Storage</span>
@@ -88,8 +102,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/megadome horses.jpg" alt="MegaDome horse stable interior — Lindsay, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/megadome horses.jpg" alt="MegaDome horse stable interior — Lindsay, Ontario" loading="lazy" width="2515" height="952" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Horse Stable</span>
@@ -97,8 +111,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/outside finished - tim.jpg" alt="MegaDome commercial equipment storage — St. Thomas, Ontario" loading="lazy">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/outside finished - tim.jpg" alt="MegaDome commercial equipment storage — St. Thomas, Ontario" loading="lazy" width="1706" height="1280" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">Equipment Storage</span>
@@ -106,8 +120,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/insideview crop.JPG" alt="MegaDome barn extension interior — Peterborough, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/insideview crop.JPG" alt="MegaDome barn extension interior — Peterborough, Ontario" loading="lazy" width="1196" height="588" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Barn Extension</span>
@@ -115,8 +129,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/saltstorage.jpg" alt="Municipal salt storage dome — Pickering, Ontario" loading="lazy">
+    <div class="gal-card" data-category="municipal">
+      <img src="images/saltstorage.jpg" alt="Municipal salt storage dome — Pickering, Ontario" loading="lazy" width="720" height="1280" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Municipal &mdash; Public Works</span>
         <span class="gal-title">Salt Storage Dome</span>
@@ -124,8 +138,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/skeleton clean.png" alt="MegaDome frame under construction — Arthur, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/skeleton clean.png" alt="MegaDome frame under construction — Arthur, Ontario" loading="lazy" width="1536" height="1024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Farming Structure</span>
@@ -133,8 +147,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/D&G outside front.jpg" alt="MegaDome farm storage building — Sunderland, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/D&G outside front.jpg" alt="MegaDome farm storage building — Sunderland, Ontario" loading="lazy" width="3072" height="4080" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">General Farm Storage</span>
@@ -142,8 +156,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/ds inside view.jpg" alt="MegaDome indoor recreation facility — Barrie, Ontario" loading="lazy">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/ds inside view.jpg" alt="MegaDome indoor recreation facility — Barrie, Ontario" loading="lazy" width="4000" height="3000" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">Indoor Recreation Facility</span>
@@ -151,8 +165,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/city building.jpg" alt="Municipal salt storage dome — Ajax, Ontario" loading="lazy">
+    <div class="gal-card" data-category="municipal">
+      <img src="images/city building.jpg" alt="Municipal salt storage dome — Ajax, Ontario" loading="lazy" width="1642" height="825" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Municipal &mdash; Public Works</span>
         <span class="gal-title">Salt Storage Dome</span>
@@ -160,8 +174,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/lindsay ontario.png" alt="MegaDome horse facility — Lindsay, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/lindsay ontario.png" alt="MegaDome horse facility — Lindsay, Ontario" loading="lazy" width="1536" height="1024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Horse Facility</span>
@@ -169,8 +183,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/v block.jpg" alt="MegaDome concrete block foundation — London, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/v block.jpg" alt="MegaDome concrete block foundation — London, Ontario" loading="lazy" width="5118" height="3840" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Concrete Block Foundation</span>
@@ -178,8 +192,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/telehandler block1.jpg" alt="MegaDome telehandler placing concrete block — London, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/telehandler block1.jpg" alt="MegaDome telehandler placing concrete block — London, Ontario" loading="lazy" width="1381" height="1639" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Concrete Block Foundation</span>
@@ -187,8 +201,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/front view 1 copy.jpg" alt="MegaDome dog training facility — Toronto, Ontario" loading="lazy" style="object-position: center 60%;">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/front view 1 copy.jpg" alt="MegaDome dog training facility — Toronto, Ontario" loading="lazy" style="object-position: center 60%;" width="4032" height="3024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">Dog Training Facility</span>
@@ -196,8 +210,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/telehandler block 2.jpg" alt="MegaDome frame erection — Newmarket, Ontario" loading="lazy">
+    <div class="gal-card" data-category="municipal">
+      <img src="images/telehandler block 2.jpg" alt="MegaDome frame erection — Newmarket, Ontario" loading="lazy" width="1393" height="1036" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Municipal &mdash; Public Works</span>
         <span class="gal-title">Equipment Storage</span>
@@ -205,8 +219,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/FZ front side.jpg" alt="MegaDome general storage building — Hagersville, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/FZ front side.jpg" alt="MegaDome general storage building — Hagersville, Ontario" loading="lazy" width="3072" height="4080" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">General Storage</span>
@@ -214,8 +228,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/snowing picture.png" alt="MegaDome RV storage — Sault Ste. Marie, Ontario" loading="lazy">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/snowing picture.png" alt="MegaDome RV storage — Sault Ste. Marie, Ontario" loading="lazy" width="1024" height="1024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">RV Storage — Winter Build</span>
@@ -223,8 +237,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/interiork9.jpg" alt="MegaDome indoor storage interior — Mississauga, Ontario" loading="lazy">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/interiork9.jpg" alt="MegaDome indoor storage interior — Mississauga, Ontario" loading="lazy" width="4032" height="3024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">Indoor Storage</span>
@@ -232,8 +246,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/concrete block 2.jpg" alt="MegaDome contractor yard — Vaughan, Ontario" loading="lazy">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/concrete block 2.jpg" alt="MegaDome contractor yard — Vaughan, Ontario" loading="lazy" width="1321" height="1699" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">Contractor Yard</span>
@@ -241,8 +255,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/FrontfinishedDH.jpg" alt="MegaDome equipment storage — Hamilton, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/FrontfinishedDH.jpg" alt="MegaDome equipment storage — Hamilton, Ontario" loading="lazy" width="1280" height="960" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Equipment Storage</span>
@@ -250,8 +264,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/ultilities.jpg" alt="MegaDome utilities company building — Georgina, Ontario" loading="lazy">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/ultilities.jpg" alt="MegaDome utilities company building — Georgina, Ontario" loading="lazy" width="1014" height="754" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">Utilities Company</span>
@@ -259,8 +273,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/patrick2.png" alt="MegaDome horse arena — Omemee, Ontario" loading="lazy">
+    <div class="gal-card" data-category="agricultural">
+      <img src="images/patrick2.png" alt="MegaDome horse arena — Omemee, Ontario" loading="lazy" width="1536" height="1024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Agricultural</span>
         <span class="gal-title">Horse Arena</span>
@@ -268,8 +282,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/ts frontside.jpg" alt="MegaDome firewood processing facility — Ennismore, Ontario" loading="lazy" style="object-position: center 40%;">
+    <div class="gal-card" data-category="industrial">
+      <img src="images/ts frontside.jpg" alt="MegaDome firewood processing facility — Ennismore, Ontario" loading="lazy" style="object-position: center 40%;" width="1303" height="795" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Industrial</span>
         <span class="gal-title">Firewood Processing</span>
@@ -277,8 +291,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/mont township.jpg" alt="Municipal general storage building — Ottawa, Ontario" loading="lazy">
+    <div class="gal-card" data-category="municipal">
+      <img src="images/mont township.jpg" alt="Municipal general storage building — Ottawa, Ontario" loading="lazy" width="904" height="823" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Municipal &mdash; Public Works</span>
         <span class="gal-title">General Storage</span>
@@ -286,8 +300,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/Screenshot 2025-10-27 002653.jpg" alt="MegaDome sound studio — Morrisburg, Ontario" loading="lazy">
+    <div class="gal-card" data-category="commercial">
+      <img src="images/Screenshot 2025-10-27 002653.jpg" alt="MegaDome sound studio — Morrisburg, Ontario" loading="lazy" width="1015" height="771" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Commercial</span>
         <span class="gal-title">Sound Studio</span>
@@ -295,8 +309,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/verdi paving.png" alt="Municipal salt storage dome — Vaughan, Ontario" loading="lazy">
+    <div class="gal-card" data-category="municipal">
+      <img src="images/verdi paving.png" alt="Municipal salt storage dome — Vaughan, Ontario" loading="lazy" width="1536" height="1024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Municipal &mdash; Public Works</span>
         <span class="gal-title">Salt Storage Dome</span>
@@ -304,8 +318,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/minesite.jpg" alt="Mining camp fabric buildings — Red Lake, Ontario" loading="lazy">
+    <div class="gal-card" data-category="mining">
+      <img src="images/minesite.jpg" alt="Mining camp fabric buildings — Red Lake, Ontario" loading="lazy" width="1348" height="682" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Mining</span>
         <span class="gal-title">Mining Camp</span>
@@ -313,8 +327,8 @@
       </div>
     </div>
 
-    <div class="gal-card">
-      <img src="images/mining domes.jpg" alt="Aerial view of mine site fabric buildings — Red Lake, Ontario" loading="lazy">
+    <div class="gal-card" data-category="mining">
+      <img src="images/mining domes.jpg" alt="Aerial view of mine site fabric buildings — Red Lake, Ontario" loading="lazy" width="4032" height="3024" decoding="async">
       <div class="gal-info">
         <span class="gal-tag">Mining &mdash; Aerial</span>
         <span class="gal-title">Mine Site Installation</span>
@@ -331,16 +345,16 @@
     <p class="cta-band-sub">Every project in this gallery started with a conversation. Let's talk about yours.</p>
   </div>
   <div class="cta-band-btns">
-    <a href="contact.html" class="btn-black">Request a Quote &rarr;</a>
-    <a href="megadome.html" class="btn-outline-dark">Get Pricing &rarr;</a>
-    <a href="tel:18442426837" class="btn-cta-phone">Book a Call &mdash; 1-844-242-6837</a>
+    <a href="contact.html" class="btn-black">Get Your Building Price in 24 Hours</a>
+    <a href="configurator.html" class="btn-outline-dark">Design Your Building</a>
+    <a href="tel:18442426837" class="btn-cta-phone">Call 1-844-242-6837</a>
   </div>
 </section>
 
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="footer-logo-img" loading="lazy"></div>
+      <div class="footer-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="footer-logo-img" loading="lazy" width="722" height="250" decoding="async"></div>
       <p class="footer-tagline">Ontario's trusted fabric building specialists. New installations, repair, re-covering, and insulation for farms, municipalities, mining, and businesses.</p>
       <div class="footer-contact">📞 <a href="tel:18442426837">1-844-242-6837</a></div>
       <div class="footer-contact">📱 <a href="tel:7059307933">705-930-7933</a></div>
@@ -394,6 +408,9 @@
       <div class="footer-links">
         <a href="about.html">About Us</a>
         <a href="gallery.html">Project Gallery</a>
+        <a href="fabric-buildings-vs-steel-buildings-ontario.html">Fabric vs Steel</a>
+        <a href="megadome-vs-coverall-ontario.html">MegaDome vs Coverall</a>
+        <a href="fabric-building-cost-ontario.html">Cost Guide</a>
         <a href="contact.html">Contact Us</a>
         <a href="terms.html">Terms & Conditions</a>
         <a href="https://share.google/b9FYoAaF4nysvHr6X" target="_blank" rel="noopener">Find Us on Google ↗</a>
@@ -452,6 +469,7 @@
 }
 </style>
 
+<a href="contact.html" class="sticky-cta">Get Your Building Price in 24 Hours</a>
 <script src="js/main.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -23,6 +23,7 @@
     body { background: #111; color: #111; display: flex; flex-direction: column; }
 
     .cfg-nav { height: 52px; background: #111; display: flex; align-items: center; padding: 0 18px; gap: 14px; flex-shrink: 0; border-bottom: 1px solid #222; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     .cfg-logo img { height: 30px; display: block; }
     .cfg-sep { width: 1px; height: 22px; background: #2e2e2e; }
     .cfg-nav-title { color: #fff; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; }
@@ -38,8 +39,9 @@
 
     .cfg-sec { padding: 13px 13px 12px; border-bottom: 1px solid #e0e0d8; }
     .cfg-sec-ttl { font-size: 0.59rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #aaa; margin-bottom: 9px; }
+    .foundation-note { margin-top: 8px; padding: 8px 9px; background: #fff7e8; border: 1px solid #ead7b5; border-radius: 6px; color: #74531c; font-size: 0.66rem; line-height: 1.42; }
 
-    .series-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    .series-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
     .s-btn { padding: 7px 6px; border: 2px solid #ddd; background: #fff; border-radius: 7px; cursor: pointer; text-align: center; transition: border-color .12s, background .12s; }
     .s-btn:hover { border-color: #aaa; }
     .s-btn.active { border-color: #111; background: #111; color: #fff; }
@@ -93,6 +95,8 @@
     .vp-badge { position: absolute; pointer-events: none; backdrop-filter: blur(6px); }
     .dim-badge { top: 12px; left: 12px; background: rgba(0,0,0,.52); color: #fff; padding: 5px 13px; border-radius: 20px; font-size: 0.74rem; font-weight: 600; }
     .series-badge { top: 12px; left: 50%; transform: translateX(-50%); background: rgba(232,160,32,.92); color: #111; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+    .foundation-badge { right: 12px; bottom: 48px; max-width: min(340px, calc(100% - 24px)); background: rgba(17,17,17,.64); color: #fff; padding: 8px 11px; border-radius: 8px; font-size: 0.7rem; line-height: 1.35; box-shadow: 0 8px 24px rgba(0,0,0,.16); }
+    .foundation-badge strong { display: block; margin-bottom: 2px; font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .hints-badge { bottom: 14px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.4); color: rgba(255,255,255,.85); padding: 5px 14px; border-radius: 20px; font-size: 0.7rem; white-space: nowrap; }
     .reset-btn { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,.5); color: #fff; border: 1px solid rgba(255,255,255,.15); padding: 5px 12px; border-radius: 6px; font-size: 0.72rem; cursor: pointer; backdrop-filter: blur(6px); }
     .reset-btn:hover { background: rgba(0,0,0,.7); }
@@ -103,18 +107,19 @@
       .cfg-layout { flex-direction: column-reverse; }
       .cfg-sidebar { width: 100%; }
       .cfg-viewport { height: 60vw; min-height: 240px; }
+      .foundation-badge { display: none; }
     }
   </style>
 
-  <script type="importmap">
-  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/" } }
-  </script>
+  <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
 
 <nav class="cfg-nav">
-  <a href="/" class="cfg-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" loading="lazy"></a>
+  <a href="/" class="cfg-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" loading="lazy" width="722" height="250" decoding="async" fetchpriority="high"></a>
   <div class="cfg-sep"></div>
+  <h1 class="sr-only">MegaDome Building Configurator</h1>
   <span class="cfg-nav-title">Building Configurator</span>
   <span class="cfg-tag">MegaDome</span>
   <a href="megadome.html" class="cfg-back">← MegaDome</a>
@@ -197,6 +202,7 @@
       <input type="range" id="sl-bl" min="5" max="20" step="1" value="10">
     </div>
     <div class="p-desc" id="found-desc">Helical or earth anchors driven to grade. Building sits at grade level.</div>
+    <div class="foundation-note" id="found-note">Anchors and a base rail are shown at grade.</div>
   </div>
 
   <!-- COLOUR -->
@@ -249,7 +255,7 @@
   </div>
 
   <div class="cfg-cta">
-    <a class="quote-btn" id="quote-link" href="contact.html">Request a Quote →</a>
+    <a class="quote-btn" id="quote-link" href="contact.html">Get a Quote</a>
     <div class="quote-note">Free · No obligation · Fast response</div>
   </div>
 
@@ -257,6 +263,7 @@
 
 <div class="cfg-viewport" id="viewport">
   <canvas id="three-canvas"></canvas>
+  <div class="vp-badge foundation-badge" id="foundation-badge"><strong>Ground Anchors</strong><span>Anchors and a base rail are shown at grade.</span></div>
   <div class="vp-badge dim-badge" id="dim-badge">—</div>
   <div class="vp-badge series-badge" id="series-badge">DB · XP</div>
   <div class="vp-badge hints-badge">Drag to rotate &nbsp;·&nbsp; Scroll to zoom &nbsp;·&nbsp; Right-drag to pan</div>
@@ -265,9 +272,7 @@
 </div>
 </div>
 
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+<script>
 
 // ─── SPEC DATA (from MegaDome product guide) ─────────────────────────────────
 const SERIES = {
@@ -341,7 +346,7 @@ function peakH() {
 function clearB4() { const s = getSize(); return (s && s.B4) ? s.B4 : null; }
 function foundLift() {
   if (cfg.foundation === 'grade_beam' || cfg.foundation === 'wall' || cfg.foundation === 'concrete_blocks') return cfg.foundHeight;
-  if (cfg.foundation === 'slab') return 0.5;
+  if (cfg.foundation === 'slab') return 0.35;
   return 0;
 }
 
@@ -395,34 +400,34 @@ function initScene() {
   renderer.toneMappingExposure = 1.05;
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x6e9ebc);
-  scene.fog = new THREE.FogExp2(0x6e9ebc, 0.0016);
+  scene.background = new THREE.Color(0x93b7c9);
+  scene.fog = new THREE.FogExp2(0x93b7c9, 0.0012);
 
   const { clientWidth: W, clientHeight: H } = vp;
   camera = new THREE.PerspectiveCamera(45, W / H, 0.5, 2000);
 
-  controls = new OrbitControls(camera, canvas);
+  controls = new THREE.OrbitControls(camera, canvas);
   controls.enableDamping = true;
   controls.dampingFactor = 0.07;
   controls.minDistance = 10;
   controls.maxDistance = 1000;
   controls.maxPolarAngle = Math.PI / 2 - 0.01;
 
-  scene.add(new THREE.AmbientLight(0xfff4e8, 0.5));
-  scene.add(new THREE.HemisphereLight(0xc0d8f0, 0x607040, 0.45));
+  scene.add(new THREE.AmbientLight(0xfff4e8, 0.42));
+  scene.add(new THREE.HemisphereLight(0xd9ecff, 0x6b764f, 0.58));
 
-  const sun = new THREE.DirectionalLight(0xfff2d0, 1.3);
-  sun.position.set(200, 300, 120);
+  const sun = new THREE.DirectionalLight(0xfff2d0, 1.45);
+  sun.position.set(-120, 260, -190);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
   Object.assign(sun.shadow.camera, { near:10, far:1100, left:-500, right:500, top:500, bottom:-500 });
   sun.shadow.bias = -0.0004;
   scene.add(sun);
   const fill = new THREE.DirectionalLight(0xd0e8ff, 0.28);
-  fill.position.set(-100, 80, -80);
+  fill.position.set(150, 80, -120);
   scene.add(fill);
 
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshLambertMaterial({ color:0x7a9a52 }));
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshLambertMaterial({ color:0x879760 }));
   ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
   const grid = new THREE.GridHelper(1000, 200, 0x000000, 0x000000);
   grid.position.y = 0.07; grid.material.opacity = 0.06; grid.material.transparent = true; scene.add(grid);
@@ -463,6 +468,57 @@ function addTube(group, a, b, radius, mat, radSegs = 6) {
   mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
   mesh.castShadow = true;
   group.add(mesh);
+}
+
+function addBox(group, mat, w, h, d, x, y, z, rotY = 0) {
+  const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  mesh.position.set(x, y, z);
+  mesh.rotation.y = rotY;
+  mesh.castShadow = mesh.receiveShadow = true;
+  group.add(mesh);
+  return mesh;
+}
+
+function doorExclusions(doors, pad = 0.45) {
+  return doors
+    .map(d => ({ min: d.cx - d.w / 2 - pad, max: d.cx + d.w / 2 + pad }))
+    .sort((a, b) => a.min - b.min);
+}
+
+function visibleFrontSegments(W, doors, pad = 0.45) {
+  const segs = [];
+  let start = -W / 2;
+  doorExclusions(doors, pad).forEach(ex => {
+    const min = Math.max(-W / 2, ex.min);
+    const max = Math.min(W / 2, ex.max);
+    if (min > start + 0.5) segs.push({ x1:start, x2:min });
+    start = Math.max(start, max);
+  });
+  if (start < W / 2 - 0.5) segs.push({ x1:start, x2:W / 2 });
+  return segs;
+}
+
+function addJointLines(group, W, L, h, mat, frontDoors = []) {
+  const every = Math.max(8, Math.min(14, W / 5));
+  for (let x = -W / 2 + every; x < W / 2 - 0.1; x += every) {
+    if (!doorExclusions(frontDoors, 0.65).some(ex => x >= ex.min && x <= ex.max)) {
+      addBox(group, mat, 0.06, h * 0.82, 0.04, x, h / 2, -0.285);
+    }
+    addBox(group, mat, 0.06, h * 0.82, 0.04, x, h / 2, L + 0.285);
+  }
+  for (let z = every; z < L - 0.1; z += every) {
+    addBox(group, mat, 0.04, h * 0.82, 0.06, -W / 2 - 0.285, h / 2, z);
+    addBox(group, mat, 0.04, h * 0.82, 0.06,  W / 2 + 0.285, h / 2, z);
+  }
+}
+
+function foundationNote() {
+  const found = FOUNDATIONS[cfg.foundation];
+  if (cfg.foundation === 'grade_beam') return `${found.label}: ${cfg.foundHeight} ft exposed beam, segmented around front door openings.`;
+  if (cfg.foundation === 'wall') return `${found.label}: ${cfg.foundHeight} ft exposed wall with door openings kept clear.`;
+  if (cfg.foundation === 'concrete_blocks') return `${found.label}: ${cfg.foundHeight} ft high blocks, ${cfg.blockLen} ft block length, with front door gaps.`;
+  if (cfg.foundation === 'slab') return 'Slab on grade: floor slab and thickened perimeter edge shown at grade.';
+  return 'Anchors and a base rail are shown at grade.';
 }
 
 // ─── DOUBLE-CHORD ARCH TRUSS ──────────────────────────────────────────────────
@@ -582,71 +638,78 @@ function makeEndWallShape(W, H, doors) {
 }
 
 // ─── END WALL FRAMING (steel columns, girts, arch truss) ─────────────────────
-function makeEndWallFraming(W, H, doors, heavy, lift) {
+function makeEndWallFraming(W, H, doors, heavy, lift, hasTruss = true, bottomExtend = 0) {
   const group = new THREE.Group();
   const mat = new THREE.MeshStandardMaterial({ color:0x7888a0, roughness:0.38, metalness:0.72 });
   const hw = W / 2;
 
-  // Add the arch truss at the end wall position
-  const truss = makeArchTruss(W, H, heavy);
-  group.add(truss);
+  // Add the arch truss at the end wall position (arch series only)
+  if (hasTruss) {
+    const truss = makeArchTruss(W, H, heavy);
+    group.add(truss);
+  }
 
-  // Horizontal base channel across full width
+  // Horizontal base channel — only in non-door zones
   const baseMesh = new THREE.Mesh(new THREE.BoxGeometry(W, 0.18, 0.22), mat);
   baseMesh.position.set(0, 0.09, 0);
   group.add(baseMesh);
 
-  // Door frames
+  // Max door height — used to skip girts that cross door openings
+  const maxDoorH = doors.reduce((m, d) => Math.max(m, d.h), 0);
+
+  // Door frames (jambs extend down to grade when foundation is elevated)
+  const frameMat = new THREE.MeshStandardMaterial({ color:0x6a7a8a, roughness:0.4, metalness:0.65 });
   doors.forEach(d => {
     const fW = 0.22, fD = 0.3;
-    const frameMat = new THREE.MeshStandardMaterial({ color:0x6a7a8a, roughness:0.4, metalness:0.65 });
+    const jambH = d.h + 0.12 + bottomExtend;
+    const jambCy = -bottomExtend + jambH / 2;
 
     // Left jamb
-    const lj = new THREE.Mesh(new THREE.BoxGeometry(fW, d.h + 0.12, fD), frameMat);
-    lj.position.set(d.cx - d.w/2 - fW/2, (d.h+0.12)/2, 0);
+    const lj = new THREE.Mesh(new THREE.BoxGeometry(fW, jambH, fD), frameMat);
+    lj.position.set(d.cx - d.w/2 - fW/2, jambCy, 0);
     group.add(lj);
     // Right jamb
-    const rj = new THREE.Mesh(new THREE.BoxGeometry(fW, d.h + 0.12, fD), frameMat);
-    rj.position.set(d.cx + d.w/2 + fW/2, (d.h+0.12)/2, 0);
+    const rj = new THREE.Mesh(new THREE.BoxGeometry(fW, jambH, fD), frameMat);
+    rj.position.set(d.cx + d.w/2 + fW/2, jambCy, 0);
     group.add(rj);
     // Header
     const hdr = new THREE.Mesh(new THREE.BoxGeometry(d.w + fW*2, 0.22, fD), frameMat);
-    hdr.position.set(d.cx, d.h + fW/2 + (d.type==='garage'? d.w*0.06 : 0), 0);
+    hdr.position.set(d.cx, d.h + fW/2 + (d.type==='garage' ? d.w*0.06 : 0), 0);
     group.add(hdr);
 
     if (d.type === 'garage') {
-      // Garage door panel — slightly inside the opening, with horizontal sections
+      // Garage door panels (door leaf sits within the door opening, y=0..d.h)
       const panels = Math.max(3, Math.round(d.h / 2));
       const panelH = d.h / panels;
-      const doorMat = new THREE.MeshStandardMaterial({ color:0xdadad5, roughness:0.6, metalness:0.1 });
+      const doorMat = new THREE.MeshStandardMaterial({ color:0xd8d8d2, roughness:0.55, metalness:0.08 });
       for (let p = 0; p < panels; p++) {
-        const panel = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.08, panelH - 0.1, 0.12), doorMat);
-        panel.position.set(d.cx, (p + 0.5) * panelH, 0.15);
+        const panel = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.1, panelH - 0.12, 0.1), doorMat);
+        panel.position.set(d.cx, (p + 0.5) * panelH, 0.14);
         group.add(panel);
-        // Panel divider
-        const div = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.06, 0.06, 0.14), frameMat);
-        div.position.set(d.cx, (p + 1) * panelH, 0.15);
-        group.add(div);
       }
-      // Handle bar
-      const handle = new THREE.Mesh(new THREE.BoxGeometry(d.w * 0.25, 0.08, 0.08),
+      // Subtle horizontal rails between panels (thin, recessed — no more thick "line")
+      for (let p = 1; p < panels; p++) {
+        const rail = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.12, 0.08, 0.08), frameMat);
+        rail.position.set(d.cx, p * panelH, 0.14);
+        group.add(rail);
+      }
+      // Handle
+      const handle = new THREE.Mesh(new THREE.BoxGeometry(d.w * 0.22, 0.07, 0.07),
         new THREE.MeshStandardMaterial({ color:0x888880, roughness:0.3, metalness:0.9 }));
-      handle.position.set(d.cx, panelH * 1.5, 0.27);
+      handle.position.set(d.cx, panelH * 1.2, 0.25);
       group.add(handle);
 
     } else {
       // Man door — solid panel with window + handle
-      const dMat = new THREE.MeshStandardMaterial({ color:0xcecec8, roughness:0.55, metalness:0.05 });
+      const dMat = new THREE.MeshStandardMaterial({ color:0xd0d0ca, roughness:0.55, metalness:0.05 });
       const door = new THREE.Mesh(new THREE.BoxGeometry(d.w - 0.08, d.h - 0.06, 0.1), dMat);
       door.position.set(d.cx, (d.h - 0.06)/2, 0.14);
       group.add(door);
-      // Window
-      const winMat = new THREE.MeshStandardMaterial({ color:0x90b8c8, roughness:0.1, metalness:0.0, transparent:true, opacity:0.75 });
-      const win = new THREE.Mesh(new THREE.BoxGeometry(d.w * 0.4, d.h * 0.25, 0.06), winMat);
+      const winMat = new THREE.MeshStandardMaterial({ color:0x90b8c8, roughness:0.1, metalness:0.0, transparent:true, opacity:0.7 });
+      const win = new THREE.Mesh(new THREE.BoxGeometry(d.w * 0.4, d.h * 0.22, 0.06), winMat);
       win.position.set(d.cx, d.h * 0.72, 0.21);
       group.add(win);
-      // Handle
-      const hndl = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.55, 8),
+      const hndl = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.5, 8),
         new THREE.MeshStandardMaterial({ color:0x888880, roughness:0.25, metalness:0.95 }));
       hndl.rotation.x = Math.PI / 2;
       hndl.position.set(d.cx + d.w * 0.28, d.h * 0.5, 0.22);
@@ -654,10 +717,10 @@ function makeEndWallFraming(W, H, doors, heavy, lift) {
     }
   });
 
-  // Horizontal girts (every 8 ft up the end wall height, only up to kneewall)
-  // For arch buildings the girts just span across the base zone
+  // Horizontal girts — only above the tallest door to avoid crossing door openings
   const girtH = Math.min(H * 0.15, 6);
   for (let gy = girtH; gy < Math.min(H * 0.3, 14); gy += girtH) {
+    if (gy < maxDoorH + 0.5) continue; // skip girts inside door zone
     const girt = new THREE.Mesh(new THREE.BoxGeometry(W, 0.14, 0.18), mat);
     girt.position.set(0, gy, 0);
     group.add(girt);
@@ -668,19 +731,30 @@ function makeEndWallFraming(W, H, doors, heavy, lift) {
 
 // ─── GABLE SERIES (AR) ────────────────────────────────────────────────────────
 function makeGableShell(W, L, H, sw) {
-  const hw = W / 2, roofRise = H - sw;
-  const slope = Math.sqrt(hw*hw + roofRise*roofRise);
-  const angle = Math.atan2(roofRise, hw);
+  const hw = W / 2;
   const group = new THREE.Group();
   const mat = mats.fabric;
 
-  for (const side of [-1,1]) {
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(slope, L), mat);
-    m.rotation.z = side * angle;
-    m.position.set(side * hw/2, sw + roofRise/2, L/2);
+  // Roof panels — explicit vertex positions; no rotation math, always correct
+  for (const side of [-1, 1]) {
+    const xe = side * hw; // eave x
+    const verts = new Float32Array([
+      xe, sw, 0,   // front eave
+      0,  H,  0,   // front ridge
+      0,  H,  L,   // back ridge
+      xe, sw, L,   // back eave
+    ]);
+    const uvs = new Float32Array([0,0, 1,0, 1,1, 0,1]);
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(verts, 3));
+    geo.setAttribute('uv',       new THREE.BufferAttribute(uvs, 2));
+    geo.setIndex([0,1,2, 0,2,3]);
+    geo.computeVertexNormals();
+    const m = new THREE.Mesh(geo, mat);
     m.castShadow = m.receiveShadow = true;
     group.add(m);
   }
+
   // Side walls
   for (const side of [-1,1]) {
     const m = new THREE.Mesh(new THREE.PlaneGeometry(L, sw), mat);
@@ -738,7 +812,7 @@ function makeGableEndWallFabric(W, H, sw, doors) {
 }
 
 // ─── CONCRETE BLOCK FOUNDATION ─────────────────────────────────────────────
-function makeConcreteBlocks(W, L, blockH, blockLen) {
+function makeConcreteBlocks(W, L, blockH, blockLen, frontDoors = []) {
   const group = new THREE.Group();
   const blockW = 2.0; // standard 2ft block width
   const gap = 0.08;   // joint gap between blocks
@@ -746,7 +820,10 @@ function makeConcreteBlocks(W, L, blockH, blockLen) {
   const capMat = new THREE.MeshStandardMaterial({ color:0x888078, roughness:0.85, metalness:0.0 });
   const jointMat = new THREE.MeshStandardMaterial({ color:0x706860, roughness:0.98, metalness:0.0 });
 
-  function placeBlocks(x1, z1, x2, z2) {
+  // Door exclusion zones on the front wall (x-axis ranges to skip)
+  const exclusions = frontDoors.map(d => ({ min: d.cx - d.w/2 - 0.3, max: d.cx + d.w/2 + 0.3 }));
+
+  function placeBlocks(x1, z1, x2, z2, useExclusions = false) {
     const dx = x2 - x1, dz = z2 - z1;
     const wallLen = Math.sqrt(dx * dx + dz * dz);
     const angle = Math.atan2(dz, dx);
@@ -758,6 +835,9 @@ function makeConcreteBlocks(W, L, blockH, blockLen) {
       const centerDist = startOffset + i * (blockLen + gap) + blockLen / 2;
       const cx = x1 + Math.cos(angle) * centerDist;
       const cz = z1 + Math.sin(angle) * centerDist;
+
+      // Skip blocks that overlap a front door opening.
+      if (useExclusions && exclusions.some(ex => cx + blockLen / 2 >= ex.min && cx - blockLen / 2 <= ex.max)) continue;
 
       // Main block
       const block = new THREE.Mesh(new THREE.BoxGeometry(blockLen, blockH, blockW), mat);
@@ -772,6 +852,13 @@ function makeConcreteBlocks(W, L, blockH, blockLen) {
       cap.rotation.y = -angle;
       group.add(cap);
 
+      if (blockH >= 2.5) {
+        const seam = new THREE.Mesh(new THREE.BoxGeometry(blockLen - 0.1, 0.035, blockW + 0.04), jointMat);
+        seam.position.set(cx, blockH * 0.5, cz);
+        seam.rotation.y = -angle;
+        group.add(seam);
+      }
+
       // Vertical joint marks between blocks
       if (i > 0) {
         const jDist = startOffset + i * (blockLen + gap) - gap / 2;
@@ -785,24 +872,28 @@ function makeConcreteBlocks(W, L, blockH, blockLen) {
     }
   }
 
-  // Front wall (z=0), back wall (z=L), left side (x=-W/2), right side (x=W/2)
-  placeBlocks(-W / 2, 0, W / 2, 0);
-  placeBlocks(-W / 2, L, W / 2, L);
-  placeBlocks(-W / 2, 0, -W / 2, L);
-  placeBlocks(W / 2, 0, W / 2, L);
+  // Front/back walls run full width. Side walls inset by blockW/2 at each end so
+  // the corner block comes only from the front/back wall — no 3D overlap.
+  const half = blockW / 2;
+  placeBlocks(-W/2, 0, W/2, 0, true);           // Front  (full width, skip under doors)
+  placeBlocks(-W/2, L, W/2, L);                 // Back   (full width)
+  placeBlocks(-W/2, half, -W/2, L - half);      // Left   (inset at ends)
+  placeBlocks( W/2, half,  W/2, L - half);      // Right  (inset at ends)
 
   return group;
 }
 
 // ─── FOUNDATION ───────────────────────────────────────────────────────────────
-function makeFoundation(W, L, type, height) {
+function makeFoundation(W, L, type, height, doors = []) {
   const group = new THREE.Group();
-  const concMat = new THREE.MeshStandardMaterial({ color:0xa09488, roughness:0.88, metalness:0.0 });
+  const concMat = new THREE.MeshStandardMaterial({ color:0xa79d91, roughness:0.9, metalness:0.0 });
+  const edgeMat = new THREE.MeshStandardMaterial({ color:0x7e766d, roughness:0.92, metalness:0.0 });
+  const jointMat = new THREE.MeshStandardMaterial({ color:0x6f6860, roughness:0.98, metalness:0.0 });
 
   if (type === 'anchor') {
-    // Small helical anchor cylinders at corners and intervals
-    const anchorMat = new THREE.MeshStandardMaterial({ color:0x606060, roughness:0.5, metalness:0.6 });
-    const anchorGeo = new THREE.CylinderGeometry(0.12, 0.18, 1.2, 8);
+    const anchorMat = new THREE.MeshStandardMaterial({ color:0x596168, roughness:0.5, metalness:0.65 });
+    const plateMat = new THREE.MeshStandardMaterial({ color:0x3f464c, roughness:0.46, metalness:0.78 });
+    const anchorGeo = new THREE.CylinderGeometry(0.10, 0.14, 1.25, 10);
     const positions = [
       [-W/2,0], [W/2,0], [-W/2,L], [W/2,L],
       [-W/2,L/2], [W/2,L/2],
@@ -811,62 +902,45 @@ function makeFoundation(W, L, type, height) {
     positions.forEach(([x,z]) => {
       const m = new THREE.Mesh(anchorGeo, anchorMat);
       m.position.set(x, -0.6, z);
+      m.castShadow = true;
       group.add(m);
+      addBox(group, plateMat, 0.9, 0.08, 0.55, x, 0.04, z);
     });
-    // Base angle along perimeter
-    const baseAngle = new THREE.Mesh(new THREE.BoxGeometry(W + 0.5, 0.18, 0.22), concMat);
-    baseAngle.position.set(0, 0.09, 0);
-    group.add(baseAngle);
-    const baseAngle2 = new THREE.Mesh(new THREE.BoxGeometry(W + 0.5, 0.18, 0.22), concMat);
-    baseAngle2.position.set(0, 0.09, L);
-    group.add(baseAngle2);
-    const sideA = new THREE.Mesh(new THREE.BoxGeometry(0.22, 0.18, L), concMat);
-    sideA.position.set(-W/2, 0.09, L/2); group.add(sideA);
-    const sideB = sideA.clone(); sideB.position.x = W/2; group.add(sideB);
+    addBox(group, plateMat, W + 0.8, 0.16, 0.20, 0, 0.08, 0);
+    addBox(group, plateMat, W + 0.8, 0.16, 0.20, 0, 0.08, L);
+    addBox(group, plateMat, 0.20, 0.16, L, -W/2, 0.08, L/2);
+    addBox(group, plateMat, 0.20, 0.16, L,  W/2, 0.08, L/2);
 
   } else if (type === 'grade_beam' || type === 'wall') {
-    // Perimeter concrete wall
-    const t = 0.5; // wall thickness
+    const t = type === 'grade_beam' ? 0.65 : 0.8;
     const h = height;
-    const mat2 = new THREE.MeshStandardMaterial({ color:0x9a9088, roughness:0.9, metalness:0.0 });
-
-    // Front + back
-    const fb = new THREE.Mesh(new THREE.BoxGeometry(W + t*2, h, t), mat2);
-    fb.position.set(0, h/2, 0); group.add(fb);
-    const bb = fb.clone(); bb.position.z = L; group.add(bb);
-    // Sides
-    const sl = new THREE.Mesh(new THREE.BoxGeometry(t, h, L), mat2);
-    sl.position.set(-W/2 - t/2, h/2, L/2); group.add(sl);
-    const sr = sl.clone(); sr.position.x = W/2 + t/2; group.add(sr);
-
-    // Top cap strip
-    const capMat = new THREE.MeshStandardMaterial({ color:0x888078, roughness:0.85, metalness:0.0 });
-    const cap = new THREE.Mesh(new THREE.BoxGeometry(W + t*2 + 0.1, 0.15, t + 0.1), capMat);
-    cap.position.set(0, h + 0.07, 0); group.add(cap);
-    const cap2 = cap.clone(); cap2.position.z = L; group.add(cap2);
-    const capS = new THREE.Mesh(new THREE.BoxGeometry(t+0.1, 0.15, L), capMat);
-    capS.position.set(-W/2-t/2, h + 0.07, L/2); group.add(capS);
-    const capS2 = capS.clone(); capS2.position.x = W/2+t/2; group.add(capS2);
+    const capH = 0.16;
+    visibleFrontSegments(W + t * 2, doors, 0.55).forEach(seg => {
+      const len = seg.x2 - seg.x1;
+      const cx = (seg.x1 + seg.x2) / 2;
+      addBox(group, concMat, len, h, t, cx, h / 2, 0);
+      addBox(group, edgeMat, len, capH, t + 0.12, cx, h + capH / 2, 0);
+    });
+    addBox(group, concMat, W + t * 2, h, t, 0, h / 2, L);
+    addBox(group, edgeMat, W + t * 2 + 0.1, capH, t + 0.12, 0, h + capH / 2, L);
+    addBox(group, concMat, t, h, L, -W/2 - t/2, h/2, L/2);
+    addBox(group, concMat, t, h, L,  W/2 + t/2, h/2, L/2);
+    addBox(group, edgeMat, t + 0.12, capH, L, -W/2 - t/2, h + capH / 2, L/2);
+    addBox(group, edgeMat, t + 0.12, capH, L,  W/2 + t/2, h + capH / 2, L/2);
+    if (type === 'wall') addJointLines(group, W, L, h, jointMat, doors);
 
   } else if (type === 'slab') {
-    // Full concrete floor slab
-    const slabGeo = new THREE.BoxGeometry(W, 0.5, L);
-    const slab = new THREE.Mesh(slabGeo, concMat);
-    slab.position.set(0, -0.25, L/2);
-    slab.receiveShadow = true;
-    group.add(slab);
-    // Thickened edge
+    addBox(group, concMat, W, 0.32, L, 0, 0.16, L/2);
     for (const [ex,ez,ew,el] of [
-      [0,     -0.15, W,  0.5],
-      [0,  L+0.15,   W,  0.5],
-      [-W/2-0.15, L/2, 0.5, L],
-      [ W/2+0.15, L/2, 0.5, L]
+      [0, -0.22, W + 0.6, 0.55],
+      [0, L + 0.22, W + 0.6, 0.55],
+      [-W/2 - 0.22, L/2, 0.55, L],
+      [ W/2 + 0.22, L/2, 0.55, L]
     ]) {
-      const e = new THREE.Mesh(new THREE.BoxGeometry(ew, 0.8, el), concMat);
-      e.position.set(ex, -0.4, ez); group.add(e);
+      addBox(group, edgeMat, ew, 0.62, el, ex, -0.1, ez);
     }
   } else if (type === 'concrete_blocks') {
-    const blocks = makeConcreteBlocks(W, L, height, cfg.blockLen || 10);
+    const blocks = makeConcreteBlocks(W, L, height, cfg.blockLen || 10, doors);
     group.add(blocks);
   }
 
@@ -897,8 +971,14 @@ function buildBuilding() {
 
   building = new THREE.Group();
 
-  // Foundation (always at grade)
-  const found = makeFoundation(W, L, cfg.foundation, cfg.foundHeight);
+  const padMat = new THREE.MeshStandardMaterial({ color:0x6f7d58, roughness:0.96, metalness:0.0 });
+  const pad = new THREE.Mesh(new THREE.BoxGeometry(W + 10, 0.05, L + 12), padMat);
+  pad.position.set(0, -0.035, L / 2);
+  pad.receiveShadow = true;
+  building.add(pad);
+
+  // Foundation (always at grade) — pass front-wall doors so blocks/walls can gap at openings
+  const found = makeFoundation(W, L, cfg.foundation, cfg.foundHeight, doors);
   building.add(found);
 
   // Main structure group (lifted by foundation)
@@ -916,14 +996,16 @@ function buildBuilding() {
     const ew1 = new THREE.Mesh(makeEndWallShape(W, H, doors), mats.wall);
     ew1.castShadow = true;
     structure.add(ew1);
-    const fr1 = makeEndWallFraming(W, H, doors, heavy, lift);
+    // bottomExtend only for foundations that elevate the structure above grade
+    const doorExtend = (cfg.foundation === 'grade_beam' || cfg.foundation === 'wall' || cfg.foundation === 'concrete_blocks') ? lift : 0;
+    const fr1 = makeEndWallFraming(W, H, doors, heavy, lift, true, doorExtend);
     structure.add(fr1);
 
     // END wall fabric + framing — BACK
     const ew2 = new THREE.Mesh(makeEndWallShape(W, H, []), mats.wall); // back wall: no doors
     ew2.position.z = L; ew2.rotation.y = Math.PI; ew2.castShadow = true;
     structure.add(ew2);
-    const fr2 = makeEndWallFraming(W, H, [], heavy, lift);
+    const fr2 = makeEndWallFraming(W, H, [], heavy, lift, true, 0);
     fr2.position.z = L; fr2.rotation.y = Math.PI;
     structure.add(fr2);
 
@@ -948,8 +1030,9 @@ function buildBuilding() {
     const ew2 = new THREE.Mesh(makeGableEndWallFabric(W, H, sw, []), mats.wall);
     ew2.position.z = L; ew2.rotation.y = Math.PI; structure.add(ew2);
 
-    // Door framing on front wall
-    const df = makeEndWallFraming(W, H, doors, heavy, lift);
+    // Door framing on front wall (no arch truss — portal frames already handle structure)
+    const arDoorExtend = (cfg.foundation === 'grade_beam' || cfg.foundation === 'wall' || cfg.foundation === 'concrete_blocks') ? lift : 0;
+    const df = makeEndWallFraming(W, H, doors, heavy, lift, false, arDoorExtend);
     structure.add(df);
 
     // Portal frames along length
@@ -976,11 +1059,13 @@ function buildBuilding() {
     }
   }
 
-  // Base sill
-  const sill = new THREE.Mesh(new THREE.BoxGeometry(W, 0.45, L), mats.conc);
-  sill.position.set(0, 0.22 + lift, L/2);
-  sill.receiveShadow = true;
-  building.add(sill);
+  // Ground-level threshold strip for anchor foundations (very thin visual base)
+  if (cfg.foundation === 'anchor') {
+    const sill = new THREE.Mesh(new THREE.BoxGeometry(W, 0.1, L), mats.conc);
+    sill.position.set(0, 0.05, L/2);
+    sill.receiveShadow = true;
+    building.add(sill);
+  }
 
   scene.add(building);
   fitCamera();
@@ -990,8 +1075,9 @@ function buildBuilding() {
 // ─── CAMERA ───────────────────────────────────────────────────────────────────
 function fitCamera() {
   const W = cfg.width, L = cfg.length, H = peakH(), lift = foundLift();
-  camera.position.set(W * 1.1, (H + lift) * 1.3, -L * 0.5);
-  controls.target.set(0, (H + lift) * 0.42, L / 2);
+  const dist = Math.max(W * 1.35, L * 0.72, 90);
+  camera.position.set(W * 0.92, Math.max((H + lift) * 0.95, 30), -dist);
+  controls.target.set(0, Math.max((H + lift) * 0.32, 8), L * 0.36);
   controls.update();
 }
 
@@ -1022,6 +1108,10 @@ function updateUI() {
   document.getElementById('spec-found').textContent = lift > 0 ? `${found.label} · ${lift} ft` : found.label;
   document.getElementById('dim-badge').textContent  = `${W}' W  ×  ${L}' L  ×  ${(H+lift).toFixed(1)}' H`;
   document.getElementById('series-badge').textContent = `${getSeries().badge}  ·  ${getProfile().label}`;
+
+  const note = foundationNote();
+  document.getElementById('found-note').textContent = note;
+  document.getElementById('foundation-badge').innerHTML = `<strong>${found.label}</strong><span>${note}</span>`;
 
   const p = new URLSearchParams({ series:getSeries().badge, profile:getProfile().label, width:W, length:L, height:(H+lift).toFixed(1), colour:COLOR_NAMES[cfg.color]||cfg.color, foundation:found.label, garageDoors:cfg.garageDoors, manDoors:cfg.manDoors });
   document.getElementById('quote-link').href = `contact.html?${p}`;

@@ -15,6 +15,8 @@
   <meta property="og:image:height" content="630">
   <link rel="canonical" href="https://www.coveritcanada.com/contact.html">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"CoverIT Canada Inc","telephone":"+18442426837","email":"info@coveritcanada.com","url":"https://www.coveritcanada.com","address":{"@type":"PostalAddress","streetAddress":"7398 Yonge St Suite #402","addressLocality":"Thornhill","addressRegion":"ON","postalCode":"L4J8J2","addressCountry":"CA"},"areaServed":{"@type":"Province","name":"Ontario"},"openingHours":"Mo-Fr 08:00-17:00","priceRange":"$$"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=3">
   <link rel="stylesheet" href="css/inner.css?v=3">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NCJBRK8EL"></script>
@@ -24,7 +26,7 @@
 
 
 <nav class="nav">
-  <a href="/" class="nav-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="nav-logo-img"></a>
+  <a href="/" class="nav-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="nav-logo-img" width="722" height="250" decoding="async" loading="eager"></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="installation.html">Installation</a>
@@ -33,20 +35,24 @@
     <a href="megadome.html">MegaDome</a>
     <a href="insulation.html">Insulation</a>
     <a href="about.html">About</a>
-    <a href="contact.html" class="nav-cta active">Get a Quote</a>
+    <a href="contact.html" class="nav-cta active">Get Your Price</a>
   </div>
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  <button class="nav-hamburger" type="button" aria-label="Open menu" aria-controls="nav-mobile" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
-<nav class="nav-mobile">
+<nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
   <a href="/">Home</a>
   <a href="installation.html">Installation</a>
     <a href="maintenance.html">Maintenance</a>
   <a href="repair.html">Repair</a>
   <a href="megadome.html">MegaDome</a>
-  <a href="insulation.html">Insulation</a>
+    <a href="insulation.html">Insulation</a>
   <a href="about.html">About</a>
-  <a href="contact.html">Get a Quote →</a>
+  <a href="contact.html">Get Your Price →</a>
 </nav>
+<div class="mobile-cta-bar" aria-label="Quick contact actions">
+  <a href="tel:18442426837" class="mobile-cta-call">Call Now</a>
+  <a href="contact.html" class="mobile-cta-quote">Get Your Price in 24 Hours</a>
+</div>
 
 <section class="page-hero">
   <div class="page-hero-content">
@@ -102,9 +108,9 @@
     </div>
     <div>
       <div class="contact-form">
-        <div class="eyebrow">Quick Quote Request</div>
+        <div class="eyebrow">Get Your Price in 24 Hours</div>
         <div class="form-title">Tell Us About<br>Your Project</div>
-        <p class="form-sub">Fill out this form and we will get back to you within one business day.</p>
+        <p class="form-sub">The more detail you provide, the faster we can give you a real number. We respond within one business day.</p>
         <form action="https://formspree.io/f/mzdjqoan" method="POST" onsubmit="return validateContactForm(this)">
           <!-- Honeypot — hidden from humans, filled by bots -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
@@ -113,22 +119,22 @@
 
           <div class="form-group">
             <label class="form-label">Your Name <span style="color:#e05a2b">*</span></label>
-            <input type="text" name="name" id="cf-name" placeholder="John Smith" class="form-input">
-            <div id="cf-name-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">Your name is required</div>
+            <input type="text" name="name" id="cf-name" placeholder="John Smith" class="form-input" required autocomplete="name" aria-describedby="cf-name-err">
+            <div id="cf-name-err" class="form-error" role="alert">Your name is required</div>
           </div>
           <div class="form-group">
             <label class="form-label">Phone Number <span style="color:#e05a2b">*</span></label>
-            <input type="tel" name="phone" id="cf-phone" placeholder="705-555-0100" class="form-input">
-            <div id="cf-phone-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid Canadian phone number is required (e.g. 705-555-0100)</div>
+            <input type="tel" name="phone" id="cf-phone" placeholder="705-555-0100" class="form-input" required autocomplete="tel" aria-describedby="cf-phone-err">
+            <div id="cf-phone-err" class="form-error" role="alert">A valid Canadian phone number is required (e.g. 705-555-0100)</div>
           </div>
           <div class="form-group">
             <label class="form-label">Email <span style="color:#e05a2b">*</span></label>
-            <input type="email" name="email" id="cf-email" placeholder="john@yourfarm.com" class="form-input">
-            <div id="cf-email-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">A valid email address is required</div>
+            <input type="email" name="email" id="cf-email" placeholder="john@yourfarm.com" class="form-input" required autocomplete="email" aria-describedby="cf-email-err">
+            <div id="cf-email-err" class="form-error" role="alert">A valid email address is required</div>
           </div>
           <div class="form-group">
             <label class="form-label">What Do You Need? <span style="color:#e05a2b">*</span></label>
-            <select name="service" id="cf-service" class="form-select">
+            <select name="service" id="cf-service" class="form-select" required aria-describedby="cf-service-err">
               <option value="">Select a service...</option>
               <option>New Fabric Building Installation</option>
               <option>Fabric Building Repair</option>
@@ -139,13 +145,64 @@
               <option>Permit Assistance</option>
               <option>Not Sure Yet</option>
             </select>
-            <div id="cf-service-err" style="display:none;font-size:11px;color:#e05a2b;margin-top:4px">Please select a service</div>
+            <div id="cf-service-err" class="form-error" role="alert">Please select a service</div>
           </div>
           <div class="form-group">
-            <label class="form-label">Message</label>
-            <textarea name="message" class="form-textarea" placeholder="Tell us about your project — size, location, intended use, timeline..."></textarea>
+            <label class="form-label">Project Location <span style="color:#e05a2b">*</span></label>
+            <input type="text" name="location" id="cf-location" placeholder="e.g. Peterborough, ON or K9J 7A1" class="form-input" required autocomplete="address-level2" aria-describedby="cf-location-err">
+            <div id="cf-location-err" class="form-error" role="alert">Project location is required</div>
           </div>
-          <button type="submit" id="cf-submit" class="form-submit">Send Message →</button>
+          <div class="form-group">
+            <label class="form-label">Intended Use</label>
+            <select name="intended_use" class="form-select">
+              <option value="">Select intended use...</option>
+              <option>Farm equipment storage</option>
+              <option>Livestock or dairy barn</option>
+              <option>Hay or grain storage</option>
+              <option>Contractor or workshop</option>
+              <option>Salt or sand storage</option>
+              <option>Mining or industrial</option>
+              <option>Commercial warehouse</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Approximate Size</label>
+            <select name="approximate_size" class="form-select">
+              <option value="">Select approximate size...</option>
+              <option>Under 30×60 (small)</option>
+              <option>30×60 — 40×80 (medium)</option>
+              <option>40×80 — 60×120 (large)</option>
+              <option>Over 60×120 (commercial/industrial)</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Project Timeline</label>
+            <select name="timeline" class="form-select">
+              <option value="">Select timeline...</option>
+              <option>ASAP — need it this season</option>
+              <option>Within 3 months</option>
+              <option>3–6 months</option>
+              <option>6–12 months</option>
+              <option>Just researching</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Budget Range <span style="font-size:12px;color:#aaa;font-weight:400">(optional — helps us recommend the right solution)</span></label>
+            <select name="budget_range" class="form-select">
+              <option value="">Prefer not to say</option>
+              <option>Under $75,000</option>
+              <option>$75,000 – $150,000</option>
+              <option>$150,000 – $300,000</option>
+              <option>Over $300,000</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Anything Else?</label>
+            <textarea name="message" class="form-textarea" placeholder="Foundation preferences, existing structure, special requirements, questions..."></textarea>
+          </div>
+          <button type="submit" id="cf-submit" class="form-submit">Get Your Building Price in 24 Hours →</button>
           <p class="form-note">Or call us directly at <a href="tel:18442426837" style="color:#111;font-weight:600">1-844-242-6837</a></p>
         </form>
 
@@ -161,6 +218,7 @@ function cfField(id, errId, isOk, borderCol) {
   if (!el) return;
   err.style.display = isOk ? 'none' : 'block';
   el.style.borderColor = isOk ? '' : '#e05a2b';
+  el.setAttribute('aria-invalid', isOk ? 'false' : 'true');
 }
 
 function validateContactForm(form) {
@@ -169,17 +227,19 @@ function validateContactForm(form) {
   if (!loaded || (Date.now() - loaded) < 4000) return false;
 
   var ok = true;
-  var name  = document.getElementById('cf-name').value.trim();
-  var phone = document.getElementById('cf-phone').value.trim();
-  var email = document.getElementById('cf-email').value.trim();
-  var svc   = document.getElementById('cf-service').value;
+  var name     = document.getElementById('cf-name').value.trim();
+  var phone    = document.getElementById('cf-phone').value.trim();
+  var email    = document.getElementById('cf-email').value.trim();
+  var svc      = document.getElementById('cf-service').value;
+  var location = document.getElementById('cf-location').value.trim();
 
-  cfField('cf-name',    'cf-name-err',    name.length >= 2,         '');
-  cfField('cf-phone',   'cf-phone-err',   CF_PHONE.test(phone),     '');
-  cfField('cf-email',   'cf-email-err',   CF_EMAIL.test(email),     '');
-  cfField('cf-service', 'cf-service-err', svc !== '',               '');
+  cfField('cf-name',     'cf-name-err',     name.length >= 2,     '');
+  cfField('cf-phone',    'cf-phone-err',    CF_PHONE.test(phone), '');
+  cfField('cf-email',    'cf-email-err',    CF_EMAIL.test(email), '');
+  cfField('cf-service',  'cf-service-err',  svc !== '',           '');
+  cfField('cf-location', 'cf-location-err', location.length >= 2, '');
 
-  if (name.length < 2 || !CF_PHONE.test(phone) || !CF_EMAIL.test(email) || svc === '') ok = false;
+  if (name.length < 2 || !CF_PHONE.test(phone) || !CF_EMAIL.test(email) || svc === '' || location.length < 2) ok = false;
 
   if (ok) {
     var btn = document.getElementById('cf-submit');
@@ -217,7 +277,7 @@ function validateContactForm(form) {
 
 <!-- SERVICE AREA -->
 <section class="sec sec-dark reveal">
-  <ul style="display:none" aria-label="Ontario regions served"><li>Central Ontario and Greater Toronto Area</li><li>Eastern Ontario including Ottawa and Kingston</li><li>Northern Ontario including Sudbury and Thunder Bay</li><li>Southwestern Ontario including London and Hamilton</li><li>Northwestern Ontario mining regions</li></ul>
+  <ul class="support-list" aria-label="Ontario regions served"><li>Central Ontario and Greater Toronto Area</li><li>Eastern Ontario including Ottawa and Kingston</li><li>Northern Ontario including Sudbury and Thunder Bay</li><li>Southwestern Ontario including London and Hamilton</li><li>Northwestern Ontario mining regions</li></ul>
   <div class="eyebrow-w">Service Area</div>
   <h2 class="h2-w">We Serve All of<br><em>Ontario</em></h2>
   <p style="font-size:16px;color:rgba(255,255,255,0.65);max-width:700px;line-height:1.8;margin-bottom:40px;">CoverIT Canada installs, repairs, and re-covers fabric buildings across the entire province of Ontario. Our head office is in Thornhill and our operations yard is in Peterborough — centrally located to reach projects from Windsor to Timmins, from Ottawa to the Lakehead. We regularly work in the GTA, cottage country, agricultural regions, Northern Ontario mine sites, and everywhere in between. No project is too remote.</p>
@@ -232,7 +292,7 @@ function validateContactForm(form) {
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <div class="footer-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="footer-logo-img"></div>
+      <div class="footer-logo"><img src="brand_assets/thumbnail_Cover It Logo v2(4).png" alt="CoverIT Canada" class="footer-logo-img" width="722" height="250" decoding="async" loading="eager"></div>
       <p class="footer-tagline">Ontario's trusted fabric building specialists. New installations, repair, re-covering, and insulation for farms, municipalities, mining, and businesses.</p>
       <div class="footer-contact">📞 <a href="tel:18442426837">1-844-242-6837</a></div>
       <div class="footer-contact">📱 <a href="tel:7059307933">705-930-7933</a></div>
@@ -286,6 +346,9 @@ function validateContactForm(form) {
       <div class="footer-links">
         <a href="about.html">About Us</a>
         <a href="gallery.html">Project Gallery</a>
+        <a href="fabric-buildings-vs-steel-buildings-ontario.html">Fabric vs Steel</a>
+        <a href="megadome-vs-coverall-ontario.html">MegaDome vs Coverall</a>
+        <a href="fabric-building-cost-ontario.html">Cost Guide</a>
         <a href="contact.html">Contact Us</a>
         <a href="terms.html">Terms & Conditions</a>
         <a href="https://share.google/b9FYoAaF4nysvHr6X" target="_blank" rel="noopener">Find Us on Google ↗</a>
@@ -298,6 +361,7 @@ function validateContactForm(form) {
   </div>
 </footer>
 
+<a href="#contact-form" class="sticky-cta" onclick="document.querySelector('.contact-form').scrollIntoView({behavior:'smooth'});return false;">Get Your Building Price in 24 Hours</a>
 <script src="js/main.js"></script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
